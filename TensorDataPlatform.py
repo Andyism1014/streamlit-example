@@ -38,9 +38,10 @@ a=alt.Chart(Price).mark_line().encode(
     y='Price:Q'
    
 )
-b=alt.Chart(huobi).mark_area(opacity=0.6).encode(
+b=alt.Chart(Volume).mark_area(opacity=0.6).encode(
     x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
-    y=alt.Y("Volume:Q",axis=alt.Axis(format="s"))
+    y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
+    color="symbol:N"
     
 )
 
