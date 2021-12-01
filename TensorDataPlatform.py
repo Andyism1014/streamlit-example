@@ -19,7 +19,7 @@ r=requests.get("https://www.okex.com/api/v5/market/history-candles?instId=LAT-US
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high","low","close","vol","volCcy"])
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]})
 
-g=pd.concat([huobi, okex])
+
 
 st.header("huobi")
 st.write(huobi)
@@ -27,7 +27,4 @@ st.write(huobi)
 st.header("okex")
 st.write(okex)
 
-
-st.header("g")
-st.write(g)
 
