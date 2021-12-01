@@ -20,11 +20,11 @@ a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high"
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]}).iloc[::-1]
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
 #concat
-Volume=pd.concat([huobi,okex],ignore_index=True)
+
 
 
 st.header("Volume")
-st.write(Volume)
+st.write(huobi)
 
 st.header("okex")
 st.write(okex)
