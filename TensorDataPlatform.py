@@ -9,9 +9,6 @@ st.set_page_config(layout="wide")  # this needs to be the first Streamlit comman
 
 st.title("Tensor Data Platform")
 
-col1, col2, col3 = st.columns(3)
-left,right=st.columns(2)
-  
 # LAT
 #huobi
 r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&symbol=latusdt")
@@ -25,33 +22,7 @@ a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high"
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]})
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
 
-#price
-r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&symbol=latusdt")
-a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
-Price=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"Price":(a["high"]+a["low"])/2})
-
-#picture
-a=alt.Chart(Price).mark_line().encode(
-    x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
-    y='Price:Q'
-   
-)
-b=alt.Chart(huobi).mark_area(opacity=0.6).encode(
-    x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
-    y=alt.Y("Volume:Q",axis=alt.Axis(format="s"))
-    
-)
-
-res1=alt.layer(a,b).resolve_scale(
-    y = 'independent').properties(
-    width=800,
-    height=350
-).interactive(bind_y=False)
-
-#layout
-with left:
-  st.header("Huobi")
-  st.write(res1)
-
+st.write(huobi)
+st.write(okex)
 
 
