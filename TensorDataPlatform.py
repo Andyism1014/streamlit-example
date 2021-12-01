@@ -44,7 +44,7 @@ res1=alt.layer(a,b).resolve_scale(
 ).interactive(bind_y=False)
 
 #layout
-with col1:
+with left:
   st.header("Huobi")
   st.write(res1)
 
