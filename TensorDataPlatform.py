@@ -30,7 +30,7 @@ Price=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"Price":(a["high"]+a["l
 #MovingAverage
 huobi["Volume"]=huobi["Volume"].rolling(14).mean()
 okex["Volume"]=okex["Volume"].rolling(14).mean()
-MAVLAT=pd.concat([a,b])
+MAVLAT=pd.concat([huobi,okex])
 #picture
 a=alt.Chart(Price).mark_line().encode(
     x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
@@ -96,6 +96,7 @@ right,left= st.columns(2)
 with right:
     st.header("LAT Volume")
     st.write(resLAT)
+    st.write(LATMAV)
 with left:
     st.header("CKB Volume")
     st.write(resCKB)
