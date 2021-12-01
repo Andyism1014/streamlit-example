@@ -44,15 +44,7 @@ resLAT=alt.layer(a,b).resolve_scale(
     width=800,
     height=350
 ).interactive(bind_y=False)
-c=alt.Chart(MAVLAT).mark_area(opacity=0.6).encode(
-    x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
-    y=alt.Y("Volume:Q",axis=alt.Axis(format="s",title="14days Moving Average")),
-    color="symbol:N")
-resLATMAV=alt.layer(a,c).resolve_scale(
-    y = 'independent').properties(
-    width=800,
-    height=300
-).interactive(bind_y=False)
+
 
 
 
@@ -104,7 +96,6 @@ right,left= st.columns(2)
 with right:
     st.header("LAT Volume")
     st.write(resLAT)
-    st.write(resLATMAV)
 with left:
     st.header("CKB Volume")
     st.write(resCKB)
