@@ -27,8 +27,6 @@ st.write(huobi)
 st.header("okex")
 st.write(okex)
 
-st.header("s1")
-st.write(s1)
 
 st.header("g")
 st.write(g)
