@@ -22,7 +22,10 @@ huobi["t"]=pd.to_datetime(huobi["t"],unit="s")
 gg=alt.Chart(huobi).mark_line().encode(
     x='t:T',
     y='Volume:Q'
-)
+).properties(
+    width=800,
+    height=350
+).interactive()
 #okex
 r=requests.get("https://www.okex.com/api/v5/market/history-candles?instId=LAT-USDT&bar=1D")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high","low","close","vol","volCcy"])
