@@ -24,8 +24,6 @@ r=requests.get("https://www.okex.com/api/v5/market/history-candles?instId=LAT-US
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high","low","close","vol","volCcy"])
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]})
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
-#concat
-Volume=pd.concat([huobi,okex],ignore_index=True)
 
 #price
 r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&symbol=latusdt")
@@ -38,10 +36,9 @@ a=alt.Chart(Price).mark_line().encode(
     y='Price:Q'
    
 )
-b=alt.Chart(Volume).mark_area(opacity=0.6).encode(
+b=alt.Chart(huobi).mark_area(opacity=0.6).encode(
     x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
-    y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
-    color="symbol:N"
+    y=alt.Y("Volume:Q",axis=alt.Axis(format="s"))
     
 )
 
@@ -54,7 +51,7 @@ res1=alt.layer(a,b).resolve_scale(
 #layout
 with left:
   st.header("Huobi")
-  st.write(Volume)
+  st.write(res1)
 
 
 
