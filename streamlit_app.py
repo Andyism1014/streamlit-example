@@ -26,12 +26,7 @@ Volume=pd.concat([huobi,okex])
 r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&symbol=latusdt")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
 Price=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"Price":(a["high"]+a["low"])/2})
-#MovingAverage
-a=huobi
-b=okex
-a["Volume"]=a["Volume"].rolling(14).mean()
-b["Volume"]=b["Volume"].rolling(14).mean()
-MAV=pd.concat([a,b])
+
 #picture
 a=alt.Chart(Price).mark_line().encode(
     x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
