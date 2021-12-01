@@ -10,6 +10,7 @@ st.set_page_config(layout="wide")  # this needs to be the first Streamlit comman
 st.title("Tensor Data Platform")
 
 col1, col2, col3 = st.columns(3)
+left,right=st.columns(2)
   
 # LAT
 #huobi
@@ -41,5 +42,8 @@ Price=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"Price":(a["high"]+a["l
 with col1:
   st.header("Huobi")
   st.write(huobi)
-st.header("Huobi Volume")
-st.write(gg)
+with left:
+  st.header("Huobi Volume")
+  st.write(gg)
+  
+
