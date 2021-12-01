@@ -24,5 +24,6 @@ okex["t"]=pd.to_datetime(okex["t"],unit="ms")
 #com
 c=pd.concat([huobi,okex],ignore_index=True)
 
+st.write(c)
 
 
