@@ -44,21 +44,20 @@ resLAT=alt.layer(a,b).resolve_scale(
 #binance
 r=requests.get("https://api.binance.com/api/v3/klines?symbol=CKBUSDT&interval=1d&limit=1000")
 a=pd.read_json(r.text)
+a[5]=pd.to_numeric(a[5])
 binance=pd.DataFrame({"t":pd.to_datetime(a[0],unit="ms"),"symbol":"binance","Volume":a[5]})
 #bithumb vol in currency
 r=requests.get("https://api.bithumb.com/public/candlestick/CKB_KRW/24h")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
+a[5]=pd.to_numeric(a[5])
 bithumb=pd.DataFrame({"t":pd.to_datetime(a[0],unit="ms"),"symbol":"bithumb","Volume":a[5]})
 #huobi
 r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=1000&symbol=ckbusdt")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
+a["amount"]=pd.to_numeric(a["amount"])
 huobi=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"symbol":"huobi","Volume":a["amount"]}).iloc[::-1]
-#gate
-r=requests.get("https://api.gateio.ws/api/v4/spot/candlesticks?currency_pair=CKB_USDT&interval=1d")
-a=pd.read_json(r.text)
-gate=pd.DataFrame({"t":pd.to_datetime(a[0],unit="s"),"symbol":"gate","Volume":a[1]})
 #concat
-Volume=pd.concat([huobi,bithumb,binance,gate])
+Volume=pd.concat([huobi,bithumb,binance])
 #price
 r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=1000&symbol=ckbusdt")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
