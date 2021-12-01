@@ -41,4 +41,4 @@ Price=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"Price":(a["high"]+a["l
 with col1:
   st.header("Huobi")
   st.write(huobi)
-  st.write(gg)
+st.write(gg)
