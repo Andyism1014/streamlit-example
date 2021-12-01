@@ -29,24 +29,23 @@ Price=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"Price":(a["high"]+a["l
 #pic
 a=alt.Chart(Price).mark_line().encode(
     x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
-    y='Price:Q'
-   
-)
+    y='Price:Q')
 b=alt.Chart(Volume).mark_area(opacity=0.6).encode(
     x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
     y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
-    color="symbol:N"
-    
-)
-
+    color="symbol:N")
 res1=alt.layer(a,b).resolve_scale(
     y = 'independent').properties(
     width=800,
     height=350
 ).interactive(bind_y=False)
+#layouts
+col1, col2, col3 = st.columns(3)
+right,left= st.columns(2)
+with right:
+    st.header("LAT Volume")
+    st.write(res1)
+   
 
-
-st.header("LAT")
-st.write(res1)
 
 
