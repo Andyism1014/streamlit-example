@@ -22,7 +22,7 @@ a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high"
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]})
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
 #com
-Volume=pd.concat([huobi,okex],ignore_index=True)
-Volume
+Volume==pd.concat([huobi,okex],ignore_index=True)
+
 
 
