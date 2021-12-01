@@ -22,9 +22,7 @@ a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high"
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]}).iloc[::-1]
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
 st.write(okex)
-#concat
-Volume=pd.concat([huobi,okex])
-st.write(Volume)
+
 #price
 r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&symbol=latusdt")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
