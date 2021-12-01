@@ -20,7 +20,7 @@ a["vol"]=pd.to_numeric(a["vol"])
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]}).iloc[::-1]
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
 #combine
-Volume=pd.concat([huobi,okex])
+Volume=pd.concat([huobi,okex],ignore_index=True)
 
 
 st.header("huobi")
