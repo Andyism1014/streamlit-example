@@ -54,7 +54,8 @@ res1=alt.layer(a,b).resolve_scale(
 #layout
 with left:
   st.header("Huobi")
-  st.write(res1)
+  st.write(Volume)
+
 
 
 
