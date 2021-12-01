@@ -17,16 +17,25 @@ r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
 huobi=pd.DataFrame({"t":a["id"],"symbol":"huobi","Volume":a["amount"]}).iloc[::-1]
 huobi["t"]=pd.to_datetime(huobi["t"],unit="s")
-col1.write(huobi)
+#
+
+gg=alt.Chart(huobi).mark_line().encode(
+    x='t:T',
+    y='Volume:Q'
+)
 #okex
 r=requests.get("https://www.okex.com/api/v5/market/history-candles?instId=LAT-USDT&bar=1D")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high","low","close","vol","volCcy"])
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]}).iloc[::-1]
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
-col2.write(okex)
 
 #price
 r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&symbol=latusdt")
 a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
 Price=pd.DataFrame({"t":pd.to_datetime(a["id"],unit="s"),"Price":(a["high"]+a["low"])/2})
-col3.write(Price)
+
+#layout
+with col1:
+  st.header("Huobi")
+  st.write(huobi)
+  st.write(gg)
