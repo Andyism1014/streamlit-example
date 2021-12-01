@@ -21,11 +21,19 @@ a=pd.DataFrame(pd.read_json(r.text)["data"].tolist(),columns=["id","open","high"
 okex=pd.DataFrame({"t":a["id"],"symbol":"okex","Volume":a["vol"]}).iloc[::-1]
 okex["t"]=pd.to_datetime(okex["t"],unit="ms")
 
+s1 = pd.Series(['a', 'b'])
+s2 = pd.Series(['c', 'd'])
+g=pd.concat([s1, s2])
+
 st.header("huobi")
 st.write(huobi)
 
 st.header("okex")
 st.write(okex)
 
+st.header("s1")
+st.write(s1)
 
+st.header("g")
+st.write(g)
 
