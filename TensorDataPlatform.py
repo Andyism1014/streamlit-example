@@ -104,11 +104,11 @@ right,left= st.columns(2)
 with right:
     st.header("LAT Volume")
     st.write(resLAT)
-    st.write(resLAT)
+    st.write(resLATMAV)
 with left:
     st.header("CKB Volume")
     st.write(resCKB)
-    st.write(resLAT)
+
 
 
 
