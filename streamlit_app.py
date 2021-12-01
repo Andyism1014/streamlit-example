@@ -3,17 +3,10 @@ import math
 import pandas as pd
 import streamlit as st
 
-"""
-# Welcome to Streamlit!
+st.set_page_config(layout="wide")  # this needs to be the first Streamlit command
 
-Edit `/streamlit_app.py` to customize this app to your heart's desire :heart:
+st.title("Worst-Case Analysis for Feature Rollouts")
 
-If you have any questions, checkout our [documentation](https://docs.streamlit.io) and [community
-forums](https://discuss.streamlit.io).
-
-In the meantime, below is an example of what you can do with just a few lines of code:
-"""
-
-
+st.markdown("*Check out the [article](https://www.crosstab.io/articles/staged-rollout-analysis) for a detailed walk-through!*")
 x = st.slider('x')
 st.write(x, 'squared is', x * x)
