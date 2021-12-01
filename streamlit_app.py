@@ -20,8 +20,8 @@ huobi["t"]=pd.to_datetime(huobi["t"],unit="s")
 #
 
 gg=alt.Chart(huobi).mark_line().encode(
-    x='t:T',
-    y='Volume:Q'
+    x='yearmonthdate(t):T',
+   y=alt.Y("Volume:Q",axis=alt.Axis(format="s"))
 ).properties(
     width=800,
     height=350
