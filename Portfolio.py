@@ -113,9 +113,9 @@ def getCKB():
   return res1,res2
 
 def set_Portfolio():
-    st.header("LATConsolidated Volume")
+    st.header("LAT Consolidated Volume")
     st.write(getLAT()[0])
     st.write(getLAT()[1])
-    st.header("CKBConsolidated Volume")
+    st.header("CKB Consolidated Volume")
     st.write(getCKB()[0])
     st.write(getCKB()[1])
