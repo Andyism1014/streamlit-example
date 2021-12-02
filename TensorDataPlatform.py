@@ -25,7 +25,7 @@ st.sidebar.write('Tensor Investment Corporation')
 #layout
 if options == 'Portfolio Information':
     st.header("LAT Volume")
-    getLATVolume()
+    st.write(getLATVolume())
 
 if options == 'Home':
     st.header("CKB Volume")
