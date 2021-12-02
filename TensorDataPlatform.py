@@ -2,7 +2,9 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 from PIL import Image
-import Portfolio
+import altair as alt
+import requests
+from Portfolio import *
 
 im = Image.open("1566968153508.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
@@ -23,7 +25,7 @@ st.sidebar.write('Tensor Investment Corporation')
 #layout
 if options == 'Portfolio Information':
     st.header("LAT Volume")
-    getLATVolume()[0]
+    getLATVolume()
 
 if options == 'Home':
     st.header("CKB Volume")
