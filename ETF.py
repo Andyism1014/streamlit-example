@@ -3,6 +3,7 @@ import pandas as pd
 import numpy as np
 import time
 import altair as alt
+import streamlit as st
 
 def getETF():
   #get update time:
