@@ -16,7 +16,7 @@ st.sidebar.markdown('version Alpha')
 st.sidebar.header('Navigation')
 
 options = st.sidebar.radio('Select a page:', 
-    ['Home', 'Header Information', 'Data Information', 'Data Visualisation', 'Missing Data Visualisation'])
+    ['Home', 'Portfolio Information', 'Categories Information', 'Data Information'])
 
 st.sidebar.markdown('---')
 st.sidebar.write('Tensor Investment Corporation')
