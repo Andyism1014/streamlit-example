@@ -55,6 +55,6 @@ def getLAT():
 
 def set_Portfolio():
     st.header("LAT Price&Consolidated Volume")
-    st.metric("LAT Price",getLAT()[2]),delta=getLAT()[3])
+    st.metric("LAT Price",getLAT()[2],delta=getLAT()[3])
     st.write(getLAT()[0])
     st.write(getLAT()[1])
