@@ -6,7 +6,6 @@ import requests
 
 
 st.set_page_config(layout="wide")  # this needs to be the first Streamlit command
-
 st.title("Tensor Data Platform")
 
 
