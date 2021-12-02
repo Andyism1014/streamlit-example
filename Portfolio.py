@@ -54,7 +54,6 @@ def getLAT():
   return [res1,res2,Price["Price"][0],percentage(Price["Price"][0],Price["Price"][1])]
 
 def set_Portfolio():
-
     st.header("LAT Price&Consolidated Volume")
     st.metric("LAT Price",getLAT()[2]),delta=getLAT()[3])
     st.write(getLAT()[0])
