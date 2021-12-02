@@ -4,9 +4,7 @@ import pandas as pd
 import requests
 import streamlit as st
 
-def percentage(part, whole):
-  percentage = 100 * float(part)/float(whole)
-  return str(round(percentage)) + "%"
+
 
 def getLAT():
   #LAT
@@ -51,10 +49,9 @@ def getLAT():
       width=800,
       height=350
   ).interactive(bind_y=False)
-  return [res1,res2,Price["Price"][0],percentage(Price["Price"][0],Price["Price"][1])]
+  return [res1,res2]
 
 def set_Portfolio():
     st.header("LAT Price&Consolidated Volume")
-    st.metric("LAT Price",getLAT()[2],delta=getLAT()[3])
     st.write(getLAT()[0])
     st.write(getLAT()[1])
