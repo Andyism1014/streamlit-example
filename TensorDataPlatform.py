@@ -11,9 +11,9 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=
 
 
 st.sidebar.image('1566968153508.png', width=200)
-st.sidebar.header('Tensor Data Platform')
+st.sidebar.title('Tensor Data Platform')
 st.sidebar.markdown('version Alpha')
-st.sidebar.title('Navigation')
+st.sidebar.header('Navigation')
 
 options = st.sidebar.radio('Select a page:', 
     ['Home', 'Header Information', 'Data Information', 'Data Visualisation', 'Missing Data Visualisation'])
