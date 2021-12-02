@@ -55,7 +55,7 @@ b=alt.Chart(Volume).mark_area(opacity=0.6).encode(
     color="symbol:N")
 resLAT=alt.layer(a,b).resolve_scale(
     y = 'independent').properties(
-    width=8000,
+    width=800,
     height=350
 ).interactive(bind_y=False)
 
