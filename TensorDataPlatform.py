@@ -4,10 +4,12 @@ import pandas as pd
 import streamlit as st
 import requests
 
+img=Image.open("1566968153508.png")
+st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=img)  # this needs to be the first Streamlit command
 
-st.set_page_config(layout="wide")  # this needs to be the first Streamlit command
-st.image("1566968153508.png")
-st.title("Tensor Data Platform")
+t1, t2 = st.columns((0.07,1)) 
+t1.image("1566968153508.png")
+t2.title("Tensor Data Platform")
 
 
 #LAT
