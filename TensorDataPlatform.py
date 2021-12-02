@@ -13,18 +13,13 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=
 st.sidebar.image('1566968153508.png', width=200)
 st.sidebar.header('Tensor Data Platform')
 st.sidebar.markdown('version Alpha')
+st.sidebar.title('Navigation')
 
-
-menu = st.sidebar.radio(
-    "",
-    ("投资品跟踪", "赛道信息"),
-)
-
-#
-st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+options = st.sidebar.radio('Select a page:', 
+    ['Home', 'Header Information', 'Data Information', 'Data Visualisation', 'Missing Data Visualisation'])
 
 st.sidebar.markdown('---')
-st.sidebar.write('Tensor Investment Corporation | OCT 2021')
+st.sidebar.write('Tensor Investment Corporation')
 
 
 
