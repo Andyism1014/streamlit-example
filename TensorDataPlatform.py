@@ -106,14 +106,13 @@ resCKB=alt.layer(a,b).resolve_scale(
 
 
 #layouts
-col1, col2, col3 = st.columns(3)
-right,left= st.columns(2)
-with right:
-    st.header("LAT Volume")
-    st.write(resLAT)
-with left:
-    st.header("CKB Volume")
-    st.write(resCKB)
+
+
+st.header("LAT Volume")
+st.write(resLAT)
+
+st.header("CKB Volume")
+st.write(resCKB)
 
 
 
