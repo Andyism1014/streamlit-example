@@ -2,8 +2,13 @@ import altair as alt
 import math
 import pandas as pd
 import requests
+import streamlit as st
 
-def getLATVolume():
+def percentage(part, whole):
+  percentage = 100 * float(part)/float(whole)
+  return str(round(percentage)) + "%"
+
+def getLAT():
   #LAT
   r=requests.get("https://api.huobi.pro/market/history/kline?period=1day&size=100&symbol=latusdt")
   a=pd.DataFrame(pd.read_json(r.text)["data"].tolist())
@@ -46,4 +51,11 @@ def getLATVolume():
       width=800,
       height=350
   ).interactive(bind_y=False)
-  return [res1,res2]
+  return [res1,res2,Price["Price"][0],percentage(Price["Price"][0],Price["Price"][1])]
+
+def set_Portfolio():
+
+    st.header("LAT Price&Consolidated Volume")
+    st.metric("LAT Price",getLAT()[2]),delta=getLAT()[3])
+    st.write(getLAT()[0])
+    st.write(getLAT()[1])
