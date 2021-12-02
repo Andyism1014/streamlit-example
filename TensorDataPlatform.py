@@ -8,9 +8,25 @@ from PIL import Image
 im = Image.open("1566968153508.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
 
-t1, t2 = st.columns((0.07,1)) 
-t1.image("1566968153508.png")
-t2.title("Tensor Data Platform")
+
+
+st.sidebar.image('1566968153508.png', width=200)
+st.sidebar.header('Tensor Data Platform')
+st.sidebar.markdown('version Alpha')
+
+
+menu = st.sidebar.radio(
+    "",
+    ("投资品跟踪", "赛道信息"),
+)
+
+#
+st.write('<style>div.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
+st.sidebar.markdown('---')
+st.sidebar.write('Tensor Investment Corporation | OCT 2021')
+
+
 
 
 #LAT
@@ -91,6 +107,7 @@ resCKB=alt.layer(a,b).resolve_scale(
     width=800,
     height=350
 ).interactive(bind_y=False)
+
 
 
 #layouts
