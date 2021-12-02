@@ -4,12 +4,12 @@ from PIL import Image
 from Portfolio import *
 from ETF import *
 
-im = Image.open("1566968153508.png")
+im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
 
 
 
-st.sidebar.image('1566968153508.png', width=200)
+st.sidebar.image('logo.png', width=200)
 st.sidebar.title('Tensor Data Platform')
 st.sidebar.markdown('Alpha')
 st.sidebar.header('Navigation')
