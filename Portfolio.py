@@ -51,4 +51,7 @@ def getLAT():
   ).interactive(bind_y=False)
   return [res1,res2]
 
-
+def set_Portfolio():
+    st.header("LAT Price&Consolidated Volume")
+    st.write(getLAT()[0])
+    st.write(getLAT()[1])
