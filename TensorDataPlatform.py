@@ -2,7 +2,7 @@ import altair as alt
 import pandas as pd
 import streamlit as st
 from PIL import Image
-import Portfolio as *
+import Portfolio
 
 im = Image.open("1566968153508.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
