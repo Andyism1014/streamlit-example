@@ -79,7 +79,7 @@ def getbinance(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-
+@st.cache
 def getinfor(x):
   b=[]
   c=[]
@@ -92,7 +92,7 @@ def getinfor(x):
   m=c.index(max(c))
   return [b,b[m]]
 
-@st.cache
+
 def PaintVP(x):
   V=pd.concat(x[0])
   a=alt.Chart(x[1]).mark_line().encode(
