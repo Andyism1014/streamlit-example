@@ -4,6 +4,7 @@ import pandas as pd
 import requests
 import streamlit as st
 
+@st.cache
 def getbithumb(x):
   name=x.upper()+"_KRW"+"/24h"
   r=requests.get("https://api.bithumb.com/public/candlestick/"+name)
@@ -21,6 +22,7 @@ def getbithumb(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
+@st.cache
 def gethuobi(x):
   name=x.lower()+"usdt"
   r=requests.get("https://api.huobi.pro/market/history/kline",params={"size":1000,"symbol":name,"period":"1day"})
@@ -36,6 +38,7 @@ def gethuobi(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
+@st.cache
 def getok(x):
   name=x.upper()+"-USDT"
   r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1D"})
@@ -61,6 +64,7 @@ def getok(x):
       a=a[["t","symbol","Price","Volume"]]
     return a
 
+@st.cache
 def getbinance(x):
   name=x.upper()+"USDT"
   r=requests.get("https://api.binance.com/api/v3/klines",params={"limit":1000,"interval":"1d","symbol":name})
@@ -75,6 +79,7 @@ def getbinance(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
+@st.cache
 def getinfor(x):
   b=[]
   c=[]
@@ -87,6 +92,7 @@ def getinfor(x):
   m=c.index(max(c))
   return [b,b[m]]
 
+@st.cache
 def PaintVP(x):
   V=pd.concat(x[0])
   a=alt.Chart(x[1]).mark_line().encode(
@@ -115,7 +121,7 @@ def PaintVP(x):
   ).interactive(bind_y=False)
   return [res1,res2]
 
-
+@st.cache
 def set_Portfolio2():
     st.header("LAT Consolidated Volume")
     st.write(PaintVP(getinfor("lat"))[0])
