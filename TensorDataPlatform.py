@@ -23,9 +23,9 @@ st.sidebar.write('Tensor Investment Corporation')
 
 #layout
 if options=="Home":
-    set_Portfolio2()
+    st.write('Tensor Investment Corporation')
 if options == 'Portfolio Information':
-    set_Portfolio()
+    set_Portfolio2()
 if options == 'ETF Information':
     set_ETF()
 
