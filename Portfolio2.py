@@ -115,8 +115,6 @@ def PaintVP(x):
   ).interactive(bind_y=False)
   return [res1,res2]
 
-a=getinfor("CKB")
-PaintVP(a)[0]
 
 def set_Portfolio2():
     st.header("LAT Consolidated Volume")
