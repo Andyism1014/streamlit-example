@@ -79,7 +79,7 @@ def getbinance(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.cache
+
 def getinfor(x):
   b=[]
   c=[]
