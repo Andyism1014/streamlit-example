@@ -3,6 +3,7 @@ import streamlit as st
 from PIL import Image
 from Portfolio import *
 from ETF import *
+from Portfolio2 import *
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
@@ -22,7 +23,7 @@ st.sidebar.write('Tensor Investment Corporation')
 
 #layout
 if options=="Home":
-    st.write("Tensor Investment Corporation")
+    set_Portfolio2()
 if options == 'Portfolio Information':
     set_Portfolio()
 if options == 'ETF Information':
