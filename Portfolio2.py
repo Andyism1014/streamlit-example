@@ -122,19 +122,13 @@ def PaintVP(x):
   return [res1,res2]
 
 
-def set_Portfolio2():
-    option = st.selectbox(("Home",'LAT Consolidated Volume', 'CKB Consolidated Volume', 'KLAY Consolidated Volume'))
-    if option=="Home":
-        st.header("Home")
-    if option=='LAT Consolidated Volume':
-        st.header("LAT Consolidated Volume")
-        st.write(PaintVP(getinfor("lat"))[0])
-        st.write(PaintVP(getinfor("lat"))[1])
-    if option=='CKB Consolidated Volume':
-        st.header("CKB Consolidated Volume")
-        st.write(PaintVP(getinfor("CKB"))[0])
-        st.write(PaintVP(getinfor("CKB"))[1])
-     if option=='KLAY Consolidated Volume':
-        st.header("KLAY Consolidated Volume")
-        st.write(PaintVP(getinfor("KLAY"))[0])
-        st.write(PaintVP(getinfor("KLAY"))[1])
+def set_Portfolio():
+    st.header("LAT Consolidated Volume")
+    st.write(PaintVP(getinfor("lat"))[0])
+    st.write(PaintVP(getinfor("lat"))[1])
+    st.header("CKB Consolidated Volume")
+    st.write(PaintVP(getinfor("CKB"))[0])
+    st.write(PaintVP(getinfor("CKB"))[1])
+    st.header("KLAY Consolidated Volume")
+    st.write(PaintVP(getinfor("KLAY"))[0])
+    st.write(PaintVP(getinfor("KLAY"))[1])
