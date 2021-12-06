@@ -5,7 +5,8 @@ from PIL import Image
 from ETF import *
 from Portfolio2 import *
 import time
-
+from Categories import *
+import streamlit.components.v1 as components
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
@@ -30,7 +31,7 @@ if options=="Home":
     if Choice=="Consolidated Volume 查询器":
         st.header('Consolidated Volume 查询器')
         crrucy = st.text_input('输入您想查询的币种', 'BTC')
-        st.header(crrucy+"  Consolidated Volume")
+        st.header(crrucy.upper()+"  Consolidated Volume")
         st.write(PaintVP(getinfor(crrucy))[0])
         st.write(PaintVP(getinfor(crrucy))[1])
     if Choice=="others":
@@ -39,5 +40,9 @@ if options == 'Portfolio Information':
     set_Portfolio2()
 if options == 'ETF Information':
     set_ETF()
+if options =="'Categories Information'":
+    tvrtg("BTC","binance")
+
+
 
 
