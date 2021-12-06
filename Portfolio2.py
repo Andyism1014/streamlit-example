@@ -122,7 +122,7 @@ def PaintVP(x):
   return [res1,res2]
 
 
-def set_Portfolio():
+def set_Portfolio2():
     st.header("LAT Consolidated Volume")
     st.write(PaintVP(getinfor("lat"))[0])
     st.write(PaintVP(getinfor("lat"))[1])
