@@ -44,7 +44,7 @@ if options=='Categories Information':
         """
     <!-- TradingView Widget BEGIN -->
     <div class="tradingview-widget-container">
-    <div id="tradingview_0ee51"></div>
+    <div id="tradingview_35ad8"></div>
     <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/ETHUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">ETHUSDT Chart</span></a> by TradingView</div>
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script type="text/javascript">
@@ -59,8 +59,13 @@ if options=='Categories Information':
     "locale": "en",
     "toolbar_bg": "#f1f3f6",
     "enable_publishing": false,
-    "allow_symbol_change": true,
-    "container_id": "tradingview_0ee51"
+    "hide_top_toolbar": true,
+    "hide_legend": true,
+    "save_image": false,
+    "show_popup_button": true,
+    "popup_width": "1000",
+    "popup_height": "650",
+    "container_id": "tradingview_35ad8"
     }
     );
     </script>
