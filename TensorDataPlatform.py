@@ -52,7 +52,6 @@ if options=='Categories Information':
     {
     "width": 980,
     "height": 610,
-    "symbol": "BINANCE:BTCUSDT",
     "interval": "D",
     "timezone": "Etc/UTC",
     "theme": "dark",
