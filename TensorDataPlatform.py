@@ -39,7 +39,5 @@ if options == 'Portfolio Information':
     set_Portfolio2()
 if options == 'ETF Information':
     set_ETF()
-if options=='Categories Information':
-
 
 
