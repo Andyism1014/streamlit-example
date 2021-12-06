@@ -4,8 +4,9 @@ import streamlit as st
 from PIL import Image
 from ETF import *
 from Portfolio2 import *
+from Categories import *
 import time
-import streamlit.components.v1 as components
+
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
@@ -39,5 +40,7 @@ if options == 'Portfolio Information':
     set_Portfolio2()
 if options == 'ETF Information':
     set_ETF()
+if options=='Categories Information':
+    tvrtg("BTC","BIANCE")
 
 
