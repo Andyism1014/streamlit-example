@@ -69,7 +69,7 @@ if options=='Categories Information':
     <!-- TradingView Widget END -->
         <!-- TradingView Widget END -->
         """%("BTC"),
-        height=980, width=610
+        height=610, width=980
     )
 
 
