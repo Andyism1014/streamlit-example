@@ -27,7 +27,7 @@ if options=="Home":
     st.title('Tensor Investment Corporation')
     Choice=st.selectbox("选择功能页",("Consolidated Volume 查询器","others"))
     if Choice=="Consolidated Volume 查询器":
-        st.title('Consolidated Volume 查询器')
+        st.header('Consolidated Volume 查询器')
         crrucy = st.text_input('输入您想查询的币种', 'BTC')
         st.header(crrucy+"  Consolidated Volume")
         st.write(PaintVP(getinfor(crrucy))[0])
