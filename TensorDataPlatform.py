@@ -2,7 +2,6 @@ from os import strerror
 import pandas as pd
 import streamlit as st
 from PIL import Image
-from Portfolio import *
 from ETF import *
 from Portfolio2 import *
 import time
