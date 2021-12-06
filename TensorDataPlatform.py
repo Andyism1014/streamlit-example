@@ -69,7 +69,7 @@ if options=='Categories Information':
     <!-- TradingView Widget END -->
         <!-- TradingView Widget END -->
         """  ,
-    height=350, width=800
+    height=1350, width=1800
     )
 
 
