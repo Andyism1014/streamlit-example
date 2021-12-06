@@ -24,8 +24,9 @@ st.sidebar.write('Tensor Investment Corporation')
 
 #layout
 if options=="Home":
-    st.write('Tensor Investment Corporation')
+    st.title('Consolidated Volume 查询器')
     crrucy = st.text_input('输入您想查询的币种', 'BTC')
+    st.write(crrucy+"Consolidated Volume")
     st.write(PaintVP(getinfor(crrucy))[0])
     st.write(PaintVP(getinfor(crrucy))[1])
 if options == 'Portfolio Information':
