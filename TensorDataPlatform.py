@@ -66,8 +66,7 @@ if options=='Categories Information':
     </script>
     </div>
     <!-- TradingView Widget END -->
-        """  ,
-    height=610, width=980
+        """  
     )
 
 
