@@ -32,6 +32,8 @@ if options=="Home":
         st.header(crrucy+"  Consolidated Volume")
         st.write(PaintVP(getinfor(crrucy))[0])
         st.write(PaintVP(getinfor(crrucy))[1])
+    if Choice=="others":
+        st.write("Coming soon")
 if options == 'Portfolio Information':
     set_Portfolio2()
 if options == 'ETF Information':
