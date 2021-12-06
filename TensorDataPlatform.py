@@ -44,30 +44,28 @@ if options=='Categories Information':
         """
     <!-- TradingView Widget BEGIN -->
     <div class="tradingview-widget-container">
-    <div id="tradingview_a94ef"></div>
-    <div class="tradingview-widget-copyright"><a href="https://in.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Chart</span></a> by TradingView</div>
+    <div id="tradingview_0ee51"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/ETHUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">ETHUSDT Chart</span></a> by TradingView</div>
     <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
     <script type="text/javascript">
     new TradingView.widget(
     {
-    "width": 980,
-    "height": 610,
-    "symbol": "BINANCE:BTCUSDT",
+    "autosize": true,
+    "symbol": "BINANCE:ETHUSDT",
     "interval": "D",
     "timezone": "Etc/UTC",
     "theme": "dark",
     "style": "1",
-    "locale": "in",
+    "locale": "en",
     "toolbar_bg": "#f1f3f6",
     "enable_publishing": false,
     "allow_symbol_change": true,
-    "container_id": "tradingview_8cfcb"
+    "container_id": "tradingview_0ee51"
     }
     );
     </script>
     </div>
     <!-- TradingView Widget END -->
-        <!-- TradingView Widget END -->
         """  ,
     height=610, width=980
     )
