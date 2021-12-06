@@ -41,7 +41,7 @@ if options == 'ETF Information':
     set_ETF()
 if options=='Categories Information':
     col1, col2= st.columns(2)
-    with col1:
+    with col2:
         components.html(
             """
         <!-- TradingView Widget BEGIN -->
