@@ -1,9 +1,11 @@
+from os import strerror
 import pandas as pd
 import streamlit as st
 from PIL import Image
 from Portfolio import *
 from ETF import *
 from Portfolio2 import *
+import time
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
