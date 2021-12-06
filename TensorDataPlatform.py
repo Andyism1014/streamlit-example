@@ -26,6 +26,9 @@ st.sidebar.write('Tensor Investment Corporation')
 #layout
 if options=="Home":
     st.write('Tensor Investment Corporation')
+    crrucy = st.text_input('Movie title', 'Life of Brian')
+    st.write('The current movie title is', crrucy)
+
 if options == 'Portfolio Information':
     set_Portfolio2()
 if options == 'ETF Information':
