@@ -183,24 +183,6 @@ def set_one(x):
 
 def set_Portfolio():
   set_one("ckb")
-  col1, col2= st.columns(2)
-  with col1:
-    st.header("LAT price information")
-    a=findcmcID("lat")
-    components.html("""
-    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js">
-    </script><div class="coinmarketcap-currency-widget" data-currencyid=%s data-base="USD" data-secondary="" 
-    data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
-    </div>
-    """%(a),
-    width=700)
-  with col2:
-    st.header("LAT Consolidated Volume")
-    time=st.selectbox("Intervel",("day","1 min"))
-    if time=="day":
-      st.write(PaintVP(getinfor("lat","d"))[0])
-      st.write(PaintVP(getinfor("lat","d"))[1])
-    if time=="1 min":
-      st.write(PaintVP(getinfor("lat","m"))[0])
-      st.write(PaintVP(getinfor("lat","m"))[1])
+  set_one("lat")
+
 
