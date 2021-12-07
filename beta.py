@@ -161,7 +161,7 @@ def set_one(x):
   x=x.upper()
   col1, col2= st.columns(2)
   with col1:
-    st.header(x+" price information")
+    st.header(x+" Price Information")
     a=findcmcID(x)
     components.html("""
     <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js">
@@ -200,8 +200,6 @@ def set_one(x):
     <!-- TradingView Widget END -->
     """%(x),
     height=550,width=700)
-
-
   with col2:
     st.header(x+" Consolidated Volume")
     st.write(PaintVP(getinfor(x,"d"))[0])
