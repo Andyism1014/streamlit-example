@@ -5,7 +5,7 @@ import requests
 import streamlit as st
 import time
 
-
+@st.experimental_memo(ttl=60)
 def getbithumb(x,y):
   if y=="d":
     period="24h"
@@ -28,7 +28,7 @@ def getbithumb(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-
+@st.experimental_memo(ttl=60)
 def gethuobi(x,y):
   if y=="d":
     period="1day"
@@ -48,7 +48,7 @@ def gethuobi(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-
+@st.experimental_memo(ttl=60)
 def getok(x,y):
   if y=="d":
     bar="1D"
@@ -79,6 +79,7 @@ def getok(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
+@st.experimental_memo(ttl=60)
 def getbinance(x,y):
   if y=="d":
     bar="1d"
@@ -97,7 +98,7 @@ def getbinance(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-
+@st.experimental_memo(ttl=60)
 def getinfor(x,y):
   b=[]
   c=[]
@@ -152,7 +153,7 @@ def set_Portfolio():
   col1, col2= st.columns(2)
   with col2:
     st.header("LAT Consolidated Volume")
-    time=st.selectbox("intervel",("day","1 min"))
+    time=st.selectbox("Intervel",("day","1 min"))
     if time=="day":
       st.write(PaintVP(getinfor("lat","d"))[0])
       st.write(PaintVP(getinfor("lat","d"))[1])
