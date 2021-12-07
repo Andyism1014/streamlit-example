@@ -25,7 +25,7 @@ def getbithumb(x):
 @st.experimental_memo
 def gethuobi(x):
   name=x.lower()+"usdt"
-  r=requests.get("https://api.huobi.pro/market/history/kline",params={"size":1000,"symbol":name,"period":"1day"})
+  r=requests.get("https://api.huobi.pro/market/history/kline",params={"size":1000,"symbol":name,"period":"1min"})
   if r.json()["status"]=="error":
     return "error"
   else:
@@ -41,15 +41,15 @@ def gethuobi(x):
 @st.experimental_memo
 def getok(x):
   name=x.upper()+"-USDT"
-  r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1D"})
+  r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1m"})
   if r.json()["msg"]=="Token does not exist.":
     return "error"
   else:
-    r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1D"})
+    r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1m"})
     a=pd.DataFrame(r.json()["data"])
     while(len(r.json()["data"])==100):
       nt=str(a[0].iloc[-1])
-      r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1D","after":nt})
+      r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1m","after":nt})
       b=pd.DataFrame(r.json()["data"])
       a=pd.concat([a,b],ignore_index=True)
     else:
