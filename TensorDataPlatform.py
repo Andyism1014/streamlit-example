@@ -43,7 +43,8 @@ if options == 'ETF Information':
 if options == 'Beta':
     if st.button("Say Hello"):
         st.write("gg")
-    else st.write("bb")
+    else:
+         st.write("bb")
 
 
 
