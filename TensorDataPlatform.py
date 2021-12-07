@@ -1,4 +1,4 @@
-from os import strerror
+from os import strerror, write
 import pandas as pd
 import streamlit as st
 from PIL import Image
@@ -41,7 +41,10 @@ if options == 'Portfolio Information':
 if options == 'ETF Information':
     set_ETF()
 if options == 'Beta':
-    set_Portfolio()
+    if st.button("Say Hello"):
+        st.write("gg")
+    else st.write("bb")
+
 
 
 
