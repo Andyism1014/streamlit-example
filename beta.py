@@ -199,7 +199,7 @@ def set_one(x):
     </div>
     <!-- TradingView Widget END -->
     """,
-    height=550,width=750)
+    height=550,width=700)
 
 
   with col2:
