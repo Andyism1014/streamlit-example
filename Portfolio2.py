@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 import streamlit as st
 
-@st.experimental_memo
+
 def getbithumb(x):
   name=x.upper()+"_KRW"+"/24h"
   r=requests.get("https://api.bithumb.com/public/candlestick/"+name)
@@ -23,7 +23,7 @@ def getbithumb(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def gethuobi(x):
   name=x.lower()+"usdt"
   r=requests.get("https://api.huobi.pro/market/history/kline",params={"size":1000,"symbol":name,"period":"1day"})
@@ -39,7 +39,7 @@ def gethuobi(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def getok(x):
   name=x.upper()+"-USDT"
   r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1D"})
@@ -65,7 +65,7 @@ def getok(x):
       a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def getbinance(x):
   name=x.upper()+"USDT"
   r=requests.get("https://api.binance.com/api/v3/klines",params={"limit":1000,"interval":"1d","symbol":name})
@@ -80,7 +80,7 @@ def getbinance(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def getinfor(x):
   b=[]
   c=[]
