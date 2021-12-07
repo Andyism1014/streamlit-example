@@ -41,10 +41,10 @@ if options == 'Portfolio Information':
 if options == 'ETF Information':
     set_ETF()
 if options == 'Beta':
-    if st.button("Say Hello"):
-        st.write("gg")
-    else:
-         st.write("bb")
+    col1, col2, col3 = st.columns(3)
+    col1.button("Say Hello")
+    col2.button("Say ")
+    col3.button("Sy Hello")
 
 
 
