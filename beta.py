@@ -22,7 +22,7 @@ def getbithumb(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def gethuobi(x):
   name=x.lower()+"usdt"
   r=requests.get("https://api.huobi.pro/market/history/kline",params={"size":1000,"symbol":name,"period":"1min"})
@@ -38,7 +38,7 @@ def gethuobi(x):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def getok(x):
   name=x.upper()+"-USDT"
   r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":"1m"})
