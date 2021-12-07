@@ -14,17 +14,16 @@ t1, t2 = st.columns((0.12,1))
 t1.image('logo.png', width=155)
 t2.title('Tensor Data Platform')
 t2.markdown("Tensor Investment Corporation | Proprietary trading and alternative investment firm")
+option = st.selectbox('Navigation',('Portfolio Information', 'ETF Information', 'Beta',"Function"))
 
-st.write('Navigation')
 #layout
-col1, col2, col3,col4 = st.columns(4)
-if col1.button("Portfolio Information"):
+if option=="Portfolio Information":
     set_Portfolio()
-if col2.button("ETF Information"):
+if option=="ETF Information":
     set_ETF()
-if col3.button("Beta"):
+if option=="Beta":
     set_Portfolio()
-if col4.button("Function"):
+if option=="Function":
     st.title('Tensor Investment Corporation')
     Choice=st.selectbox("选择功能页",("Consolidated Volume 查询器","others"))
     if Choice=="Consolidated Volume 查询器":
