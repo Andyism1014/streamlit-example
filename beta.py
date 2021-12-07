@@ -180,7 +180,7 @@ def set_one(x):
       new TradingView.widget(
       {
       "width": 700,
-      "height": 600,
+      "height": 560,
       "symbol": "HUOBI:LATUSDT",
       "interval": "60",
       "timezone": "Etc/UTC",
