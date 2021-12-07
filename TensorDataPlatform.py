@@ -15,9 +15,8 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=
 
 st.image('logo.png', width=200)
 st.title('Tensor Data Platform')
-st.header('Navigation')
 st.markdown('---')
-st.write('Tensor Investment Corporation')
+st.write('Navigation')
 #layout
 col1, col2, col3,col4 = st.columns(4)
 if col1.button("Portfolio Information"):
