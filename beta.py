@@ -169,7 +169,7 @@ def set_one(x):
     data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
     </div>
     """%(a),
-    width=600)
+    width=800)
     components.html("""
     <!-- TradingView Widget BEGIN -->
     <div class="tradingview-widget-container">
