@@ -156,7 +156,7 @@ def findcmcID(x):
   },params={"symbol":x})
   return r.json()["data"][0]["id"] 
 
-
+@st.experimental_memo
 def set_one(x):
   x=x.upper()
   col1, col2= st.columns(2)
@@ -204,8 +204,6 @@ def set_one(x):
     st.header(x+" Consolidated Volume")
     st.write(PaintVP(getinfor(x,"d"))[0])
     st.write(PaintVP(getinfor(x,"d"))[1])
-
-
 
 
 def set_Portfolio():
