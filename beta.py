@@ -92,14 +92,14 @@ def getinfor(x):
   m=c.index(max(c))
   return [b,b[m]]
 
-@st.experimental_memo
+
 def PaintVP(x):
   V=pd.concat(x[0])
   a=alt.Chart(x[1]).mark_line().encode(
-      x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
+      x=alt.X("t:T",axis=alt.Axis(title=None)),
       y='Price:Q')
   b=alt.Chart(V).mark_area(opacity=0.6).encode(
-      x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
+      x=alt.X("t:T",axis=alt.Axis(title=None)),
       y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
       color="symbol:N")
   res1=alt.layer(a,b).resolve_scale(
@@ -111,7 +111,7 @@ def PaintVP(x):
     i["Volume"]=i["Volume"].rolling(14).mean()
   V=pd.concat(x[0])
   b=alt.Chart(V).mark_area(opacity=0.6).encode(
-      x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
+      x=alt.X("t:T",axis=alt.Axis(title=None)),
       y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
       color="symbol:N")
   res2=alt.layer(a,b).resolve_scale(
