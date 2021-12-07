@@ -155,8 +155,12 @@ def PaintVP(x):
 def set_Portfolio():
   col1, col2= st.columns(2)
   with col1:
+    st.header("LAT price information")
     components.html("""
-    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js"></script><div class="coinmarketcap-currency-widget" data-currencyid="9720" data-base="USD" data-secondary="" data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD"></div>
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js">
+    </script><div class="coinmarketcap-currency-widget" data-currencyid="9720" data-base="USD" data-secondary="" 
+    data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
+    </div>
     """)
   with col2:
     st.header("LAT Consolidated Volume")
