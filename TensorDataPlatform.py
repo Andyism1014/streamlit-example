@@ -4,6 +4,7 @@ import streamlit as st
 from PIL import Image
 from ETF import *
 from Portfolio2 import *
+from beta import *
 import time
 
 
@@ -18,7 +19,7 @@ st.sidebar.markdown('Alpha')
 st.sidebar.header('Navigation')
 
 options = st.sidebar.radio('Select a page:', 
-    ['Home', 'Portfolio Information', 'Categories Information', 'ETF Information'])
+    ['Home', 'Portfolio Information', 'Beta', 'ETF Information'])
 
 st.sidebar.markdown('---')
 st.sidebar.write('Tensor Investment Corporation')
@@ -39,6 +40,8 @@ if options == 'Portfolio Information':
     set_Portfolio2()
 if options == 'ETF Information':
     set_ETF()
+if options == 'Beta':
+    set_Portfolio()
 
 
 
