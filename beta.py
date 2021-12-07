@@ -159,11 +159,10 @@ def set_Portfolio():
     components.html("""
     <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js">
     </script><div class="coinmarketcap-currency-widget" data-currencyid="9720" data-base="USD" data-secondary="" 
-    data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
+    data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
     </div>
     """,
     width=700)
-    st.markdown("---")
   with col2:
     st.header("LAT Consolidated Volume")
     time=st.selectbox("Intervel",("day","1 min"))
