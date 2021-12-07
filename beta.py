@@ -97,7 +97,7 @@ def getbinance(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-
+@st.experimental_memo
 def getinfor(x,y):
   b=[]
   c=[]
@@ -150,7 +150,7 @@ def PaintVP(x):
 
 def set_Portfolio():
   st.header("LAT Consolidated Volume")
-  time=st.radio("intervel",("day","1 min"),index=1)
+  time=st.radio("intervel",("day","1 min"))
   if time=="day":
     st.write(PaintVP(getinfor("lat","d"))[0])
     st.write(PaintVP(getinfor("lat","d"))[1])
