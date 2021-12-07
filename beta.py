@@ -170,12 +170,11 @@ def set_one(x):
     """%(a),
     width=700)
   with col2:
-    st.header(x+"  Consolidated Volume")
-    time=st.selectbox("Intervel",("day","1 min"))
-    if time=="day":
+    inter=st.selectbox("Intervel",("day","1 min"))
+    if inter=="day":
       st.write(PaintVP(getinfor(x,"d"))[0])
       st.write(PaintVP(getinfor(x,"d"))[1])
-    if time=="1 min":
+    if inter=="1 min":
       st.write(PaintVP(getinfor(x,"m"))[0])
       st.write(PaintVP(getinfor(x,"m"))[1])
 
