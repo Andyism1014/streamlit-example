@@ -181,7 +181,7 @@ def set_one(x):
       {
       "width": 700,
       "height": 565,
-      "symbol": "HUOBI:LATUSDT",
+      "symbol": "%sUSDT",
       "interval": "60",
       "timezone": "Etc/UTC",
       "theme": "dark",
@@ -198,7 +198,7 @@ def set_one(x):
       </script>
     </div>
     <!-- TradingView Widget END -->
-    """,
+    """%(a),
     height=550,width=700)
 
 
