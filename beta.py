@@ -154,5 +154,5 @@ def set_Portfolio():
         pass
     while True:
         placeholder.write(PaintVP(getinfor("lat","m"))[0])
-        time.sleep(0.5)
+        time.sleep(60)
   
