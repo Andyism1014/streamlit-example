@@ -181,7 +181,7 @@ def set_one(x):
 
 
 def set_Portfolio():
-  set_one("ckb")
   set_one("lat")
+  set_one("ckb")
 
 
