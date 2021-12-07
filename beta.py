@@ -170,9 +170,8 @@ def set_one(x):
     </div>
     """%(a),
     width=600)
+    
 
-    st.header(" live data")
-    st.write(PaintVP(getinfor(x,"m"))[1])
   with col2:
     st.header(x+" Consolidated Volume")
     st.write(PaintVP(getinfor(x,"d"))[0])
