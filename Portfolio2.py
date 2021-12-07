@@ -12,6 +12,7 @@ def getbithumb(x):
     return "error"
   else:
     a=pd.DataFrame(r.json()["data"])
+    a=a.tail(1000)
     a["t"]=pd.to_datetime(a[0],unit="ms")
     a[2]=pd.to_numeric(a[2])
     a[3]=pd.to_numeric(a[3])
