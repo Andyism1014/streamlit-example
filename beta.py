@@ -179,8 +179,8 @@ def set_one(x):
       <script type="text/javascript">
       new TradingView.widget(
       {
-      "width": 980,
-      "height": 610,
+      "width": 750,
+      "height": 550,
       "symbol": "HUOBI:LATUSDT",
       "interval": "60",
       "timezone": "Etc/UTC",
@@ -199,7 +199,7 @@ def set_one(x):
     </div>
     <!-- TradingView Widget END -->
     """,
-    height=550,width=800)
+    height=550,width=750)
 
 
   with col2:
