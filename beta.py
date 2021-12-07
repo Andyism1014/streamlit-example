@@ -3,7 +3,7 @@ import math
 import pandas as pd
 import requests
 import streamlit as st
-
+import time
 @st.experimental_memo
 def getbithumb(x):
   name=x.upper()+"_KRW"+"/24h"
@@ -123,12 +123,12 @@ def PaintVP(x):
 
 
 def set_Portfolio():
-    st.header("LAT Consolidated Volume")
-    st.write(PaintVP(getinfor("lat"))[0])
-    st.write(PaintVP(getinfor("lat"))[1])
-    st.header("CKB Consolidated Volume")
-    st.write(PaintVP(getinfor("CKB"))[0])
-    st.write(PaintVP(getinfor("CKB"))[1])
-    st.header("KLAY Consolidated Volume")
-    st.write(PaintVP(getinfor("KLAY"))[0])
-    st.write(PaintVP(getinfor("KLAY"))[1])
+  start_button = st.empty()
+  if start_button.button('Start',key='start'):
+    start_button.empty()
+    if st.button('Stop',key='stop'):
+        pass
+    while True:
+        st.write(PaintVP(getinfor("lat"))[0])
+        time.sleep(0.5)
+  
