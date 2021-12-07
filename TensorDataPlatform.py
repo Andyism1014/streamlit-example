@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 from ETF import *
-from beta import *
+from Portfolio import *
 import time
 
 
