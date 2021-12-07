@@ -146,8 +146,12 @@ def PaintVP(x):
 
 
 def set_Portfolio():
-  placeholder = st.empty()
-  with st.expander("See explanation"):
-    placeholder.write(PaintVP(getinfor("lat","m"))[0])
-
-  
+  st.header("LAT Consolidated Volume")
+  st.write(PaintVP(getinfor("lat","d"))[0])
+  st.write(PaintVP(getinfor("lat","d"))[1])
+  st.header("CKB Consolidated Volume")
+  st.write(PaintVP(getinfor("CKB","d"))[0])
+  st.write(PaintVP(getinfor("CKB","d"))[1])
+  st.header("KLAY Consolidated Volume")
+  st.write(PaintVP(getinfor("KLAY","d"))[0])
+  st.write(PaintVP(getinfor("KLAY","d"))[1])
