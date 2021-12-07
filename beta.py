@@ -146,12 +146,8 @@ def PaintVP(x):
 
 
 def set_Portfolio():
-  start_button = st.empty()
   placeholder = st.empty()
-  if start_button.button('Start',key='start'):
-    start_button.empty()
-    if st.button('Stop',key='stop'):
-        pass
+  with st.expander("See explanation"):
     while True:
         placeholder.write(PaintVP(getinfor("lat","m"))[0])
         time.sleep(60)
