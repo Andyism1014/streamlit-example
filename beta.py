@@ -148,7 +148,6 @@ def PaintVP(x):
 def set_Portfolio():
   placeholder = st.empty()
   with st.expander("See explanation"):
-    while True:
-        placeholder.write(PaintVP(getinfor("lat","m"))[0])
-        time.sleep(60)
+    placeholder.write(PaintVP(getinfor("lat","m"))[0])
+
   
