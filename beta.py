@@ -156,7 +156,7 @@ def findcmcID(x):
   },params={"symbol":x})
   return r.json()["data"][0]["id"] 
 
-@st.experimental_memo
+
 def set_one(x):
   x=x.upper()
   col1, col2= st.columns(2)
