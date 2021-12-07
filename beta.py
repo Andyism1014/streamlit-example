@@ -130,7 +130,7 @@ def PaintVP(x):
       color="symbol:N")
   res1=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
-      width=800,
+      width=700,
       height=350
   ).interactive(bind_y=False)
   for i in x[0]:
@@ -142,7 +142,7 @@ def PaintVP(x):
       color="symbol:N")
   res2=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
-      width=800,
+      width=700,
       height=350
   ).interactive(bind_y=False)
   return [res1,res2]
@@ -170,7 +170,7 @@ def set_one(x):
     </div>
     """%(a),
     width=700)
-    st.title(x+" live data")
+    st.header(" live data")
     st.write(PaintVP(getinfor(x,"m"))[1])
   with col2:
     st.header(x+" Consolidated Volume")
