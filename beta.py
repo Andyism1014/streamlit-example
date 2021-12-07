@@ -6,7 +6,7 @@ import streamlit as st
 import time
 import streamlit.components.v1 as components
 
-@st.experimental_memo(ttl=60)
+
 def getbithumb(x,y):
   if y=="d":
     period="24h"
@@ -29,7 +29,7 @@ def getbithumb(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo(ttl=60)
+
 def gethuobi(x,y):
   if y=="d":
     period="1day"
@@ -49,7 +49,7 @@ def gethuobi(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo(ttl=60)
+
 def getok(x,y):
   if y=="d":
     bar="1D"
@@ -80,7 +80,7 @@ def getok(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo(ttl=60)
+
 def getbinance(x,y):
   if y=="d":
     bar="1d"
@@ -170,11 +170,10 @@ def set_one(x):
     </div>
     """%(a),
     width=700)
-
-    st.write(PaintVP(getinfor(x,"m"))[0])
+    st.title(x+" live data")
+    st.write(PaintVP(getinfor(x,"m"))[1])
   with col2:
     st.header(x+" Consolidated Volume")
-    st.write("1 days")
     st.write(PaintVP(getinfor(x,"d"))[0])
     st.write(PaintVP(getinfor(x,"d"))[1])
 
