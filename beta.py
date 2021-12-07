@@ -120,7 +120,9 @@ def PaintVP(x):
   V=pd.concat(x[0])
   a=alt.Chart(x[1]).mark_line().encode(
       x=alt.X(per,axis=alt.Axis(title=None)),
-      y=alt.Y('Price:Q',scale=alt.Scale(zero=False)))
+      y=alt.Y('Price:Q',scale=alt.Scale(zero=False)),
+      tooltip=['Price']
+      )
   b=alt.Chart(V).mark_area(opacity=0.6).encode(
       x=alt.X(per,axis=alt.Axis(title=None)),
       y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
