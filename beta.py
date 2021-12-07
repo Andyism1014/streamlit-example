@@ -157,7 +157,7 @@ def findcmcID(x):
   return r.json()["data"][0]["id"] 
 
 def set_one(x):
-  x.upper()
+  x=x.upper()
   col1, col2= st.columns(2)
   with col1:
     st.header(x+" price information")
