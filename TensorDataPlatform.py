@@ -13,7 +13,7 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=
 
 
 t1, t2 = st.columns((0.08,1))
-t1.image('logo.png', width=120)
+t1.image('logo.png', width=150)
 t2.title('Tensor Data Platform')
 t2.markdown("Tensor Investment Corporation | Proprietary trading and alternative investment firm")
 st.markdown('---')
