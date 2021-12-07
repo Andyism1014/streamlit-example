@@ -129,6 +129,6 @@ def set_Portfolio():
     if st.button('Stop',key='stop'):
         pass
     while True:
-        st.write(PaintVP(getinfor("lat"))[0])
+        PaintVP(getinfor("lat"))[0]
         time.sleep(0.5)
   
