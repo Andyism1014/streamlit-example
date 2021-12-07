@@ -171,7 +171,6 @@ def set_one(x):
     width=700)
   with col2:
     st.header(x+" Consolidated Volume")
-    g=st.selectbox("Intervel",("day","1 min"))
     if g=="day":
       st.write(PaintVP(getinfor(x,"d"))[0])
       st.write(PaintVP(getinfor(x,"d"))[1])
@@ -182,6 +181,7 @@ def set_one(x):
 
 
 def set_Portfolio():
+  g=st.selectbox("Intervel",("day","1 min"))
   set_one("lat")
   set_one("ckb")
 
