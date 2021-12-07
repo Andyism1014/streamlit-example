@@ -150,7 +150,7 @@ def PaintVP(x):
 
 def set_Portfolio():
   st.header("LAT Consolidated Volume")
-  time=st.radio("intervel",("day","1 min"))
+  time=st.radio("intervel",("day","1 min"),index=1)
   if time=="day":
     st.write(PaintVP(getinfor("lat","d"))[0])
     st.write(PaintVP(getinfor("lat","d"))[1])
