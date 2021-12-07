@@ -161,7 +161,8 @@ def set_Portfolio():
     </script><div class="coinmarketcap-currency-widget" data-currencyid="9720" data-base="USD" data-secondary="" 
     data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
     </div>
-    """)
+    """,
+    height=250, width=700)
   with col2:
     st.header("LAT Consolidated Volume")
     time=st.selectbox("Intervel",("day","1 min"))
