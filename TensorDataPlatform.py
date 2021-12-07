@@ -44,7 +44,8 @@ if options == 'Beta':
     col1, col2, col3 = st.columns(3)
     if col1.button("Say Hello"):
         set_Portfolio()
-    col2.button("Say ")
+    if col2.button("Say "):
+        set_ETF()
     col3.button("Sy Hello")
 
 
