@@ -184,7 +184,7 @@ def set_one(x):
       "symbol": "%sUSDT",
       "interval": "60",
       "timezone": "Etc/UTC",
-      "theme": "dark",
+      "theme": "light",
       "style": "1",
       "locale": "en",
       "toolbar_bg": "#f1f3f6",
