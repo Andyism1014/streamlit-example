@@ -10,7 +10,7 @@ import time
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
-
+st.markdown('<style>body{background-color: #fbfff0}</style>',unsafe_allow_html=True)
 
 t1, t2 = st.columns((0.12,1))
 t1.image('logo.png', width=155)
