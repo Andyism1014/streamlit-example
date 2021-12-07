@@ -162,7 +162,7 @@ def set_Portfolio():
     data-ticker="true" data-rank="true" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
     </div>
     """,
-    width=700)
+    height=350,width=700)
   with col2:
     st.header("LAT Consolidated Volume")
     time=st.selectbox("Intervel",("day","1 min"))
