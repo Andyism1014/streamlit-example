@@ -152,7 +152,7 @@ def set_Portfolio():
   col1, col2= st.columns(2)
   with col2:
     st.header("LAT Consolidated Volume")
-    time=st.radio("intervel",("day","1 min"))
+    time=st.selectbox("intervel",("day","1 min"))
     if time=="day":
       st.write(PaintVP(getinfor("lat","d"))[0])
       st.write(PaintVP(getinfor("lat","d"))[1])
