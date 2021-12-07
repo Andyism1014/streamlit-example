@@ -198,7 +198,7 @@ def set_one(x):
       </script>
     </div>
     <!-- TradingView Widget END -->
-    """%(a),
+    """%(x),
     height=550,width=700)
 
 
