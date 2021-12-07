@@ -5,7 +5,7 @@ import requests
 import streamlit as st
 import time
 
-@st.experimental_memo
+
 def getbithumb(x,y):
   if y=="d":
     period="24h"
@@ -28,7 +28,7 @@ def getbithumb(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def gethuobi(x,y):
   if y=="d":
     period="1day"
@@ -48,7 +48,7 @@ def gethuobi(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def getok(x,y):
   if y=="d":
     bar="1D"
@@ -79,7 +79,6 @@ def getok(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
 def getbinance(x,y):
   if y=="d":
     bar="1d"
