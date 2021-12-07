@@ -147,8 +147,14 @@ def PaintVP(x):
   ).interactive(bind_y=False)
   return [res1,res2]
 
-
-
+@st.experimental_memo
+def findcmcID(x):
+  x.upper()
+  r=requests.get("https://pro-api.coinmarketcap.com/v1/cryptocurrency/map",headers = {
+    'Accepts': 'application/json',
+    'X-CMC_PRO_API_KEY': '33ee501d-ff77-4c6a-9fdb-cec868e22981',
+  },params={"symbol":x})
+  return r.json()["data"][0]["id"] 
 
 
 
@@ -156,12 +162,13 @@ def set_Portfolio():
   col1, col2= st.columns(2)
   with col1:
     st.header("LAT price information")
+    a=findcmcID("lat")
     components.html("""
     <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js">
-    </script><div class="coinmarketcap-currency-widget" data-currencyid="1027" data-base="USD" data-secondary="" 
+    </script><div class="coinmarketcap-currency-widget" data-currencyid=%s data-base="USD" data-secondary="" 
     data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
     </div>
-    """,
+    """%(a),
     width=700)
   with col2:
     st.header("LAT Consolidated Volume")
