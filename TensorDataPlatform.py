@@ -31,9 +31,7 @@ if option=="Function":
     if Choice=="Consolidated Volume 查询器":
         st.header('Consolidated Volume 查询器')
         crrucy = st.text_input('输入您想查询的币种', 'BTC')
-        st.header(crrucy.upper()+"  Consolidated Volume")
-        st.write(PaintVP(getinfor(crrucy))[0])
-        st.write(PaintVP(getinfor(crrucy))[1])
+        set_one(crrucy)
     if Choice=="others":
         st.write("Coming soon")
 
