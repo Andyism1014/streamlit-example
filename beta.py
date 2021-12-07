@@ -170,6 +170,8 @@ def set_one(x):
     </div>
     """%(a),
     width=700)
+
+    st.write(PaintVP(getinfor(x,"m"))[0])
   with col2:
     st.header(x+" Consolidated Volume")
     st.write("1 days")
