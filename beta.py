@@ -163,6 +163,7 @@ def set_Portfolio():
     </div>
     """,
     width=700)
+    st.markdown("---")
   with col2:
     st.header("LAT Consolidated Volume")
     time=st.selectbox("Intervel",("day","1 min"))
