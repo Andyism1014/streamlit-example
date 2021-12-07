@@ -113,7 +113,7 @@ def PaintVP(x):
   V=pd.concat(x[0])
   b=alt.Chart(V).mark_area(opacity=0.6).encode(
       x=alt.X("yearmonthdate(t):T",axis=alt.Axis(title=None)),
-      y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
+      y=alt.Y("Volume:Q",axis=alt.Axis(format="s",title="14 days Moving Average")),
       color="symbol:N")
   res2=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
