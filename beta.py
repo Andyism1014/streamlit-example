@@ -171,8 +171,8 @@ def set_one(x):
     width=700)
   with col2:
     st.header(x+" Consolidated Volume")
-      st.write(PaintVP(getinfor(x,"d"))[0])
-      st.write(PaintVP(getinfor(x,"d"))[1])
+    st.write(PaintVP(getinfor(x,"d"))[0])
+    st.write(PaintVP(getinfor(x,"d"))[1])
 
 
 
