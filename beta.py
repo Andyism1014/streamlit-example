@@ -145,13 +145,16 @@ def PaintVP(x):
 
 
 
+
+
+
 def set_Portfolio():
   st.header("LAT Consolidated Volume")
-  st.write(PaintVP(getinfor("lat","d"))[0])
-  st.write(PaintVP(getinfor("lat","d"))[1])
-  st.header("CKB Consolidated Volume")
-  st.write(PaintVP(getinfor("CKB","d"))[0])
-  st.write(PaintVP(getinfor("CKB","d"))[1])
-  st.header("KLAY Consolidated Volume")
-  st.write(PaintVP(getinfor("KLAY","d"))[0])
-  st.write(PaintVP(getinfor("KLAY","d"))[1])
+  time=st.radio("intervel",("day","1 min"))
+  if time=="day":
+    st.write(PaintVP(getinfor("lat","d"))[0])
+    st.write(PaintVP(getinfor("lat","d"))[1])
+  if time=="1 min":
+    st.write(PaintVP(getinfor("lat","m"))[0])
+    st.write(PaintVP(getinfor("lat","m"))[1])
+
