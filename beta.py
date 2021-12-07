@@ -169,7 +169,7 @@ def set_one(x):
     data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
     </div>
     """%(a),
-    width=700)
+    width=600)
     st.header(" live data")
     st.write(PaintVP(getinfor(x,"m"))[1])
   with col2:
