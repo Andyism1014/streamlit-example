@@ -13,19 +13,20 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=
 
 
 
-st.sidebar.image('logo.png', width=200)
-st.sidebar.title('Tensor Data Platform')
-st.sidebar.markdown('Alpha')
-st.sidebar.header('Navigation')
-
-options = st.sidebar.radio('Select a page:', 
-    ['Home', 'Portfolio Information', 'Beta', 'ETF Information'])
-
-st.sidebar.markdown('---')
-st.sidebar.write('Tensor Investment Corporation')
-
+st.image('logo.png', width=200)
+st.title('Tensor Data Platform')
+st.header('Navigation')
+st.markdown('---')
+st.write('Tensor Investment Corporation')
 #layout
-if options=="Home":
+col1, col2, col3,col4 = st.columns(4)
+if col1.button("Portfolio Information"):
+    set_Portfolio()
+if col2.button("ETF Information"):
+    set_ETF()
+if col3.button("Beta"):
+    set_Portfolio()
+if col4.button("Function"):
     st.title('Tensor Investment Corporation')
     Choice=st.selectbox("选择功能页",("Consolidated Volume 查询器","others"))
     if Choice=="Consolidated Volume 查询器":
@@ -36,17 +37,7 @@ if options=="Home":
         st.write(PaintVP(getinfor(crrucy))[1])
     if Choice=="others":
         st.write("Coming soon")
-if options == 'Portfolio Information':
-    set_Portfolio2()
-if options == 'ETF Information':
-    set_ETF()
-if options == 'Beta':
-    col1, col2, col3 = st.columns(3)
-    if col1.button("Say Hello"):
-        set_Portfolio()
-    if col2.button("Say "):
-        set_ETF()
-    col3.button("Sy Hello")
+
 
 
 
