@@ -19,12 +19,12 @@ option = st.selectbox('Navigation',('Portfolio Information', 'ETF Information', 
 #layout
 if option=="Portfolio Information":
     st.title('Tensor Portfolio Information')
-    set_Portfolio2()
+    set_Portfolio()
 if option=="ETF Information":
     set_ETF()
 if option=="Beta":
     st.title('Tensor Portfolio Information')
-    set_Portfolio()
+    
 if option=="Function":
     st.title('Tensor Investment Corporation')
     Choice=st.selectbox("选择功能页",("Consolidated Volume 查询器","others"))
