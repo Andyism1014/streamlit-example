@@ -97,7 +97,7 @@ def getbinance(x,y):
     a=a[["t","symbol","Price","Volume"]]
     return a
 
-@st.experimental_memo
+
 def getinfor(x,y):
   b=[]
   c=[]
