@@ -19,10 +19,11 @@ option = st.selectbox('Navigation',('Portfolio Information', 'ETF Information', 
 #layout
 if option=="Portfolio Information":
     st.title('Tensor Portfolio Information')
-    set_Portfolio()
+    set_Portfolio2()
 if option=="ETF Information":
     set_ETF()
 if option=="Beta":
+    st.title('Tensor Portfolio Information')
     set_Portfolio()
 if option=="Function":
     st.title('Tensor Investment Corporation')
