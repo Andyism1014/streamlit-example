@@ -39,7 +39,7 @@ def set_beta():
     st.write(s)
     res=alt.Chart(df2).mark_arc().encode(
         theta=alt.Theta(field="current_marketcap:Q", stack=True),
-        color=alt.Color(field="tags:N"),
+        color=alt.Color(field="symbol:N"),
     )
     st.write(res)
 
