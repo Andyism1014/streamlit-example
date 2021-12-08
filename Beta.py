@@ -15,10 +15,10 @@ def set_beta():
     df2=df2[name]
     df2=df2.rename(columns={
  'metrics.all_time_high.price': 'all_time_high.price',
- 'metrics.market_data.price_usd': 'price_usd',
+ 'metrics.market_data.price_usd': 'price',
  'metrics.market_data.real_volume_last_24_hours': 'real_volume_last_24_hours',
- 'metrics.marketcap.current_marketcap_usd': 'current_marketcap_usd',
- 'metrics.marketcap.liquid_marketcap_usd': 'liquid_marketcap_usd',
+ 'metrics.marketcap.current_marketcap_usd': 'current_marketcap',
+ 'metrics.marketcap.liquid_marketcap_usd': 'liquid_marketcap',
  'metrics.risk_metrics.sharpe_ratios.last_1_year': 'sharpe_ratios.last_1_year',
  'metrics.risk_metrics.sharpe_ratios.last_30_days': 'sharpe_ratios.last_30_days',
  'metrics.risk_metrics.sharpe_ratios.last_90_days': 'sharpe_ratios.last_90_days',
@@ -28,9 +28,13 @@ def set_beta():
  'metrics.roi_data.percent_change_btc_last_1_month': 'Alpha_last_1_month',
  'metrics.roi_data.percent_change_btc_last_1_week': 'Alpha_last_1_week',
  'metrics.roi_data.percent_change_btc_last_3_months': 'Alpha_last_3_months',
- 'metrics.supply.y_2050_issued_percent': 'y_2050_issued_percent',
- 'metrics.supply.y_plus10_issued_percent': 'y_plus10_issued_percent'})
-    st.write(df2.style)
+ 'metrics.supply.y_2050_issued_percent': 'y_2050_issued',
+ 'metrics.supply.y_plus10_issued_percent': 'y_plus10'})
+    s=df2.style.format(precision=0, na_rep='MISSING', thousands=" ",
+                    formatter={('y_2050_issued', 'y_plus10_issued','Alpha_last_1_month', 'Alpha_last_1_week',"Alpha_last_3_months"): "{:,.2%}",
+                            ('current_marketcap', 'liquid_marketcap','price'): lambda x: "$ {:,.1f}".format(x*-1e6)
+                            })
+    st.write(s)
 
 
 
