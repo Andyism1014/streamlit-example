@@ -37,10 +37,11 @@ def set_beta():
                             'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
                             })
     st.write(s)
-    alt.Chart(df2).mark_arc().encode(
-        theta=alt.Theta(field="current_marketcap", type="quantitative"),
-        color=alt.Color(field="tags", type="nominal"),
+    res=alt.Chart(df2).mark_arc().encode(
+        theta=alt.Theta(field="current_marketcap:Q", stack=True),
+        color=alt.Color(field="tags:N"),
     )
+    st.write(res)
 
 
 
