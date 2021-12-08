@@ -37,6 +37,13 @@ def set_beta():
                             'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
                             })
     st.write(s)
+    Web3=s[s['tags'].astype(str).str.contains("Web 3")]
+    Privacy=s[s['tags'].astype(str).str.contains("Privacy")]
+    Web3
+    Privacy
+    
+
+
 
 
 
