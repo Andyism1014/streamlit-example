@@ -4,6 +4,7 @@ import streamlit as st
 from PIL import Image
 from ETF import *
 from Portfolio import *
+from Beta import *
 import time
 
 
@@ -22,8 +23,7 @@ if option=="Portfolio Information":
 if option=="ETF Information":
     set_ETF()
 if option=="Beta":
-    st.title('Tensor Portfolio Information')
-    
+    set_beta()
 if option=="Function":
     st.title('Tensor Investment Corporation')
     Choice=st.selectbox("选择功能页",("Consolidated Volume 查询器","others"))
