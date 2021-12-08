@@ -30,7 +30,7 @@ def set_beta():
  'metrics.roi_data.percent_change_btc_last_3_months': 'Alpha_last_3_months',
  'metrics.supply.y_2050_issued_percent': 'y_2050_issued_percent',
  'metrics.supply.y_plus10_issued_percent': 'y_plus10_issued_percent'})
-    st.write(df2)
+    st.write(df2.style)
 
 
 
