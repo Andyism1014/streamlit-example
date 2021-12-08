@@ -1,4 +1,4 @@
-import altair as alt
+import plotly.express as px
 import math
 import pandas as pd
 import requests
@@ -37,10 +37,10 @@ def set_beta():
                             'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
                             })
     st.write(s)
-    Web3=df2[df2['tags'].astype(str).str.contains("Web 3")]
-    Privacy=df2[df2['tags'].astype(str).str.contains("Privacy")]
-    Web3
-    Privacy
+    fig = px.pie(df2, values='current_marketcap', names='tags', title='Market cap percetage')
+    fig.show()
+
+
 
 
 
