@@ -5,8 +5,13 @@ import requests
 import streamlit as st
 import streamlit.components.v1 as components
 
-
-
+@st.experimental_memo
+def change_format(x):
+    s=x.style.format(na_rep='MISSING', thousands=" ",
+                    formatter={'y_2050_issued': lambda x: "{:,.2%}".format(x*0.01), 'y_plus10_issued': lambda x: "{:,.2%}".format(x*0.01),'Alpha_last_1_month': lambda x: "{:,.2%}".format(x*0.01), 'Alpha_last_1_week': lambda x: "{:,.2%}".format(x*0.01),"Alpha_last_3_months": lambda x: "{:,.2%}".format(x*0.01),
+                            'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
+                            })
+    return s
 
 def set_beta():
     st.header("Market Information")
@@ -32,15 +37,11 @@ def set_beta():
     'metrics.supply.y_plus10_issued_percent': 'y_plus10_issued',
     'profile.general.overview.tags':"tags"
     })
-    s=df2.style.format(na_rep='MISSING', thousands=" ",
-                    formatter={'y_2050_issued': lambda x: "{:,.2%}".format(x*0.01), 'y_plus10_issued': lambda x: "{:,.2%}".format(x*0.01),'Alpha_last_1_month': lambda x: "{:,.2%}".format(x*0.01), 'Alpha_last_1_week': lambda x: "{:,.2%}".format(x*0.01),"Alpha_last_3_months": lambda x: "{:,.2%}".format(x*0.01),
-                            'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
-                            })
-    st.write(s)
+    st.write(change_format(df2))
     Web3=df2[df2['tags'].astype(str).str.contains("Web 3")]
     Privacy=df2[df2['tags'].astype(str).str.contains("Privacy")]
     st.header("Web3")
-    st.write(Web3)
+    st.write(change_format(Web3))
     st.header("Privacy")
     st.write(Privacy)
 
