@@ -1,3 +1,4 @@
+from requests.models import DEFAULT_REDIRECT_LIMIT
 import altair as alt
 import math
 import pandas as pd
@@ -205,9 +206,8 @@ def set_one(x):
     st.write(PaintVP(getinfor(x,"d"))[0])
     st.write(PaintVP(getinfor(x,"d"))[1])
 
-
-def set_Portfolio():
-  components.html("""
+def get_index():
+    components.html("""
   <!-- TradingView Widget BEGIN -->
   <div class="tradingview-widget-container">
     <div class="tradingview-widget-container__widget"></div>
@@ -244,7 +244,13 @@ def set_Portfolio():
     </script>
   </div>
   <!-- TradingView Widget END -->
-  """)
+  """,
+    height=250)
+
+
+
+def set_Portfolio():
+  get_index()
   set_one("lat")
   set_one("ckb")
   set_one("klay")
