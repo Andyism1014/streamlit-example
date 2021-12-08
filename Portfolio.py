@@ -206,7 +206,7 @@ def set_one(x):
     st.write(PaintVP(getinfor(x,"d"))[0])
     st.write(PaintVP(getinfor(x,"d"))[1])
 
-@st.experimental_memo
+
 def get_index():
     components.html("""
   <!-- TradingView Widget BEGIN -->
