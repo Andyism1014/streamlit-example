@@ -5,7 +5,7 @@ import time
 import altair as alt
 import streamlit as st
 
-@st.experimental_memo
+
 def getETF():
   #get update time:
   r=requests.get("https://www.oklink.com/api/oklink/v1/eth/datamaster/market/201",headers={"x-apiKey":"962feef7-6c1d-4c49-9ca2-dfc9a9d438bc"},params={
