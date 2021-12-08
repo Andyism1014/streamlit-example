@@ -29,11 +29,24 @@ def set_beta():
  'metrics.roi_data.percent_change_btc_last_1_week': 'Alpha_last_1_week',
  'metrics.roi_data.percent_change_btc_last_3_months': 'Alpha_last_3_months',
  'metrics.supply.y_2050_issued_percent': 'y_2050_issued',
- 'metrics.supply.y_plus10_issued_percent': 'y_plus10'})
+ 'metrics.supply.y_plus10_issued_percent': 'y_plus10_issued'})
     s=df2.style.format(na_rep='MISSING', thousands=" ",
-                    formatter={'y_2050_issued': "{:,.2%}", 'y_plus10_issued': "{:,.2%}",'Alpha_last_1_month': "{:,.2%}", 'Alpha_last_1_week': "{:,.2%}","Alpha_last_3_months": "{:,.2%}",
-                            'current_marketcap': lambda x: "$ {:,.1f}".format(x*-1e6), 'liquid_marketcap': lambda x: "$ {:,.1f}".format(x*-1e6),'price': lambda x: "$ {:,.1f}".format(x*-1e6),'all_time_high.price': lambda x: "$ {:,.1f}".format(x*-1e6)
+                    formatter={'y_2050_issued': lambda x: "{:,.2%}".format(x*-1e2), 'y_plus10_issued': "{:,.2%}",'Alpha_last_1_month': "{:,.2%}", 'Alpha_last_1_week': "{:,.2%}","Alpha_last_3_months": "{:,.2%}",
+                            'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
                             })
+    cell_hover = {  # for row hover use <tr> instead of <td>
+        'selector': 'td:hover',
+        'props': [('background-color', '#ffffb3')]
+    }
+    index_names = {
+        'selector': '.index_name',
+        'props': 'font-style: italic; color: darkgrey; font-weight:normal;'
+    }
+    headers = {
+        'selector': 'th:not(.index_name)',
+        'props': 'background-color: #000066; color: white;'
+    }
+    s.set_table_styles([cell_hover, index_names, headers])
     st.write(s)
 
 
