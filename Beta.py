@@ -1,4 +1,4 @@
-import plotly.express as px
+import altair as alt
 import math
 import pandas as pd
 import requests
@@ -37,8 +37,10 @@ def set_beta():
                             'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
                             })
     st.write(s)
-    fig = px.pie(df2, values='current_marketcap', names='tags', title='Market cap percetage')
-    fig.show()
+    alt.Chart(df2).mark_arc().encode(
+        theta=alt.Theta(field="current_marketcap", type="quantitative"),
+        color=alt.Color(field="tags", type="nominal"),
+    )
 
 
 
