@@ -5,7 +5,7 @@ import requests
 import streamlit as st
 import streamlit.components.v1 as components
 
-@st.experimental_memo
+
 def change_format(x):
     s=x.style.format(na_rep='MISSING', thousands=" ",
                     formatter={'y_2050_issued': lambda x: "{:,.2%}".format(x*0.01), 'y_plus10_issued': lambda x: "{:,.2%}".format(x*0.01),'Alpha_last_1_month': lambda x: "{:,.2%}".format(x*0.01), 'Alpha_last_1_week': lambda x: "{:,.2%}".format(x*0.01),"Alpha_last_3_months": lambda x: "{:,.2%}".format(x*0.01),
