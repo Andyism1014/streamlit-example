@@ -25,9 +25,9 @@ def set_beta():
  'metrics.risk_metrics.volatility_stats.volatility_last_1_year': 'volatility_last_1_year',
  'metrics.risk_metrics.volatility_stats.volatility_last_30_days': 'volatility_last_30_days',
  'metrics.risk_metrics.volatility_stats.volatility_last_90_days': 'volatility_last_90_days',
- 'metrics.roi_data.percent_change_btc_last_1_month': 'percent_change_btc_last_1_month',
- 'metrics.roi_data.percent_change_btc_last_1_week': 'percent_change_btc_last_1_week',
- 'metrics.roi_data.percent_change_btc_last_3_months': 'percent_change_btc_last_3_months',
+ 'metrics.roi_data.percent_change_btc_last_1_month': 'Alpha_last_1_month',
+ 'metrics.roi_data.percent_change_btc_last_1_week': 'Alpha_last_1_week',
+ 'metrics.roi_data.percent_change_btc_last_3_months': 'Alpha_last_3_months',
  'metrics.supply.y_2050_issued_percent': 'y_2050_issued_percent',
  'metrics.supply.y_plus10_issued_percent': 'y_plus10_issued_percent'})
     st.write(df2)
