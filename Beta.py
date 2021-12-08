@@ -31,7 +31,7 @@ def set_beta():
  'metrics.supply.y_2050_issued_percent': 'y_2050_issued',
  'metrics.supply.y_plus10_issued_percent': 'y_plus10_issued'})
     s=df2.style.format(na_rep='MISSING', thousands=" ",
-                    formatter={'y_2050_issued': lambda x: "{:,.2%}".format(x*0.01), 'y_plus10_issued': "{:,.2%}",'Alpha_last_1_month': "{:,.2%}", 'Alpha_last_1_week': "{:,.2%}","Alpha_last_3_months": "{:,.2%}",
+                    formatter={'y_2050_issued': lambda x: "{:,.2%}".format(x*0.01), 'y_plus10_issued': lambda x: "{:,.2%}".format(x*0.01),'Alpha_last_1_month': lambda x: "{:,.2%}".format(x*0.01), 'Alpha_last_1_week': lambda x: "{:,.2%}".format(x*0.01),"Alpha_last_3_months": lambda x: "{:,.2%}".format(x*0.01),
                             'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
                             })
     st.write(s)
