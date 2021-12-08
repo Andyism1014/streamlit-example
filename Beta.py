@@ -30,9 +30,9 @@ def set_beta():
  'metrics.roi_data.percent_change_btc_last_3_months': 'Alpha_last_3_months',
  'metrics.supply.y_2050_issued_percent': 'y_2050_issued',
  'metrics.supply.y_plus10_issued_percent': 'y_plus10'})
-    s=df2.style.format( na_rep='MISSING', thousands=" ",
-                    formatter={('y_2050_issued', 'y_plus10_issued','Alpha_last_1_month', 'Alpha_last_1_week',"Alpha_last_3_months"): "{:,.2%}",
-                            ('current_marketcap', 'liquid_marketcap','price'): lambda x: "$ {:,.1f}".format(x*-1e6)
+    s=df2.style.format(na_rep='MISSING', thousands=" ",
+                    formatter={'y_2050_issued': "{:,.2%}", 'y_plus10_issued': "{:,.2%}",'Alpha_last_1_month': "{:,.2%}", 'Alpha_last_1_week': "{:,.2%}","Alpha_last_3_months": "{:,.2%}",
+                            'current_marketcap': lambda x: "$ {:,.1f}".format(x*-1e6), 'liquid_marketcap': lambda x: "$ {:,.1f}".format(x*-1e6),'price': lambda x: "$ {:,.1f}".format(x*-1e6),'all_time_high.price': lambda x: "$ {:,.1f}".format(x*-1e6)
                             })
     st.write(s)
 
