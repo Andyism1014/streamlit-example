@@ -37,11 +37,13 @@ def set_beta():
                             'current_marketcap': "$ {:,.1f}", 'liquid_marketcap': "$ {:,.1f}",'price': "$ {:,.1f}",'all_time_high.price': "$ {:,.1f}"
                             })
     st.write(s)
-    res=alt.Chart(df2).mark_arc().encode(
-        theta=alt.Theta(field="current_marketcap:Q", stack=True),
-        color=alt.Color(field="symbol:N"),
-    )
-    st.write(res)
+    Web3=df2[df2['tags'].astype(str).str.contains("Web 3")]
+    Privacy=df2[df2['tags'].astype(str).str.contains("Privacy")]
+    st.header("Web3")
+    st.write(Web3)
+    st.header("Privacy")
+    st.write(Privacy)
+
 
 
 
