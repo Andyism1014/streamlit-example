@@ -239,7 +239,10 @@ def get_index(x):
 def set_Portfolio():
   get_index("BTCUSDT")
   get_index("ETHUSDT")
-  get_index("SPX")
+  get_index("US500")
+  get_index("NAS100USD")
+  get_index("000300")
+
 
   options = st.multiselect(
     'Select',
