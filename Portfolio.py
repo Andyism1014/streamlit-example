@@ -237,6 +237,7 @@ def get_index(x):
 
 
 def set_Portfolio():
+  st.header("Market Information")
   t1, t2= st.columns(2)
   with t1:
     get_index("BTCUSDT")
