@@ -237,10 +237,10 @@ def get_index():
 
 
 def set_Portfolio():
-  options = st.multiselect(
-     'Select',
-     ['LAT', 'CKB', 'KLAY'])
   get_index()
+  options = st.multiselect(
+    'Select',
+    ['LAT', 'CKB', 'KLAY'])
   for i in options:
     set_one(i)
 
