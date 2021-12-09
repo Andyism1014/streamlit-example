@@ -249,6 +249,7 @@ def set_Portfolio():
     get_index("NAS100USD")
   with g3:
     get_index("000300")
+  st.header("Portfolio Information")
   options = st.multiselect(
     'Select',
     ['LAT', 'CKB', 'KLAY'])
