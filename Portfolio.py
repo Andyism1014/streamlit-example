@@ -207,37 +207,39 @@ def set_one(x):
     st.write(PaintVP(getinfor(x,"d"))[1])
 
 
-def get_index():
-    components.html("""
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-      <div class="tradingview-widget-container__widget"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Rates</span></a> by TradingView</div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-      {
-      "symbol": "BINANCE:BTCUSDT",
-      "width": 350,
-      "height": 220,
-      "locale": "en",
-      "dateRange": "1D",
-      "colorTheme": "light",
-      "trendLineColor": "rgba(41, 98, 255, 1)",
-      "underLineColor": "rgba(41, 98, 255, 0.3)",
-      "underLineBottomColor": "rgba(41, 98, 255, 0)",
-      "isTransparent": false,
-      "autosize": false,
-      "largeChartUrl": ""
-    }
-      </script>
-    </div>
-    <!-- TradingView Widget END -->
-  """,
+def get_index(x):
+  components.html("""
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Rates</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
+  {
+  "symbol": "%s",
+  "width": 350,
+  "height": 220,
+  "locale": "en",
+  "dateRange": "1D",
+  "colorTheme": "light",
+  "trendLineColor": "rgba(41, 98, 255, 1)",
+  "underLineColor": "rgba(41, 98, 255, 0.3)",
+  "underLineBottomColor": "rgba(41, 98, 255, 0)",
+  "isTransparent": false,
+  "autosize": false,
+  "largeChartUrl": ""
+  }
+  </script>
+  </div>
+  <!-- TradingView Widget END -->
+  """%(x),
     height=200)
 
 
 
 def set_Portfolio():
-  get_index()
+  get_index("BTCUSDT")
+  get_index("ETHUSDT")
+  get_index("S&P500")
   options = st.multiselect(
     'Select',
     ['LAT', 'CKB', 'KLAY'])
