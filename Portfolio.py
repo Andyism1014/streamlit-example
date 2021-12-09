@@ -216,7 +216,7 @@ def get_index(x):
   <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
   {
   "symbol": "%s",
-  "width": 750,
+  "width": 800,
   "height": 220,
   "locale": "en",
   "dateRange": "1D",
