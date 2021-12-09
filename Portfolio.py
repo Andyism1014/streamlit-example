@@ -232,7 +232,7 @@ def get_index():
     </div>
     <!-- TradingView Widget END -->
   """,
-    height=100)
+    height=200)
 
 
 
