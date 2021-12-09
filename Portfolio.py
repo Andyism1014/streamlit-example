@@ -209,42 +209,28 @@ def set_one(x):
 
 def get_index():
     components.html("""
-  <!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-    {
-    "symbols": [
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Rates</span></a> by TradingView</div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
       {
-        "proName": "FOREXCOM:SPXUSD",
-        "title": "S&P 500"
-      },
-      {
-        "description": "NASDAQ",
-        "proName": "SKILLING:NASDAQ"
-      },
-      {
-        "description": "BTC",
-        "proName": "BINANCE:BTCUSDT"
-      },
-      {
-        "description": "ETH",
-        "proName": "BINANCE:ETHUSDT"
-      },
-      {
-        "description": "沪深300",
-        "proName": "SSE:000300"
-      }
-    ],
-    "colorTheme": "light",
-    "isTransparent": true,
-    "showSymbolLogo": false,
-    "locale": "en"
-  }
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
+      "symbol": "BINANCE:BTCUSDT",
+      "width": 350,
+      "height": 220,
+      "locale": "en",
+      "dateRange": "1D",
+      "colorTheme": "light",
+      "trendLineColor": "rgba(41, 98, 255, 1)",
+      "underLineColor": "rgba(41, 98, 255, 0.3)",
+      "underLineBottomColor": "rgba(41, 98, 255, 0)",
+      "isTransparent": false,
+      "autosize": false,
+      "largeChartUrl": ""
+    }
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
   """,
     height=90)
 
