@@ -7,7 +7,7 @@ import streamlit as st
 from datetime import datetime
 
 @st.experimental_memo(ttl=60*60*24)
-def getETF():
+def getETF(x):
   #get update time:
   r=requests.get("https://www.oklink.com/api/oklink/v1/eth/datamaster/market/201",headers={"x-apiKey":"962feef7-6c1d-4c49-9ca2-dfc9a9d438bc"},params={
     "startTime":1619280000000,
@@ -34,6 +34,7 @@ def getETF():
       b=pd.DataFrame(df["data"]["content"])
       b["indicatorName"]=df["data"]["indicatorName"]
       b["statisDate"]=pd.to_datetime(b["statisDate"],unit="ms")
+      b=b.tail(x)
     else:
       r=requests.get(i,headers={"x-apiKey":"962feef7-6c1d-4c49-9ca2-dfc9a9d438bc"},params={
         "startTime":1619280000000,
@@ -42,6 +43,7 @@ def getETF():
       c=pd.DataFrame(df["data"]["content"])
       c["indicatorName"]=df["data"]["indicatorName"]
       c["statisDate"]=pd.to_datetime(b["statisDate"],unit="ms")
+      c=c.tail(x)
       b=pd.concat([b,c],ignore_index=True)
   dfeth=b
   for i in btcurl:
@@ -53,6 +55,7 @@ def getETF():
       b=pd.DataFrame(df["data"]["content"])
       b["indicatorName"]=df["data"]["indicatorName"]
       b["statisDate"]=pd.to_datetime(b["statisDate"],unit="ms")
+      b=b.tail(x)
     else:
       r=requests.get(i,headers={"x-apiKey":"962feef7-6c1d-4c49-9ca2-dfc9a9d438bc"},params={
         "startTime":1619280000000,
@@ -61,6 +64,7 @@ def getETF():
       c=pd.DataFrame(df["data"]["content"])
       c["indicatorName"]=df["data"]["indicatorName"]
       c["statisDate"]=pd.to_datetime(b["statisDate"],unit="ms")
+      c=c.tail(x)
       b=pd.concat([b,c],ignore_index=True)
   dfbtc=b
   a=alt.Chart(dfeth).mark_bar().encode(
@@ -86,7 +90,7 @@ def set_ETF():
   t1, t2= st.columns(2)
   with t2:
     st.header("ETH Institutions")
-    st.write(getETF()[0])
+    st.write(getETF(30)[0])
   with t1:
     st.header("BTC Institutions")
-    st.write(getETF()[1])
+    st.write(getETF(30)[1])
