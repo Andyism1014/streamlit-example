@@ -14,12 +14,12 @@ t1, t2 = st.columns((0.12,1))
 t1.image('logo.png', width=155)
 t2.title('Tensor Data Platform')
 t2.markdown("Tensor Investment Corporation | Proprietary trading and alternative investment firm")
-option = st.selectbox('Navigation',('Portfolio Information', 'ETF Information', 'Beta',"Function"))
+option = st.selectbox('Navigation',('Portfolio Information', 'On-Chain Data', 'Beta',"Function"))
 
 #layout
 if option=="Portfolio Information":
     set_Portfolio()
-if option=="ETF Information":
+if option=="On-Chain Data":
     set_ETF()
 if option=="Beta":
     set_beta()
