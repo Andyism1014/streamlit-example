@@ -81,7 +81,10 @@ def getETF():
   return a,b
 
 def set_ETF():
+  t1, t2= st.columns(2)
+  with t1:
     st.header("ETH 持仓变化")
     st.write(getETF()[0])
+  with t2:
     st.header("BTC 持仓变化")
     st.write(getETF()[1])
