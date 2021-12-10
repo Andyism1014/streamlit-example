@@ -15,6 +15,7 @@ def get_g(x,y,z,g):
   df = pd.read_json(res.text)
   return df.tail(g)
 
+@st.experimental_memo(ttl=60*60*24)
 def get_g_ex(x,y,e,g):
   API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
   res = requests.get("https://api.glassnode.com"+y,
@@ -137,14 +138,14 @@ def getETF():
 def set_ETF():
   st.title("On-Chain Data")
   t1, t2= st.columns(2)
-  with t2:
-    st.header("ETH Institutions")
-    st.write(getETF()[0])
-    st.header("ETH Exchange Net Position Change")
-    st.write(plot_netdata(get_netdata("ETH")))
   with t1:
     st.header("BTC Institutions")
     st.write(getETF()[1])
     st.header("BTC Exchange Net Position Change")
     st.write(plot_netdata(get_netdata("BTC")))
+  with t2:
+    st.header("ETH Institutions")
+    st.write(getETF()[0])
+    st.header("ETH Exchange Net Position Change")
+    st.write(plot_netdata(get_netdata("ETH")))
 
