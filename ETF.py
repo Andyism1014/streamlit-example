@@ -4,7 +4,8 @@ import numpy as np
 import time
 import altair as alt
 import streamlit as st
-from datetime import datetime
+from datetime import date
+from datetime import timedelta
 
 @st.experimental_memo(ttl=60*60*24)
 def getETF():
@@ -63,8 +64,11 @@ def getETF():
       c["statisDate"]=pd.to_datetime(b["statisDate"],unit="ms")
       b=pd.concat([b,c],ignore_index=True)
   dfbtc=b
+  today = date.today()
+  yesterday = today - timedelta(days = 60)
+  domain=[today.strftime('%Y-%m-%d'),yesterday.strftime('%Y-%m-%d')]
   a=alt.Chart(dfeth).mark_bar().encode(
-      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None)),
+      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None),scale=alt.Scale(domain=domain)),
       y=alt.Y("value:Q",axis=alt.Axis(title="ETH持仓变化")),
       color="indicatorName:N"   
   ).properties(
@@ -72,7 +76,7 @@ def getETF():
       height=350
   ).interactive()
   b=alt.Chart(dfbtc).mark_bar().encode(
-      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None)),
+      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None),scale=alt.Scale(domain=domain)),
       y=alt.Y("value:Q",axis=alt.Axis(title="BTC持仓变化")),
       color="indicatorName:N"   
   ).properties(
