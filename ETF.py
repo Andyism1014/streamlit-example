@@ -24,6 +24,7 @@ def get_g_ex(x,y,e,g):
   return df.tail(g)
 
 
+@st.experimental_memo(ttl=60*60*24)
 def get_netdata(x):
   x=x.upper()
   if x=="BTC":
@@ -40,6 +41,7 @@ def get_netdata(x):
       df=pd.concat([df,b],ignore_index=True)
   return df
 
+@st.experimental_memo
 def plot_netdata(df):
   res=alt.Chart(df).mark_bar().encode(
       x=alt.X("t:T",axis=alt.Axis(title="Time")),
@@ -136,9 +138,11 @@ def set_ETF():
   with t2:
     st.header("ETH Institutions")
     st.write(getETF()[0])
+    st.header("ETH Exchange Net Position Change")
     st.write(plot_netdata(get_netdata("ETH")))
   with t1:
     st.header("BTC Institutions")
     st.write(getETF()[1])
+    st.header("BTC Exchange Net Position Change")
     st.write(plot_netdata(get_netdata("BTC")))
 
