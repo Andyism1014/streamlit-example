@@ -64,7 +64,7 @@ def getETF():
   dfbtc=b
   domain = ["2021-10-10", "2021-12-10"]
   a=alt.Chart(dfeth).mark_bar().encode(
-      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None),scale=alt.Scale(domain=domain)),
+      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None),scale=alt.Scale(domain=domain,zero=False)),
       y=alt.Y("value:Q",axis=alt.Axis(title="ETH持仓变化")),
       color="indicatorName:N"   
   ).properties(
@@ -72,8 +72,8 @@ def getETF():
       height=350
   ).interactive()
   b=alt.Chart(dfbtc).mark_bar().encode(
-      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None)),
-      y=alt.Y("value:Q",axis=alt.Axis(title="BTC持仓变化"),scale=alt.Scale(domain=domain)),
+      x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None),scale=alt.Scale(domain=domain,zero=False)),
+      y=alt.Y("value:Q",axis=alt.Axis(title="BTC持仓变化")),
       color="indicatorName:N"   
   ).properties(
       width=800,
