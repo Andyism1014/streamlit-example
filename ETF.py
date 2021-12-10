@@ -83,9 +83,9 @@ def getETF():
 def set_ETF():
   st.title("On-Chain Data")
   t1, t2= st.columns(2)
-  with t1:
-    st.header("ETH 机构持仓变化")
-    st.write(getETF()[0])
   with t2:
-    st.header("BTC 机构持仓变化")
+    st.header("ETH Institutions")
+    st.write(getETF()[0])
+  with t1:
+    st.header("BTC Institutions")
     st.write(getETF()[1])
