@@ -24,7 +24,6 @@ def get_g_ex(x,y,e,g):
   return df.tail(g)
 
 
-@st.experimental_memo(ttl=60*60*24)
 def get_netdata(x):
   x=x.upper()
   if x=="BTC":
