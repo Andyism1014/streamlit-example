@@ -85,7 +85,7 @@ def set_ETF():
   st.title("On-Chain Data")
   start_time = st.slider(
       "When do you start?",
-      value=datetime(2020, 1, 1, 9, 30),
+      value=datetime(2020, 1, 1),
       format="MM/DD/YY")
   st.write("Start time:", start_time)
   t1, t2= st.columns(2)
