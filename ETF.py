@@ -62,7 +62,7 @@ def getETF():
       c["statisDate"]=pd.to_datetime(b["statisDate"],unit="ms")
       b=pd.concat([b,c],ignore_index=True)
   dfbtc=b
-  a=alt.Chart(dfeth).mark_bar().encode(
+  a=alt.Chart(dfeth.tail(30)).mark_bar().encode(
       x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None)),
       y=alt.Y("value:Q",axis=alt.Axis(title="ETH持仓变化")),
       color="indicatorName:N"   
@@ -70,7 +70,7 @@ def getETF():
       width=800,
       height=350
   ).interactive()
-  b=alt.Chart(dfbtc).mark_bar().encode(
+  b=alt.Chart(dfbtc.tail(30)).mark_bar().encode(
       x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None)),
       y=alt.Y("value:Q",axis=alt.Axis(title="BTC持仓变化")),
       color="indicatorName:N"   
