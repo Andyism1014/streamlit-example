@@ -7,6 +7,23 @@ import streamlit as st
 from datetime import date
 from datetime import timedelta
 
+def get_g(x,y,z,g):
+  API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
+  res = requests.get("https://api.glassnode.com"+y,
+      params={'a':x,"timestamp_format":"humanized",'api_key':API_KEY,"i":z})
+  # convert to pandas dataframe
+  df = pd.read_json(res.text)
+  return df.tail(g)
+
+def get_g_ex(x,y,e,g):
+  API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
+  res = requests.get("https://api.glassnode.com"+y,
+      params={'a':x,"timestamp_format":"humanized",'api_key':API_KEY,"e":e})
+  # convert to pandas dataframe
+  df = pd.read_json(res.text)
+  return df.tail(g)
+
+
 @st.experimental_memo(ttl=60*60*24)
 def get_netdata(x):
   x=x.upper()
