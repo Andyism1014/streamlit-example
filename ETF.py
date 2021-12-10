@@ -4,6 +4,7 @@ import numpy as np
 import time
 import altair as alt
 import streamlit as st
+from datetime import datetime
 
 @st.experimental_memo(ttl=60*60*24)
 def getETF():
@@ -82,6 +83,11 @@ def getETF():
 
 def set_ETF():
   st.title("On-Chain Data")
+  start_time = st.slider(
+      "When do you start?",
+      value=datetime(2020, 1, 1, 9, 30),
+      format="MM/DD/YY")
+  st.write("Start time:", start_time)
   t1, t2= st.columns(2)
   with t2:
     st.header("ETH Institutions")
