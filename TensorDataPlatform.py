@@ -13,7 +13,7 @@ t1, t2 = st.columns((0.12,1))
 t1.image('logo.png', width=155)
 t2.title('Tensor Data Platform')
 t2.markdown("Tensor Investment Corporation | Proprietary trading and alternative investment firm")
-option = st.selectbox('Navigation',('Portfolio Information', 'On-Chain Data', 'Beta',"Function"))
+option = st.selectbox('Navigation',('Portfolio Information', 'On-Chain Data', 'Beta'))
 
 #layout
 if option=="Portfolio Information":
@@ -21,15 +21,6 @@ if option=="Portfolio Information":
 if option=="On-Chain Data":
     set_ETF()
 
-if option=="Function":
-    st.title('Tensor Investment Corporation')
-    Choice=st.selectbox("选择功能页",("Consolidated Volume 查询器","others"))
-    if Choice=="Consolidated Volume 查询器":
-        st.header('Consolidated Volume 查询器')
-        crrucy = st.text_input('输入您想查询的币种', 'BTC')
-        set_one(crrucy)
-    if Choice=="others":
-        st.write("Coming soon")
 
 
 
