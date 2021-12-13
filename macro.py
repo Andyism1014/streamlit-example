@@ -12,4 +12,4 @@ import base64
 
 def main():
     components.iframe("https://studio.glassnode.com/workbench/4e473fa5-6bbb-4a50-7532-39677ab4c343",
-    height=1550,width=2000)
+    height=1080,width=1980)
