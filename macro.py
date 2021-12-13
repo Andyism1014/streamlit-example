@@ -12,4 +12,4 @@ import base64
 
 def main():
     components.iframe("https://docs.streamlit.io/en/latest",
-    height=550,width=700)
+    height=550,width=700,scrolling=True)
