@@ -12,6 +12,6 @@ import base64
 
 def main():
     st.write(
-        f'<iframe src="https://www.google.com.hk//"></iframe>',
+        f'<iframe src="https://www.google.com"></iframe>',
         unsafe_allow_html=True,
     )
