@@ -6,6 +6,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 import base64
 
+
 def show_pdf(file_path):
     with open(file_path,"rb") as f:
           base64_pdf = base64.b64encode(f.read()).decode('utf-8')
@@ -13,9 +14,8 @@ def show_pdf(file_path):
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 
-
 def main():
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
     if uploaded_file is not None:
         st.write(uploaded_file)
-
+    st.markdown("https://studio.glassnode.com/workbench/30ce7aa4-89bb-4194-41d9-399b4c0cfced",unsafe_allow_html=True)
