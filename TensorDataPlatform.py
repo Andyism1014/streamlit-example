@@ -5,7 +5,7 @@ from PIL import Image
 from ETF import *
 from Portfolio import *
 import time
-
+from macro import *
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
@@ -20,7 +20,8 @@ if option=="Portfolio Information":
     set_Portfolio()
 if option=="On-Chain Data":
     set_ETF()
-
+if option=="On-Chain Data":
+    main()
 
 
 

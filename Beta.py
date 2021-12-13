@@ -17,6 +17,7 @@ def get_data():
     df2=pd.read_csv("mas.csv",index_col="symbol")
     return df2
 
+
 def set_beta():
     st.header("Market Information")
     df2=get_data()
@@ -48,6 +49,7 @@ def set_beta():
     st.write(change_format(Web3))
     st.header("Privacy")
     st.write(change_format(Privacy))
+    
 
 
 
