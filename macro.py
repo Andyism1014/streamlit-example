@@ -11,5 +11,5 @@ import base64
 
 
 def main():
-    components.iframe("https://docs.streamlit.io/en/latest",
+    components.iframe("https://studio.glassnode.com/workbench/4e473fa5-6bbb-4a50-7532-39677ab4c343",
     height=550,width=700,scrolling=True)
