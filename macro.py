@@ -12,6 +12,6 @@ import base64
 
 def main():
     st.write(
-        f'<iframe src="https://studio.glassnode.com/trading_view">height=550,width=700</iframe>',
+        f'<iframe src="https://studio.glassnode.com/workbench/8218f3b0-58d2-4f44-513a-e9a3b8e9c0f2">,height=550,width=700</iframe>',
         unsafe_allow_html=True,
     )
