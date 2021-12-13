@@ -34,10 +34,10 @@ def get_netdata(x):
     list= ['binance','huobi','kraken','okex',"kucoin","bitfinex","bithumb","gate.io"]
   for i in list:
     if list.index(i)==0:
-      df=get_g_ex(x,"/v1/metrics/distribution/exchange_net_position_change",i,30)
+      df=get_g_ex(x,"/v1/metrics/distribution/exchange_net_position_change",i,90)
       df["symbol"]=i.capitalize() 
     else:
-      b=get_g_ex(x,"/v1/metrics/distribution/exchange_net_position_change",i,30)
+      b=get_g_ex(x,"/v1/metrics/distribution/exchange_net_position_change",i,90)
       b["symbol"]=i.capitalize() 
       df=pd.concat([df,b],ignore_index=True)
   return df
