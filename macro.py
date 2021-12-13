@@ -14,7 +14,12 @@ def st_display_pdf(pdf_file):
     pdf_display =F'<iframe src="data:application/pdf;base64,{base64_pdf}" width="700" height="1000" type="application/pdf"></iframe>'
     st.markdown(pdf_display, unsafe_allow_html=True)
 
+
 def main():
+    
+    uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
+    if uploaded_file is not None:
+        st_display_pdf(uploaded_file)
     st.title("在Streamlit中嵌入PDF文件")
     st.subheader("Learn Streamlit")
     st_display_pdf("PDFembed.pdf")
