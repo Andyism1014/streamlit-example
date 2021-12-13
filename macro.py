@@ -20,4 +20,4 @@ def main():
      was the season of Light, it was the season of Darkness, it
      was the spring of hope, it was the winter of despair, (...)
      ''')
-    st.write('Sentiment:', run_sentiment_analysis(txt))
+    st.write('Sentiment:', txt)
