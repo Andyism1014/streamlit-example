@@ -20,7 +20,7 @@ if option=="Portfolio Information":
     set_Portfolio()
 if option=="On-Chain Data":
     set_ETF()
-if option=="On-Chain Data":
+if option=="Beta":
     main()
 
 
