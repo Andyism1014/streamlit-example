@@ -22,5 +22,4 @@ def main():
         st_display_pdf(uploaded_file)
     st.title("在Streamlit中嵌入PDF文件")
     st.subheader("Learn Streamlit")
-    st_display_pdf("PDFembed.pdf")
 
