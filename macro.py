@@ -18,9 +18,10 @@ def displayPDF(file):
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 
+
 def main():
     
     uploaded_file = st.file_uploader('Choose your .pdf file', type="pdf")
     if uploaded_file is not None:
-        displayPDF(uploaded_file)
+        st.write(displayPDF(uploaded_file))
 
