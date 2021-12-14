@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 from ETF import *
 from Portfolio import *
-from Blog import main
+from Blog import *
 import time
 
 
