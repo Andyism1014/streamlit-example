@@ -17,7 +17,7 @@ def main():
     start_button = st.empty()
     if start_button.button('Start',key='start'):
         a.append(txt)
-        print(a)
+        st.write(a)
 
 
 
