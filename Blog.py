@@ -196,4 +196,9 @@ def main():
 			plt.axis("off")
 			st.pyplot()
 
-
+		if st.checkbox("BarH Plot"):
+			st.subheader("Length of Articles")
+			new_df = clean_db
+			new_df['Length'] = new_df['Articles'].str.len()
+			barh_plot = new_df.plot.barh(x='Author',y='Length',figsize=(20,10))
+			st.pyplot()
