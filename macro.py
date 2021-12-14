@@ -13,7 +13,8 @@ def main():
     txt = st.text_area('Text to analyze', '''
     ss
      ''')
-    if st.button('Start',key='start'):
+    start_button = st.empty()
+    if start_button.button('Start',key='start'):
         st.write(txt)
 
 
