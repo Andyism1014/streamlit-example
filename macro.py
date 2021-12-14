@@ -20,4 +20,8 @@ def main():
      was the season of Light, it was the season of Darkness, it
      was the spring of hope, it was the winter of despair, (...)
      ''')
-    st.write( txt)
+    st.write(txt)
+    file = open('read.txt', 'w')
+    file.write('Welcome to Geeks for Geeks')
+    st.write(file.read())
+    file.close()
