@@ -3,19 +3,28 @@ import math
 import pandas as pd
 import requests
 import streamlit as st
-import streamlit.components.v1 as components
-import base64
+from streamlit_gallery.utils import readme
+from streamlit_quill import st_quill
 
 
 
 
 
 def main():
-    st.text_area('Text to analyze', '''
-     It was the best of times, it was the worst of times, it was
-     the age of wisdom, it was the age of foolishness, it was
-     the epoch of belief, it was the epoch of incredulity, it
-     was the season of Light, it was the season of Darkness, it
-     was the spring of hope, it was the winter of despair, (...)
-     ''',key="gg")
-    st.write(gg)
+    with readme("streamlit-quill", st_quill, __file__):
+            c1, c2 = st.columns([3, 1])
+
+            c2.subheader("Parameters")
+
+            with c1:
+                content = st_quill(
+                    placeholder="Write your text here",
+                    html=c2.checkbox("Return HTML", False),
+                    readonly=c2.checkbox("Read only", False),
+                    key="quill",
+                )
+
+                if content:
+                    st.subheader("Content")
+                    st.text(content)
+
