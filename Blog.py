@@ -106,7 +106,7 @@ def main():
 	elif choice == "View Posts":
 		st.subheader("View Articles")
 		all_titles = [i[0] for i in view_all_titles()]
-		postlist = st.sidebar.selectbox("View Posts",all_titles)
+		postlist = st.selectbox("View Posts",all_titles)
 		post_result = get_blog_by_title(postlist)
 		for i in post_result:
 			b_author = i[0]
