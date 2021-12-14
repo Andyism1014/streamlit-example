@@ -15,6 +15,7 @@ def main():
      ''')
     start_button = st.empty()
     if start_button.button('Start',key='start'):
+        start_button.empty()
         st.write(txt)
 
 
