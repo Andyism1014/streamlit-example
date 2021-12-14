@@ -251,9 +251,7 @@ def set_Portfolio():
   with g3:
     get_index("000300")
   st.header("Portfolio Information")
-  options = st.multiselect(
-    'Select',
-    ['LAT', 'CKB', 'KLAY'])
+  options = ['LAT', 'CKB', 'KLAY']
   for i in options:
     set_one(i)
 
