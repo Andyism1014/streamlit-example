@@ -11,8 +11,6 @@ import base64
 
 
 def main():
-    components.iframe("https://studio.glassnode.com/workbench/4e473fa5-6bbb-4a50-7532-39677ab4c343",
-    height=1070,width=1700)
     st.text_area('Text to analyze', '''
      It was the best of times, it was the worst of times, it was
      the age of wisdom, it was the age of foolishness, it was
