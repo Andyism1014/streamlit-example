@@ -90,7 +90,7 @@ def main():
 	st.markdown(html_temp.format('royalblue','white'),unsafe_allow_html=True)
 
 	menu = ["Home","View Posts","Add Posts","Search","Manage Blog"]
-	choice = st.sidebar.selectbox("Menu",menu)
+	choice = st.selectbox("Menu",menu)
 
 	if choice == "Home":
 		st.subheader("Home")
