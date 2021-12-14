@@ -21,7 +21,13 @@ if option=="Portfolio Information":
 if option=="On-Chain Data":
     set_ETF()
 if option=="Beta":
-    main()
+    a=[]
+    txt = st.text_area('Text to analyze', '''
+    ss
+     ''')
+    if st.button('Start'):
+        a.append(txt)
+    st.write(a)
 
 
 
