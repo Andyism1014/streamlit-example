@@ -6,9 +6,6 @@ import streamlit as st
 import sqlite3
 
 
-conn = sqlite3.connect('data.db')
-c = conn.cursor()
-
 # Functions
 def create_table():
 	c.execute('CREATE TABLE IF NOT EXISTS blogtable(author TEXT,title TEXT,article TEXT,postdate DATE)')
@@ -85,6 +82,8 @@ full_message_temp ="""
 
 
 def main():
+	conn = sqlite3.connect('data.db')
+	c = conn.cursor()
 	"""A Simple CRUD  Blog"""
 	
 	st.markdown(html_temp.format('royalblue','white'),unsafe_allow_html=True)
