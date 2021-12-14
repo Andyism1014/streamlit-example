@@ -4,7 +4,7 @@ import numpy as np
 import time
 import streamlit as st
 import sqlite3
-import matplotlib
+
 
 conn = sqlite3.connect('data.db')
 c = conn.cursor()
