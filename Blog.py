@@ -173,3 +173,32 @@ def main():
 			st.warning("Deleted: '{}'".format(delete_blog_by_title))
 
 
+		if st.checkbox("Metrics"):
+			
+			new_df['Length'] = new_df['Articles'].str.len()
+			st.dataframe(new_df)
+
+
+			st.subheader("Author Stats")
+			new_df["Author"].value_counts().plot(kind='bar')
+			st.pyplot()
+
+			st.subheader("Author Stats")
+			new_df['Author'].value_counts().plot.pie(autopct="%1.1f%%")
+			st.pyplot()
+
+		if st.checkbox("Word Cloud"):
+			st.subheader("Generate Word Cloud")
+			# text = new_df['Articles'].iloc[0]
+			text = ','.join(new_df['Articles'])
+			wordcloud = WordCloud().generate(text)
+			plt.imshow(wordcloud,interpolation='bilinear')
+			plt.axis("off")
+			st.pyplot()
+
+		if st.checkbox("BarH Plot"):
+			st.subheader("Length of Articles")
+			new_df = clean_db
+			new_df['Length'] = new_df['Articles'].str.len()
+			barh_plot = new_df.plot.barh(x='Author',y='Length',figsize=(20,10))
+			st.pyplot()
