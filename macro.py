@@ -14,8 +14,7 @@ def main():
     txt = st.text_area('Text to analyze', '''
     ss
      ''')
-    start_button = st.empty()
-    if start_button.button('Start',key='start'):
+    if st.button('Start'):
         a.append(txt)
     st.write(a)
 
