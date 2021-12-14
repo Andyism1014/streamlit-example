@@ -2,9 +2,9 @@ import requests
 import pandas as pd
 import numpy as np
 import time
-import altair as alt
 import streamlit as st
 import sqlite3
+import matplotlib
 
 conn = sqlite3.connect('data.db')
 c = conn.cursor()
