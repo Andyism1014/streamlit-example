@@ -10,13 +10,16 @@ import time
 
 
 def main():
+    a=[]
     txt = st.text_area('Text to analyze', '''
     ss
      ''')
     start_button = st.empty()
     if start_button.button('Start',key='start'):
-        start_button.empty()
-        st.write(txt)
+        a.append(txt)
+        for i in a:
+            st.write(a[i])
+
 
 
 
