@@ -2,7 +2,6 @@ from os import strerror, write
 import pandas as pd
 import streamlit as st
 from PIL import Image
-from ETF import *
 from Portfolio import *
 from On_Chain import *
 import time
@@ -20,9 +19,8 @@ option = st.selectbox('Navigation',('Portfolio Information', 'On-Chain Data', 'B
 if option=="Portfolio Information":
     set_Portfolio()
 if option=="On-Chain Data":
-    set_ETF()
-if option=="Beta":
     main()
+
 
 
 
