@@ -61,7 +61,7 @@ def show_cp(dfd,dfp):
     text
   ).resolve_scale(
           y ='independent').properties(
-      width=1500, height=800
+      width=1200, height=600
   ).interactive(bind_y=False)
   return res
 
