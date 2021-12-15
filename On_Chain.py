@@ -73,4 +73,11 @@ def main():
     st.write(show_cp(get_g("BTC","/v1/metrics/entities/active_count","24h",300),dfp))
     st.header("Futures Open Interest Perpetual（永续合约持仓金额）")
     st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_open_interest_perpetual_sum","24h",300),dfp))
+    st.header("Futures Open Interest（交割合约持仓金额）")
+    st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_open_interest_sum","24h",300),dfp))
+    st.header("Number of Whales（巨鲸人数）")
+    st.write(show_cp(get_g("BTC","/v1/metrics/entities/min_1k_count","24h",300),dfp))
+    st.header("Futures Perpetual Funding Rate（资金费率）")
+    st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_funding_rate_perpetual","24h",300),dfp))
+    
     
