@@ -14,6 +14,14 @@ def get_g(x,y,z,g):
   df = pd.read_json(res.text)
   return df.tail(g)
 
+@st.experimental_memo(ttl=60*60*24)
+def get_g2(x,y,z,g):
+  API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
+  res = requests.get("https://api.glassnode.com"+y,
+      params={'a':x,"timestamp_format":"humanized",'api_key':API_KEY,"i":z})
+  # convert to pandas dataframe
+  df=pd.json_normalize(res.json(),sep="_")
+  return df.tail(g)
 
 
 @st.experimental_memo(ttl=60*60*24)
@@ -65,12 +73,35 @@ def show_cp(dfd,dfp):
   ).interactive(bind_y=False)
   return res
 
+@st.experimental_memo(ttl=60*60*24)
+def show_cp2(df,dfp,l):
+  line1=alt.Chart(df).transform_fold(
+      l
+  ).mark_area(opacity=0.7).encode(
+      x=alt.X("t:T"),
+      y=alt.Y('value:Q',axis=alt.Axis(format="s",title=None),scale=alt.Scale(zero=False)),
+      color="key:N"
+      )
+
+  line2=alt.Chart(dfp).mark_line(color='#57A44C',opacity=0.5).encode(
+      x=alt.X("t:T",axis=alt.Axis(title=None)),
+      y=alt.Y('v:Q',axis=alt.Axis(format="s",title="price",titleColor='#57A44C'),scale=alt.Scale(zero=False))
+  )
+
+  res=alt.layer(line2,line1).resolve_scale(
+          y ='independent').properties(
+      width=1200, height=600
+  ).interactive(bind_y=False)
+  return res
 
 
 def main():
     dfp=get_g("BTC","/v1/metrics/market/price_usd_close","24h",300)
     st.header("Active Entities（活跃个体）")
     st.write(show_cp(get_g("BTC","/v1/metrics/entities/active_count","24h",300),dfp))
+    st.header("Total Transfer Volume Breakdown by Size (Entity-Adjusted)（不同交易规模的日交易量）")
+    l1=['o_vol_0_to_1k','o_vol_100k_to_1m',"o_vol_10k_to_100k","o_vol_1k_to_10k","o_vol_1m_to_10m"]
+    st.write(show_cp2(get_g2("BTC","/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum","24h",300),dfp,l1))
     st.header("Futures Open Interest Perpetual（永续合约持仓金额）")
     st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_open_interest_perpetual_sum","24h",300),dfp))
     st.header("Futures Open Interest（交割合约持仓金额）")
