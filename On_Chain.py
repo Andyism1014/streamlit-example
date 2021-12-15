@@ -104,6 +104,9 @@ def main():
     st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_open_interest_sum","24h",300),dfp))
     st.header("Number of Whales（巨鲸人数）")
     st.write(show_cp(get_g("BTC","/v1/metrics/entities/min_1k_count","24h",300),dfp))
+    st.header("Supply Held by Entities（1K-10K巨鲸持仓量")
+    l3=["o_1k_10k","o_10k_100k","o_above_100k"]
+    st.write(show_cp2(get_g("BTC","/v1/metrics/entities/supply_distribution_relative","24h",300),dfp,l3))
     st.header("Futures Perpetual Funding Rate（资金费率）")
     st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_funding_rate_perpetual","24h",300),dfp))
     st.header("Futures Estimated Leverage Ratio（杠杆率）")
