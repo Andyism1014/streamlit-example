@@ -24,7 +24,7 @@ def show_cp(dfd,dfp):
 
   line1=alt.Chart(dfd).mark_line(color='#5276A7',opacity=1).encode(
       x=alt.X("t:T",axis=alt.Axis(title=None)),
-      y=alt.Y('v:Q',axis=alt.Axis(format="s",title="active_count",titleColor='#5276A7'),scale=alt.Scale(zero=False))
+      y=alt.Y('v:Q',axis=alt.Axis(format="s",title=None,titleColor='#5276A7'),scale=alt.Scale(zero=False))
   )
 
   line2=alt.Chart(dfp).mark_line(color='#57A44C',opacity=0.5).encode(
