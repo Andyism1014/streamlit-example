@@ -69,7 +69,8 @@ def show_cp(dfd,dfp):
 
 def main():
     dfp=get_g("BTC","/v1/metrics/market/price_usd_close","24h",300)
-    st.head("Active Entities（活跃个体）")
+    st.header("Active Entities（活跃个体）")
     st.write(show_cp(get_g("BTC","/v1/metrics/entities/active_count","24h",300),dfp))
-    st.head("Futures Open Interest Perpetual（永续合约持仓金额）")
-    st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_open_interest_perpetual","24h",300),dfp))
+    st.header("Futures Open Interest Perpetual（永续合约持仓金额）")
+    st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_open_interest_perpetual_sum","24h",300),dfp))
+    
