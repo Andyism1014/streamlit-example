@@ -109,4 +109,4 @@ def main():
     st.header("Futures Estimated Leverage Ratio（杠杆率）")
     st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_estimated_leverage_ratio","24h",300),dfp))
     st.header("Stablecoin Supply Ratio（交易所BTC与稳定币比值）")
-    st.write(show_cp(get_g("BTC","/v1/metrics/indicators/ssr","24h",30)[["t","o_v"]].rename(columns={"o_v":"v"}),dfp))
+    st.write(show_cp(get_g("BTC","/v1/metrics/indicators/ssr","24h",300)[["t","o_v"]].rename(columns={"o_v":"v"}),dfp))
