@@ -79,5 +79,6 @@ def main():
     st.write(show_cp(get_g("BTC","/v1/metrics/entities/min_1k_count","24h",300),dfp))
     st.header("Futures Perpetual Funding Rate（资金费率）")
     st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_funding_rate_perpetual","24h",300),dfp))
-    
+    st.header("Futures Estimated Leverage Ratio（杠杆率）")
+    st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_estimated_leverage_ratio","24h",300),dfp))
     
