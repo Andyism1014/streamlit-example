@@ -5,17 +5,10 @@ import time
 import altair as alt
 import streamlit as st
 
-@st.experimental_memo(ttl=60*60*24)
-def get_g(x,y,z,g):
-  API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
-  res = requests.get("https://api.glassnode.com"+y,
-      params={'a':x,"timestamp_format":"humanized",'api_key':API_KEY,"i":z})
-  # convert to pandas dataframe
-  df = pd.read_json(res.text)
-  return df.tail(g)
+
 
 @st.experimental_memo(ttl=60*60*24)
-def get_g2(x,y,z,g):
+def get_g(x,y,z,g):
   API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
   res = requests.get("https://api.glassnode.com"+y,
       params={'a':x,"timestamp_format":"humanized",'api_key':API_KEY,"i":z})
@@ -101,10 +94,10 @@ def main():
     st.write(show_cp(get_g("BTC","/v1/metrics/entities/active_count","24h",300),dfp))
     st.header("Total Transfer Volume Breakdown by Size (Entity-Adjusted)（不同交易规模的日交易量）")
     l1=['o_vol_0_to_1k','o_vol_100k_to_1m',"o_vol_10k_to_100k","o_vol_1k_to_10k","o_vol_1m_to_10m"]
-    st.write(show_cp2(get_g2("BTC","/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum","24h",300),dfp,l1))
+    st.write(show_cp2(get_g("BTC","/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum","24h",300),dfp,l1))
     st.header("Realized Cap HODL Waves（BTC币龄分布）")
     l2=['o_1d_1w', 'o_1m_3m', 'o_1w_1m', 'o_1y_2y', 'o_24h', 'o_2y_3y','o_3m_6m', 'o_3y_5y', 'o_5y_7y', 'o_6m_12m', 'o_7y_10y', 'o_more_10y']
-    st.write(show_cp2(get_g2("BTC","/v1/metrics/supply/rcap_hodl_waves","24h",300),dfp,l2))
+    st.write(show_cp2(get_g("BTC","/v1/metrics/supply/rcap_hodl_waves","24h",300),dfp,l2))
     st.header("Futures Open Interest Perpetual（永续合约持仓金额）")
     st.write(show_cp(get_g("BTC","/v1/metrics/derivatives/futures_open_interest_perpetual_sum","24h",300),dfp))
     st.header("Futures Open Interest（交割合约持仓金额）")
