@@ -119,7 +119,7 @@ def getETF():
       x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None),scale=alt.Scale(domain=domain)),
       y=alt.Y("value:Q",axis=alt.Axis(title="ETH持仓变化")),
       color="indicatorName:N",
-      tooltip=["value:Q","indicatorName:N"]   
+      tooltip=["value:Q","indicatorName:N","yearmonthdate(statisDate):T"]   
   ).properties(
       width=800,
       height=350
@@ -128,12 +128,13 @@ def getETF():
       x=alt.X("yearmonthdate(statisDate):T",axis=alt.Axis(title=None),scale=alt.Scale(domain=domain)),
       y=alt.Y("value:Q",axis=alt.Axis(title="BTC持仓变化")),
       color="indicatorName:N",
-      tooltip=["value:Q","indicatorName:N"]      
+      tooltip=["value:Q","indicatorName:N","yearmonthdate(statisDate):T"]      
   ).properties(
       width=800,
       height=350
   ).interactive()
   return a,b
+
 
 def set_ETF():
   st.title("On-Chain Data")
