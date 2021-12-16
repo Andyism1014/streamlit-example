@@ -213,45 +213,6 @@ def set_one(x):
 def set_Portfolio():
   st.header("Market Information")
   components.html("""
-  <!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
-    {
-    "symbols": [
-      {
-        "proName": "BITSTAMP:BTCUSD",
-        "title": "Bitcoin"
-      },
-      {
-        "proName": "BITSTAMP:ETHUSD",
-        "title": "Ethereum"
-      },
-      {
-        "description": "S&P",
-        "proName": "CURRENCYCOM:US500"
-      },
-      {
-        "description": "NAS 100USD",
-        "proName": "OANDA:NAS100USD"
-      },
-      {
-        "description": "CSI 300",
-        "proName": "SSE:000300"
-      }
-    ],
-    "colorTheme": "light",
-    "isTransparent": false,
-    "showSymbolLogo": true,
-    "locale": "en"
-  }
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
-  """,
-    height=80)
-  components.html("""
 <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div id="tradingview_ac961"></div>
