@@ -4,6 +4,7 @@ import streamlit as st
 from PIL import Image
 from Portfolio import *
 from On_Chain import *
+from ETF import *
 import time
 
 
@@ -20,7 +21,8 @@ if option=="Portfolio Information":
     set_Portfolio()
 if option=="On-Chain Data":
     main()
-
+if option=="Beta":
+    set_ETF()
 
 
 
