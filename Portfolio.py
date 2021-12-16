@@ -207,49 +207,50 @@ def set_one(x):
     st.write(PaintVP(getinfor(x,"d"))[1])
 
 
-def get_index(x):
-  components.html("""
-  <!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Rates</span></a> by TradingView</div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
-  {
-  "symbol": "%s",
-  "width": 810,
-  "height": 220,
-  "locale": "en",
-  "dateRange": "1D",
-  "colorTheme": "light",
-  "trendLineColor": "rgba(41, 98, 255, 1)",
-  "underLineColor": "rgba(41, 98, 255, 0.3)",
-  "underLineBottomColor": "rgba(41, 98, 255, 0)",
-  "isTransparent": false,
-  "autosize": false,
-  "largeChartUrl": ""
-  }
-  </script>
-  </div>
-  <!-- TradingView Widget END -->
-  """%(x),
-    height=200)
 
 
 
 def set_Portfolio():
   st.header("Market Information")
-  t1, t2= st.columns(2)
-  with t1:
-    get_index("BTCUSDT")
-  with t2:
-    get_index("ETHUSDT")
-  g1, g2,g3= st.columns(3)
-  with g1:
-    get_index("US500")
-  with g2:
-    get_index("NAS100USD")
-  with g3:
-    get_index("000300")
+  components.html("""
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank"><span class="blue-text">Quotes</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-tickers.js" async>
+    {
+    "symbols": [
+      {
+        "proName": "BITSTAMP:BTCUSD",
+        "title": "Bitcoin"
+      },
+      {
+        "proName": "BITSTAMP:ETHUSD",
+        "title": "Ethereum"
+      },
+      {
+        "description": "S&P",
+        "proName": "CURRENCYCOM:US500"
+      },
+      {
+        "description": "NAS 100USD",
+        "proName": "OANDA:NAS100USD"
+      },
+      {
+        "description": "CSI 300",
+        "proName": "SSE:000300"
+      }
+    ],
+    "colorTheme": "light",
+    "isTransparent": false,
+    "showSymbolLogo": true,
+    "locale": "en"
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  """,
+    height=200)
   st.header("Portfolio Information")
   options = ['LAT', 'CKB', 'KLAY']
   for i in options:
