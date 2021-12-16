@@ -251,6 +251,52 @@ def set_Portfolio():
   <!-- TradingView Widget END -->
   """,
     height=80)
+  components.html("""
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div id="tradingview_ac961"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=PHEMEX" rel="noopener" target="_blank"><span class="blue-text">BTC</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+  <script type="text/javascript">
+  new TradingView.MediumWidget(
+  {
+  "symbols": [
+    [
+      "BTC",
+      "PHEMEX:BTCUSDT|1M"
+    ],
+    [
+      "ETH",
+      "BINANCE:ETHUSDT|1M"
+    ]
+  ],
+  "chartOnly": false,
+  "width": 1000,
+  "height": 400,
+  "locale": "en",
+  "colorTheme": "light",
+  "gridLineColor": "rgba(42 ,46, 57, 0)",
+  "fontColor": "#787B86",
+  "isTransparent": false,
+  "autosize": false,
+  "showFloatingTooltip": true,
+  "showVolume": false,
+  "scalePosition": "no",
+  "scaleMode": "Normal",
+  "fontFamily": "Trebuchet MS, sans-serif",
+  "noTimeScale": false,
+  "chartType": "area",
+  "lineColor": "#2962FF",
+  "bottomColor": "rgba(41, 98, 255, 0)",
+  "topColor": "rgba(41, 98, 255, 0.3)",
+  "container_id": "tradingview_ac961"
+}
+  );
+  </script>
+</div>
+<!-- TradingView Widget END -->
+  """,
+    height=380)
   st.header("Portfolio Information")
   options = ['LAT', 'CKB', 'KLAY']
   for i in options:
