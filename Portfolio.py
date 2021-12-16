@@ -250,7 +250,7 @@ def set_Portfolio():
   </div>
   <!-- TradingView Widget END -->
   """,
-    height=70)
+    height=75)
   st.header("Portfolio Information")
   options = ['LAT', 'CKB', 'KLAY']
   for i in options:
