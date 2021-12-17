@@ -259,7 +259,7 @@ def set_Portfolio():
 <!-- TradingView Widget END -->
   """,
     height=380)
-  k2/components.html("""
+  k2.components.html("""
   <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div class="tradingview-widget-container__widget"></div>
