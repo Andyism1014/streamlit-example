@@ -19,7 +19,7 @@ st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootst
 st.markdown("""
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" >
 <a class="navbar-brand" href="#">
-<img src="https://github.com/Andyism1014/streamlit-example/blob/6d1e335b30e032d23cc7857e1b403abbe0192b87/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+<img src="{im}" width="30" height="30" class="d-inline-block align-top" alt="">
 Tensor Data Platform
 </a>
 </nav>
