@@ -40,9 +40,7 @@ if option=="Beta":
     over_theme = {'txc_inactive': '#FFFFFF'}
     menu_id = hc.nav_bar(menu_definition=menu_data,home_name='Home',override_theme=over_theme)
 
-        
-    #get the id of the menu item clicked
-    st.info(f"{menu_id=}")
+
 
 
 
