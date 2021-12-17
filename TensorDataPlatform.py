@@ -13,7 +13,7 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=
 
 option = st.selectbox('',('Portfolio Information', 'On-Chain Data', 'Beta'))
 
-st.markdown('', unsafe_allow_html=True)
+
 components.html("""
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark" >
