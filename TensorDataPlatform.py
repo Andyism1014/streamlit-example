@@ -28,15 +28,7 @@ if option=="Portfolio Information":
     set_Portfolio()
 if option=="On-Chain Data":
     main()
-if option=="Beta":
-    with st.container():
-        genre = st.radio(
-     "What's your favorite movie genre",
-     ('Comedy', 'Drama', 'Documentary'),key=1)
-    with st.container():
-        genre = st.radio(
-     "What's your favorite movie genre",
-     ('Comedy', 'Drama', 'Documentary'),key=2)
+
     
 
 
