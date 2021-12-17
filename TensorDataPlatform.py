@@ -33,7 +33,10 @@ if option=="Beta":
         genre = st.radio(
      "What's your favorite movie genre",
      ('Comedy', 'Drama', 'Documentary'))
-
+    with st.container():
+        genre = st.radio(
+     "What's your favorite movie genre",
+     ('Comedy', 'Drama', 'Documentary'))
     
 
 
