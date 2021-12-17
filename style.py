@@ -3,31 +3,22 @@ import pandas as pd
 import requests
 import streamlit as st
 import time
-import streamlit.components.v1 as components
 import os
 
 def shishikan():
-    """ 
-    This is a function that returns the "Footer" session 
-    
-    """
-    if os.getenv("IS_HEROKU") == "TRUE":
-        urlpath = os.getenv("urlpath")
-    elif os.getenv("IS_DEV") == "TRUE":
-        urlpath = 'http://localhost:8501/'
-    else:
-        urlpath = 'https://farolcovid.coronacidades.org/'
-
-    st.write(
-        f"""
-        <div class="conteudo" id="navbar">
-        <a>&nbsp;</a>
-        <a href="{urlpath}?page=Inicio">Início</a>
-        <a class="active" href="{urlpath}?page=Metodologia">Modelos, limitações e fontes</a>
-        <a href="{urlpath}?page=Quem-Somos">Quem somos?</a>
-        <a href="{urlpath}?page=Estudo-Vacinacao">Estudo Vacinação</a>
-        <a href="{urlpath}?page=Vacinometro">Vacinômetro</a>
+        st.write(
+        """
+    <div class="base-wrapper flex flex-column" style="background-color:#F02C2E">
+        <div class="white-span header p1" style="font-size:30px;">
+        Acre está a 5 dias em crescimento da média móvel de mortes.<br>
+        O pico de mortes até agora foi de 432 mortes  em 03/08/2020.
         </div>
-        """,
-    unsafe_allow_html=True,
+    </div>
+    <div class="base-wrapper flex flex-column" style="background-color:#0090A7">
+        <div class="white-span header p1" style="font-size:30px;">
+        Seu município está a 10 dias em queda da média móvel de mortes.<br>
+        Seu pico de mortes foi de 53 mortes em 25/06/2020.
+        </div>
+    </div>""",
+        unsafe_allow_html=True,
     )
