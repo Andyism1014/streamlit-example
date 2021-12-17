@@ -5,7 +5,6 @@ from PIL import Image
 from Portfolio import *
 from On_Chain import *
 import time
-import hydralit_components as hc
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
