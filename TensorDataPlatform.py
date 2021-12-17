@@ -33,6 +33,9 @@ st.markdown("""
 </nav>
 """, unsafe_allow_html=True)
 
+t1, t2 = st.columns((0.07,1))
+t1.image('logo.png', width=100)
+t2.title('Tensor Data Platform')
 option = st.selectbox('Navigation',('Portfolio Information', 'On-Chain Data', 'Beta'))
 
 #layout
