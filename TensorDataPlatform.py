@@ -25,8 +25,6 @@ if option=="Beta":
     st.markdown("""
     <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #1d1f1d;">
     <a class="navbar-brand"  target="_blank">Tensor Data Platform</a>
-
-    </nav>
     """, unsafe_allow_html=True)
 
 
