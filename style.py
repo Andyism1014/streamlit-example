@@ -7,26 +7,11 @@ import os
 
 def shishikan():
     st.write(
-        f"""
-        <div class="base-wrapper" style="background-color:#0090A7;">
-            <div class="hero-wrapper">
-                <div class="hero-container" style="width:45%;">
-                    <div class="hero-container-content">
-                        <span class="subpages-container-product white-span">Vacinômetro</span>
-                        <span class="subpages-subcontainer-product white-span">Veja a evolução da vacinação em sua cidade ou estado! </span>
-                        <span class="subpages-container-subtitle white-span">Acompanhe e compare as informações mais atualizadas sobre a vacinação nos municípios do Brasil.</span>
-                    </div>
-                </div>
-                <div class="subpages-container-image">   
-                    <img style="width: 100%;" src="https://i.imgur.com/w5yVANW.png"/>
-                </div>
-            </div><br>
-        </div>
+        """
         <div class="base-wrapper">
-            <span>  Aguarde o carregamento da tabela abaixo.</span>
+            <span class="section-header primary-span">ONDA MORTES DIÁRIAS POR MUNICÍPIO</span>
             <br><br>
-            <embed src="https://helper.coronacidades.org/vacinatable" width="100%" height="550">
-        </div>
-        """,
+            <span class="ambassador-question"><b>Selecione seu estado e município para prosseguir</b></span>
+        </div>""",
         unsafe_allow_html=True,
     )
