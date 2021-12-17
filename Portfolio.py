@@ -208,8 +208,6 @@ def set_one(x):
 
 
 
-
-
 def set_Portfolio():
   st.header("Market Information")
   k1, k2,k3= st.columns([2,1,1])
@@ -274,7 +272,7 @@ def set_Portfolio():
     "locale": "en",
     "largeChartUrl": "",
     "isTransparent": false,
-    "showSymbolLogo": true,
+    "showSymbolLogo": false,
     "showFloatingTooltip": false,
     "width": "400",
     "height": "465",
