@@ -6,19 +6,27 @@ import time
 import os
 
 def shishikan():
-        st.write(
-        """
-    <div class="base-wrapper flex flex-column" style="background-color:#F02C2E">
-        <div class="white-span header p1" style="font-size:30px;">
-        Acre está a 5 dias em crescimento da média móvel de mortes.<br>
-        O pico de mortes até agora foi de 432 mortes  em 03/08/2020.
+    st.write(
+        f"""
+        <div class="base-wrapper" style="background-color:#0090A7;">
+            <div class="hero-wrapper">
+                <div class="hero-container" style="width:45%;">
+                    <div class="hero-container-content">
+                        <span class="subpages-container-product white-span">Vacinômetro</span>
+                        <span class="subpages-subcontainer-product white-span">Veja a evolução da vacinação em sua cidade ou estado! </span>
+                        <span class="subpages-container-subtitle white-span">Acompanhe e compare as informações mais atualizadas sobre a vacinação nos municípios do Brasil.</span>
+                    </div>
+                </div>
+                <div class="subpages-container-image">   
+                    <img style="width: 100%;" src="https://i.imgur.com/w5yVANW.png"/>
+                </div>
+            </div><br>
         </div>
-    </div>
-    <div class="base-wrapper flex flex-column" style="background-color:#0090A7">
-        <div class="white-span header p1" style="font-size:30px;">
-        Seu município está a 10 dias em queda da média móvel de mortes.<br>
-        Seu pico de mortes foi de 53 mortes em 25/06/2020.
+        <div class="base-wrapper">
+            <span>  Aguarde o carregamento da tabela abaixo.</span>
+            <br><br>
+            <embed src="https://helper.coronacidades.org/vacinatable" width="100%" height="550">
         </div>
-    </div>""",
+        """,
         unsafe_allow_html=True,
     )
