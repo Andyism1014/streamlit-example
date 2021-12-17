@@ -32,7 +32,7 @@ if option=="Portfolio Information":
 if option=="On-Chain Data":
     main()
 if option=="Beta":
-    st.write()
+    st.write("gg")
 
 
 
