@@ -212,7 +212,8 @@ def set_one(x):
 
 def set_Portfolio():
   st.header("Market Information")
-  components.html("""
+  k1, k2 = st.columns((2,1))
+  k1.components.html("""
 <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div id="tradingview_ac961"></div>
@@ -258,7 +259,7 @@ def set_Portfolio():
 <!-- TradingView Widget END -->
   """,
     height=380)
-  components.html("""
+  k2/components.html("""
   <!-- TradingView Widget BEGIN -->
 <div class="tradingview-widget-container">
   <div class="tradingview-widget-container__widget"></div>
