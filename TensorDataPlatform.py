@@ -15,24 +15,21 @@ t1.image('logo.png', width=100)
 t2.title('Tensor Data Platform')
 option = st.selectbox('Navigation',('Portfolio Information', 'On-Chain Data', 'Beta'))
 
-st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
-st.markdown("""
-    <nav class="navbar navbar-light bg-light">
-<a class="navbar-brand" href="#">
-    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-    Bootstrap
-</a>
-</nav>
-""", unsafe_allow_html=True)
-
 #layout
 if option=="Portfolio Information":
     set_Portfolio()
 if option=="On-Chain Data":
     main()
-
-
-
+if option=="Beta":
+    st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
+    st.markdown("""
+<nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #dce3de;">
+  <a class="navbar-brand" >
+    <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    Bootstrap
+  </a>
+</nav>
+    """, unsafe_allow_html=True)
 
 
 
