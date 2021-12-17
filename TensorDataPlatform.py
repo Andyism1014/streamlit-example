@@ -21,24 +21,31 @@ if option=="Portfolio Information":
 if option=="On-Chain Data":
     main()
 if option=="Beta":
-    import streamlit as st
-    import hydralit_components as hc
+    st.markdown('<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">', unsafe_allow_html=True)
 
-    # specify the primary menu definition
-    menu_data = [
-            {'icon': "far fa-copy", 'label':"Left End"},
-            {'id':'Copy','icon':"🐙",'label':"Copy"},
-            {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
-            {'icon': "far fa-address-book", 'label':"Book"},
-            {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
-            {'icon': "far fa-clone", 'label':"Component"},
-            {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
-            {'icon': "far fa-copy", 'label':"Right End"},
-    ]
-    # we can override any part of the primary colors of the menu
-    #over_theme = {'txc_inactive': '#FFFFFF','menu_background':'red','txc_active':'yellow','option_active':'blue'}
-    over_theme = {'txc_inactive': '#FFFFFF'}
-    menu_id = hc.nav_bar(menu_definition=menu_data,home_name='Home',override_theme=over_theme)
+    st.markdown("""
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark" style="background-color: #3498DB;">
+    <a class="navbar-brand" href="https://youtube.com/dataprofessor" target="_blank">Data Professor</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+        <li class="nav-item active">
+            <a class="nav-link disabled" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://youtube.com/dataprofessor" target="_blank">YouTube</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="https://twitter.com/thedataprof" target="_blank">Twitter</a>
+        </li>
+        </ul>
+    </div>
+    </nav>
+    """, unsafe_allow_html=True)
+
+
 
 
 
