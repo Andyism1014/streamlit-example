@@ -40,7 +40,6 @@ if page=="On-Chain Data":
 if page=="beta":
     from vega_datasets import data
     source = data.seattle_weather()
-
     line = alt.Chart(source).mark_line(
         color='red',
         size=3
