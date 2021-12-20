@@ -40,12 +40,7 @@ Tensor Data Platform
 """,unsafe_allow_html=True)
 
 
-st.write(
-    """
-<iframe src="sidebar-closer.html" height=0 width=0>
-</iframe>""",
-    unsafe_allow_html=True,
-)
+
 
 radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta']
 query_params = st.experimental_get_query_params()
@@ -53,7 +48,7 @@ query_params = st.experimental_get_query_params()
 # Query parameters are returned as a list to support multiselect.
 # Get the first item in the list if the query parameter exists.
 default = int(query_params["page"][0]) if "page" in query_params else 0
-page = st.sidebar.radio(
+page = st.radio(
     "",
     radio_list,
     index = default
