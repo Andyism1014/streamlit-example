@@ -9,7 +9,6 @@ import time
 
 
 
-
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
 st.markdown("""  
@@ -22,7 +21,6 @@ Tensor Data Platform
 </div>
 </nav>
 """,unsafe_allow_html=True)
-
 
 
 
@@ -39,7 +37,28 @@ if page=="Portfolio Information":
     
 if page=="On-Chain Data":
     main()
+if page=="beta":
+    from vega_datasets import data
+    source = data.seattle_weather()
 
+    line = alt.Chart(source).mark_line(
+        color='red',
+        size=3
+    ).transform_window(
+        rolling_mean='mean(temp_max)',
+        frame=[-15, 15]
+    ).encode(
+        x='date:T',
+        y='rolling_mean:Q'
+    )
+
+    points = alt.Chart(source).mark_point().encode(
+        x='date:T',
+        y=alt.Y('temp_max:Q',
+                axis=alt.Axis(title='Max Temp'))
+    )
+
+    points + line
 
 
     
@@ -54,3 +73,5 @@ if page=="On-Chain Data":
 
 
 
+
+# %%
