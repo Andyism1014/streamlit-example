@@ -39,46 +39,6 @@ if activity:
 if activity=="Portfolio Information":
   x="LAT"
   col1, col2= st.columns(2)
-  with col1:
-    st.header(x+" Price Information")
-    a=findcmcID(x)
-    components.html("""
-    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/currency.js">
-    </script><div class="coinmarketcap-currency-widget" data-currencyid=%s data-base="USD" data-secondary="" 
-    data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
-    </div>
-    """%(a),
-    width=700)
-    components.html("""
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-      <div id="tradingview_17635"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/LATUSDT/?exchange=HUOBI" rel="noopener" target="_blank"><span class="blue-text">LATUSDT Chart</span></a> by TradingView</div>
-      <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-      <script type="text/javascript">
-      new TradingView.widget(
-      {
-      "width": 700,
-      "height": 565,
-      "symbol": "%sUSDT",
-      "interval": "60",
-      "timezone": "Etc/UTC",
-      "theme": "light",
-      "style": "1",
-      "locale": "en",
-      "toolbar_bg": "#f1f3f6",
-      "enable_publishing": false,
-      "hide_legend": true,
-      "allow_symbol_change": true,
-      "save_image": false,
-      "container_id": "tradingview_17635"
-    }
-      );
-      </script>
-    </div>
-    <!-- TradingView Widget END -->
-    """%(x),
-    height=550,width=700)
   with col2:
     st.header(x+" Consolidated Volume")
     st.write(getinfor(x,"d")[0])
