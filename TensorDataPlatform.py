@@ -48,12 +48,12 @@ query_params = st.experimental_get_query_params()
 # Query parameters are returned as a list to support multiselect.
 # Get the first item in the list if the query parameter exists.
 default = int(query_params["page"][0]) if "page" in query_params else 0
-with st.empty():
-    page = st.selectbox(
-        "",
-        radio_list,
-        index = default
-    )
+
+page = st.selectbox(
+    "gg",
+    radio_list,
+    index = default
+)
 if page:
     st.experimental_set_query_params(page=radio_list.index(page))
 
