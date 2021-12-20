@@ -26,19 +26,27 @@ if option=="Portfolio Information":
 if option=="On-Chain Data":
     main()
 if option=="Beta":
-    _radio_button = components.declare_component(
-        "radio_button", path="https://github.com/streamlit/component-template/tree/master/examples/RadioButton/frontend",
-    )
-    def custom_radio_button(label, options, default, key=None):
-        return _radio_button(label=label, options=options, default=default, key=key)
+    st.write("""
+    # Introducing Query Params
+    We have added to our experimental namespace the ability to get and set
+    query parameters. With these query params, you can bookmark or share your app
+    in various states. Thanks [@zhaoooyue](https://github.com/zhaoooyue) for the
+    contribution!
+    """)
+    with st.echo("below"):
+        radio_list = ['Eat', 'Sleep', 'Both']
+        query_params = st.experimental_get_query_params()
 
-
-    result = custom_radio_button(
-        "How many bats?",
-        options=["one bat", "TWO bats", "THREE bats", "FOUR BATS! ah ah ah!"],
-        default="one bat",
-    )
-    st.write("This many: %s" % result)
+        # Query parameters are returned as a list to support multiselect.
+        # Get the first item in the list if the query parameter exists.
+        default = int(query_params["activity"][0]) if "activity" in query_params else 0
+        activity = st.radio(
+            "What are you doing at home during quarantine?",
+            radio_list,
+            index = default
+        )
+        if activity:
+            st.experimental_set_query_params(activity=radio_list.index(activity))
 
 
 
