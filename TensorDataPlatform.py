@@ -37,13 +37,7 @@ if activity:
     st.experimental_set_query_params(activity=radio_list.index(activity))
 
 if activity=="Portfolio Information":
-  x="LAT"
-  col1, col2= st.columns(2)
-  with col2:
-    st.header(x+" Consolidated Volume")
-    st.write(getinfor(x,"d")[0])
-
-
+    st.write("fix")
 
 
 if activity=="On-Chain Data":
