@@ -27,20 +27,19 @@ query_params = st.experimental_get_query_params()
 
 # Query parameters are returned as a list to support multiselect.
 # Get the first item in the list if the query parameter exists.
-default = int(query_params["activity"][0]) if "activity" in query_params else 0
-activity = st.radio(
+default = int(query_params["page"][0]) if "page" in query_params else 0
+page = st.radio(
     "",
     radio_list,
     index = default
 )
-if activity:
-    st.experimental_set_query_params(activity=radio_list.index(activity))
+if page:
+    st.experimental_set_query_params(page=radio_list.index(page))
 
-if activity=="Portfolio Information":
+if page=="Portfolio Information":
     st.write("fix")
 
-
-if activity=="On-Chain Data":
+if page=="On-Chain Data":
     age = st.slider('Days', 0, 10000, 300)
     dfp=get_g("BTC","/v1/metrics/market/price_usd_close","24h",age)
     st.header("Active Entities（活跃个体）")
