@@ -6,6 +6,9 @@ from Portfolio import *
 from On_Chain import *
 import streamlit.components.v1 as components
 import time
+from streamlit_custom_slider import st_custom_slider
+
+
 
 im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
@@ -19,7 +22,8 @@ Tensor Data Platform
 </nav>
 """,unsafe_allow_html=True)
 
-
+st.title("Testing Streamlit custom components")
+st_custom_slider()
 
 
 radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta']
