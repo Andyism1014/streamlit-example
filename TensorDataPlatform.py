@@ -27,7 +27,7 @@ if option=="On-Chain Data":
     main()
 if option=="Beta":
     _radio_button = components.declare_component(
-        "radio_button", url="https://github.com/streamlit/component-template/tree/master/examples/RadioButton",
+        "radio_button", url="https://github.com/streamlit/component-template/tree/master/examples/RadioButton/frontend",
     )
     def custom_radio_button(label, options, default, key=None):
         return _radio_button(label=label, options=options, default=default, key=key)
