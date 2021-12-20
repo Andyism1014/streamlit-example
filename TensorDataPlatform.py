@@ -38,9 +38,7 @@ if activity:
 
 if activity=="Portfolio Information":
   st.header("Portfolio Information")
-  options = ['LAT', 'CKB', 'KLAY']
-  for i in options:
-    set_one(i)
+  set_one("LAT")
 
 if activity=="On-Chain Data":
     age = st.slider('Days', 0, 10000, 300)
