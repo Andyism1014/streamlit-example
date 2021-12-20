@@ -114,8 +114,7 @@ def getinfor(x,y):
   return [b,b[m],y]
 
 @st.experimental_memo
-def PaintVP(x,MA):
-  MA=-MA
+def PaintVP(x):
   if x[2]=="m":
     per="t:T"
   if x[2]=="d":
@@ -123,17 +122,31 @@ def PaintVP(x,MA):
   V=pd.concat(x[0])
   a=alt.Chart(x[1]).mark_line().encode(
       x=alt.X(per,axis=alt.Axis(title=None)),
-      y=alt.Y('Price:Q',scale=alt.Scale(zero=False)))
+      y=alt.Y('Price:Q',scale=alt.Scale(zero=False)),
+      tooltip=['Price']
+      )
   b=alt.Chart(V).mark_area(opacity=0.6).encode(
       x=alt.X(per,axis=alt.Axis(title=None)),
       y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
       color="symbol:N")
   res1=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
-      width=800,
+      width=700,
       height=350
   ).interactive(bind_y=False)
-  return res1
+  for i in x[0]:
+    i["Volume"]=i["Volume"].rolling(14).mean()
+  V=pd.concat(x[0])
+  b=alt.Chart(V).mark_area(opacity=0.6).encode(
+      x=alt.X(per,axis=alt.Axis(title=None)),
+      y=alt.Y("Volume:Q",axis=alt.Axis(format="s"),title="Volume Moving Average"),
+      color="symbol:N")
+  res2=alt.layer(a,b).resolve_scale(
+      y = 'independent').properties(
+      width=700,
+      height=350
+  ).interactive(bind_y=False)
+  return [res1,res2]
 
 
 @st.experimental_memo
@@ -191,7 +204,8 @@ def set_one(x):
     height=550,width=700)
   with col2:
     st.header(x+" Consolidated Volume")
-    st.write(PaintVP(getinfor(x,"d"),14))
+    st.write(PaintVP(getinfor(x,"d"))[0])
+    st.write(PaintVP(getinfor(x,"d"))[1])
 
 
 
