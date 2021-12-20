@@ -114,7 +114,8 @@ def getinfor(x,y):
   return [b,b[m],y]
 
 @st.experimental_memo
-def PaintVP(x):
+def PaintVP(x,MA):
+  MA=-MA
   if x[2]=="m":
     per="t:T"
   if x[2]=="d":
@@ -122,31 +123,21 @@ def PaintVP(x):
   V=pd.concat(x[0])
   a=alt.Chart(x[1]).mark_line().encode(
       x=alt.X(per,axis=alt.Axis(title=None)),
-      y=alt.Y('Price:Q',scale=alt.Scale(zero=False)),
-      tooltip=['Price']
-      )
-  b=alt.Chart(V).mark_area(opacity=0.6).encode(
+      y=alt.Y('Price:Q',scale=alt.Scale(zero=False)))
+  b=alt.Chart(V).mark_area(opacity=0.6).transform_window(
+    rolling_mean='mean(Volume)',
+    frame=[MA,0]
+  ).encode(
       x=alt.X(per,axis=alt.Axis(title=None)),
-      y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
+      y=alt.Y("rolling_mean:Q",axis=alt.Axis(format="s")),
       color="symbol:N")
   res1=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
-      width=700,
+      width=800,
       height=350
   ).interactive(bind_y=False)
-  for i in x[0]:
-    i["Volume"]=i["Volume"].rolling(14).mean()
-  V=pd.concat(x[0])
-  b=alt.Chart(V).mark_area(opacity=0.6).encode(
-      x=alt.X(per,axis=alt.Axis(title=None)),
-      y=alt.Y("Volume:Q",axis=alt.Axis(format="s"),title="Volume Moving Average"),
-      color="symbol:N")
-  res2=alt.layer(a,b).resolve_scale(
-      y = 'independent').properties(
-      width=700,
-      height=350
-  ).interactive(bind_y=False)
-  return [res1,res2]
+  return res1
+
 
 @st.experimental_memo
 def findcmcID(x):
@@ -203,8 +194,7 @@ def set_one(x):
     height=550,width=700)
   with col2:
     st.header(x+" Consolidated Volume")
-    st.write(PaintVP(getinfor(x,"d"))[0])
-    st.write(PaintVP(getinfor(x,"d"))[1])
+    st.write(PaintVP(getinfor(x,"d"),14))
 
 
 
