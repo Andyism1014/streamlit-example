@@ -25,7 +25,7 @@ Tensor Data Platform
 <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
     <li class="nav-item">
-        <a class="nav-link active" aria-current="page" href="https://share.streamlit.io/andyism1014/streamlit-example/TensorDataPlatform.py?page=0">Portfolio Information</a>
+        <a class="nav-link" href="https://share.streamlit.io/andyism1014/streamlit-example/TensorDataPlatform.py?page=0">Portfolio Information</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="https://share.streamlit.io/andyism1014/streamlit-example/TensorDataPlatform.py?page=1">On-Chain Data</a>
