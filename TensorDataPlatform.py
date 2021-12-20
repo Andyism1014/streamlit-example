@@ -31,7 +31,7 @@ Tensor Data Platform
         <a class="nav-link" href="https://share.streamlit.io/andyism1014/streamlit-example/TensorDataPlatform.py?page=1">On-Chain Data</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="https://share.streamlit.io/andyism1014/streamlit-example/TensorDataPlatform.py?page=1">Beta</a>
+        <a class="nav-link" href="https://share.streamlit.io/andyism1014/streamlit-example/TensorDataPlatform.py?page=2">Beta</a>
     </li>
     </ul>
 </div>
