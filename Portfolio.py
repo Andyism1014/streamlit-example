@@ -128,7 +128,7 @@ def PaintVP(x,MA):
     rolling_mean='mean(Volume)',
     frame=[7,7]).encode(
       x=alt.X(per,axis=alt.Axis(title=None)),
-      y=alt.Y("rolling_mean:Q",axis=alt.Axis(format="s")),
+      y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
       color="symbol:N")
   res1=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
