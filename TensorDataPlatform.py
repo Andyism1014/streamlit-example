@@ -38,6 +38,7 @@ if page=="Portfolio Information":
 if page=="On-Chain Data":
     main()
 if page=="beta":
+    st.write("hh")
 
 
 
