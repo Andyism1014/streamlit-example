@@ -79,6 +79,9 @@ if activity=="Portfolio Information":
     <!-- TradingView Widget END -->
     """%(x),
     height=550,width=700)
+  with col2:
+    st.header(x+" Consolidated Volume")
+    st.write(getinfor(x,"d")[0])
 
 
 
