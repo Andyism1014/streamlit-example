@@ -40,6 +40,13 @@ Tensor Data Platform
 """,unsafe_allow_html=True)
 
 
+st.write(
+    """
+<iframe src="resources/sidebar-closer.html" height=0 width=0>
+</iframe>""",
+    unsafe_allow_html=True,
+)
+
 radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta']
 query_params = st.experimental_get_query_params()
 
