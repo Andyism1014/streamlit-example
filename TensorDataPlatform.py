@@ -27,7 +27,7 @@ if option=="On-Chain Data":
     main()
 if option=="Beta":
     _radio_button = components.declare_component(
-        "radio_button", url="https://share.streamlit.io/andyism1014/streamlit-example/TensorDataPlatform.py",
+        "radio_button", url="https://github.com/streamlit/component-template/tree/master/examples/RadioButton",
     )
     def custom_radio_button(label, options, default, key=None):
         return _radio_button(label=label, options=options, default=default, key=key)
