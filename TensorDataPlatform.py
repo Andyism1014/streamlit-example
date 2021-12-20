@@ -42,7 +42,7 @@ Tensor Data Platform
 
 st.write(
     """
-<iframe src="https://github.com/ImpulsoGov/farolcovid/blob/4d2d889984f8216589d399fa7e45c2d0f0304308/src/resources/sidebar-closer.html" height=0 width=0>
+<iframe src="sidebar-closer.html" height=0 width=0>
 </iframe>""",
     unsafe_allow_html=True,
 )
