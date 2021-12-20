@@ -40,7 +40,6 @@ Tensor Data Platform
 """,unsafe_allow_html=True)
 
 
-
 radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta']
 query_params = st.experimental_get_query_params()
 
@@ -59,7 +58,7 @@ if page=="Portfolio Information":
     st.write("fix")
 
 if page=="On-Chain Data":
-    st.write("g")
+    main()
 
 
 
