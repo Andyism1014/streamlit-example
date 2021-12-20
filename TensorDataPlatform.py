@@ -26,7 +26,7 @@ query_params = st.experimental_get_query_params()
 # Query parameters are returned as a list to support multiselect.
 # Get the first item in the list if the query parameter exists.
 default = int(query_params["Page"][0]) if "Page" in query_params else 0
-option = st.ratio("",page_list,index = default)
+option = st.radio("",page_list,index = default)
 if option:
     st.experimental_set_query_params(activity=page_list.index(option))
 #layout
