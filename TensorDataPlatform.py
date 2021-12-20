@@ -37,9 +37,7 @@ if activity:
     st.experimental_set_query_params(activity=radio_list.index(activity))
 
 if activity=="Portfolio Information":
-  st.header("Portfolio Information")
-  set_one("LAT")
-
+    st.header("Portfolio Information")
 if activity=="On-Chain Data":
     age = st.slider('Days', 0, 10000, 300)
     dfp=get_g("BTC","/v1/metrics/market/price_usd_close","24h",age)
