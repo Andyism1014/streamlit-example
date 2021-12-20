@@ -41,22 +41,6 @@ tabs_html = f"""
 st.markdown(tabs_html, unsafe_allow_html=True)
 st.markdown("<br>", unsafe_allow_html=True)
 
-if active_tab == "Home":
-    st.write("Welcome to my lovely page!")
-    st.write("Feel free to play with this ephemeral slider!")
-    st.slider(
-        "Does this get preserved? You bet it doesn't!",
-        min_value=0,
-        max_value=100,
-        value=50,
-    )
-elif active_tab == "About":
-    st.write("This page was created as a hacky demo of tabs")
-elif active_tab == "Contact":
-    st.write("If you'd like to contact me, then please don't.")
-else:
-    st.error("Something has gone terribly wrong.")
-
 
 
 option = st.selectbox("",('Portfolio Information', 'On-Chain Data', 'Beta'))
