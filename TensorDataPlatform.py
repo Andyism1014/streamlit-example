@@ -27,7 +27,7 @@ query_params = st.experimental_get_query_params()
 default = int(query_params["option"][0]) if "option" in query_params else 0
 option = st.radio("",page_list,index = default)
 if option:
-    st.experimental_set_query_params(activity=page_list.index(option))
+    st.experimental_set_query_params(option=page_list.index(option))
 #layout
 if option=="Portfolio Information":
     set_Portfolio()
