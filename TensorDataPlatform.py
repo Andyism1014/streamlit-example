@@ -4,7 +4,7 @@ import streamlit as st
 from PIL import Image
 from Portfolio import *
 from On_Chain import *
-from style import *
+import streamlit.components.v1 as components
 import time
 
 im = Image.open("logo.png")
@@ -26,7 +26,22 @@ if option=="Portfolio Information":
 if option=="On-Chain Data":
     main()
 if option=="Beta":
-    wss()
+    _radio_button = components.declare_component(
+        "radio_button", url="http://localhost:3001",
+    )
+
+
+    def custom_radio_button(label, options, default, key=None):
+        return _radio_button(label=label, options=options, default=default, key=key)
+
+
+    result = custom_radio_button(
+        "How many bats?",
+        options=["one bat", "TWO bats", "THREE bats", "FOUR BATS! ah ah ah!"],
+        default="one bat",
+    )
+    st.write("This many: %s" % result)
+
 
 
     
