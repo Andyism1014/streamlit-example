@@ -23,7 +23,10 @@ def show_cp(dfd,dfp):
   nearest = alt.selection(type='single', nearest=True, on='mouseover',
                           fields=['t'], empty='none')
 
-  line1=alt.Chart(dfd).mark_line(color='#5276A7',opacity=1).encode(
+  line1=alt.Chart(dfd).mark_line(color='#5276A7',opacity=1).transform_window(
+    v='mean(v)',
+    frame=[-15, 15]
+).encode(
       x=alt.X("t:T",axis=alt.Axis(title=None)),
       y=alt.Y('v:Q',axis=alt.Axis(format="s",title=None,titleColor='#5276A7'),scale=alt.Scale(zero=False))
   )
