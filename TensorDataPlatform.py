@@ -22,7 +22,7 @@ Tensor Data Platform
 
 
 
-radio_list = ['Eat', 'Sleep', 'Both']
+radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta']
 query_params = st.experimental_get_query_params()
 
 # Query parameters are returned as a list to support multiselect.
