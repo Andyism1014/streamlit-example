@@ -29,7 +29,7 @@ query_params = st.experimental_get_query_params()
 # Get the first item in the list if the query parameter exists.
 default = int(query_params["activity"][0]) if "activity" in query_params else 0
 activity = st.radio(
-    "What are you doing at home during quarantine?",
+    "",
     radio_list,
     index = default
 )
