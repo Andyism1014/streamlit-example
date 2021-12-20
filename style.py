@@ -1,19 +1,153 @@
+from requests.models import DEFAULT_REDIRECT_LIMIT
+import altair as alt
+import math
+import pandas as pd
+import requests
 import streamlit as st
+import time
 import streamlit.components.v1 as components
 
-page_list = ['Portfolio Information', 'On-Chain Data', 'Beta']
-query_params = st.experimental_get_query_params()
-# Query parameters are returned as a list to support multiselect.
-# Get the first item in the list if the query parameter exists.
-default = int(query_params["option"][0]) if "option" in query_params else 0
 
-option = st.sidebarradio("",page_list,index = default)
-if option:
-    query_params["option"] = page_list.index(option)
-    st.experimental_set_query_params(**query_params)
+st.set_page_config(page_title='Tensor Data Platform',  layout='wide')  # this needs to be the first Streamlit command
+@st.experimental_memo(ttl=60)
+def getbithumb(x,y):
+  if y=="d":
+    period="24h"
+  elif y=="m":
+    period="1m"
+  name=x.upper()+"_KRW"+"/"+period
+  r=requests.get("https://api.bithumb.com/public/candlestick/"+name)
+  if r.json()["status"]!="0000":
+    return "error"
+  else:
+    a=pd.DataFrame(r.json()["data"])
+    a=a.tail(1000)
+    a["t"]=pd.to_datetime(a[0],unit="ms")
+    a[2]=pd.to_numeric(a[2])
+    a[3]=pd.to_numeric(a[3])
+    a[5]=pd.to_numeric(a[5])
+    a["symbol"]="Bithumb"
+    a["Volume"]=a[5]
+    a["Price"]=(a[2]+a[3])/(2*1180.76)
+    a=a[["t","symbol","Price","Volume"]]
+    return a
 
+@st.experimental_memo(ttl=60)
+def gethuobi(x,y):
+  if y=="d":
+    period="1day"
+  elif y=="m":
+    period="1min"
+  name=x.lower()+"usdt"
+  r=requests.get("https://api.huobi.pro/market/history/kline",params={"size":1000,"symbol":name,"period":period})
+  if r.json()["status"]=="error":
+    return "error"
+  else:
+    a=pd.json_normalize(r.json()["data"])
+    a["id"]=pd.to_datetime(a["id"],unit="s")
+    a=a.sort_values(by="id",ignore_index=True)
+    a["symbol"]="Huobi"
+    a=a.rename(columns={"id":"t", "amount":"Volume"})
+    a["Price"]=(a["low"]+a["high"])/2
+    a=a[["t","symbol","Price","Volume"]]
+    return a
 
-if option=="Portfolio Information":
-    set_Portfolio()
-if option=="On-Chain Data":
-    main()
+@st.experimental_memo(ttl=60)
+def getok(x,y):
+  if y=="d":
+    bar="1D"
+  elif y=="m":
+    bar="1m"
+  name=x.upper()+"-USDT"
+  r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":bar})
+  if r.json()["msg"]=="Token does not exist.":
+    return "error"
+  else:
+    r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":bar})
+    a=pd.DataFrame(r.json()["data"])
+    while(len(r.json()["data"])==100):
+      nt=str(a[0].iloc[-1])
+      r=requests.get("https://www.okex.com/api/v5/market/history-candles",params={"instId":name,"bar":bar,"after":nt})
+      b=pd.DataFrame(r.json()["data"])
+      a=pd.concat([a,b],ignore_index=True)
+      if len(a)==1000:
+        break
+    a[0]=pd.to_datetime(a[0],unit="ms")
+    a[2]=pd.to_numeric(a[2])
+    a[3]=pd.to_numeric(a[3])
+    a[5]=pd.to_numeric(a[5])
+    a=a.sort_values(by=0,ignore_index=True)
+    a["symbol"]="Okex"
+    a["Price"]=(a[2]+a[3])/2
+    a=a.rename(columns={0:"t", 5:"Volume"})
+    a=a[["t","symbol","Price","Volume"]]
+    return a
+
+@st.experimental_memo(ttl=60)
+def getbinance(x,y):
+  if y=="d":
+    bar="1d"
+  elif y=="m":
+    bar="1m"
+  name=x.upper()+"USDT"
+  r=requests.get("https://api.binance.com/api/v3/klines",params={"limit":1000,"interval":bar,"symbol":name})
+  if len(r.json())<3:
+    return "error"
+  else:
+    a=pd.read_json(r.text)
+    a[0]=pd.to_datetime(a[0],unit="ms")
+    a["symbol"]="Binance"
+    a=a.rename(columns={0:"t", 5:"Volume"})
+    a["Price"]=(a[2]+a[3])/2
+    a=a[["t","symbol","Price","Volume"]]
+    return a
+
+@st.experimental_memo(ttl=60)
+def getinfor(x,y):
+  b=[]
+  c=[]
+  a=[getbinance(x,y),getok(x,y),getbithumb(x,y),gethuobi(x,y)]
+  for i in a:
+    if isinstance(i, pd.DataFrame) is True:
+      b.append(i)
+  for i in b:
+    c.append(len(i))
+  m=c.index(max(c))
+  return [b,b[m],y]
+
+@st.experimental_memo
+def PaintVP(x):
+  if x[2]=="m":
+    per="t:T"
+  if x[2]=="d":
+    per="yearmonthdate(t):T"
+  V=pd.concat(x[0])
+  a=alt.Chart(x[1]).mark_line().encode(
+      x=alt.X(per,axis=alt.Axis(title=None)),
+      y=alt.Y('Price:Q',scale=alt.Scale(zero=False)),
+      tooltip=['Price']
+      )
+  b=alt.Chart(V).mark_area(opacity=0.6).encode(
+      x=alt.X(per,axis=alt.Axis(title=None)),
+      y=alt.Y("Volume:Q",axis=alt.Axis(format="s")),
+      color="symbol:N")
+  res1=alt.layer(a,b).resolve_scale(
+      y = 'independent').properties(
+      width=700,
+      height=350
+  ).interactive(bind_y=False)
+  for i in x[0]:
+    i["Volume"]=i["Volume"].rolling(14).mean()
+  V=pd.concat(x[0])
+  b=alt.Chart(V).mark_area(opacity=0.6).encode(
+      x=alt.X(per,axis=alt.Axis(title=None)),
+      y=alt.Y("Volume:Q",axis=alt.Axis(format="s"),title="Volume Moving Average"),
+      color="symbol:N")
+  res2=alt.layer(a,b).resolve_scale(
+      y = 'independent').properties(
+      width=700,
+      height=350
+  ).interactive(bind_y=False)
+  return [res1,res2]
+
+st.write(gethuobi('LAT',"d"))
