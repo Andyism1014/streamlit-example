@@ -22,15 +22,6 @@ Tensor Data Platform
 
 
 
-#layout
-st.write("""
-# Introducing Query Params
-We have added to our experimental namespace the ability to get and set
-query parameters. With these query params, you can bookmark or share your app
-in various states. Thanks [@zhaoooyue](https://github.com/zhaoooyue) for the
-contribution!
-""")
-
 radio_list = ['Eat', 'Sleep', 'Both']
 query_params = st.experimental_get_query_params()
 
