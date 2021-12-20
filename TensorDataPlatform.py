@@ -18,8 +18,7 @@ Tensor Data Platform
 </nav>
 """,unsafe_allow_html=True)
 
-
-option = st.radio("",('Portfolio Information', 'On-Chain Data', 'Beta'))
+option = st.selectbox("",('Portfolio Information', 'On-Chain Data', 'Beta'))
 #layout
 if option=="Portfolio Information":
     set_Portfolio()
