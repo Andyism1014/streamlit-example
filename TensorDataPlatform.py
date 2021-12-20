@@ -37,9 +37,9 @@ if activity:
     st.experimental_set_query_params(activity=radio_list.index(activity))
 
 if activity=="Portfolio Information":
-    set_Portfolio()
+    st.write("1")
 if activity=="On-Chain Data":
-    main()
+    st.write("2")
 
 
 
