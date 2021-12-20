@@ -4,6 +4,7 @@ import streamlit as st
 from PIL import Image
 from Portfolio import *
 from On_Chain import *
+from style import *
 import time
 
 im = Image.open("logo.png")
@@ -24,6 +25,9 @@ if option=="Portfolio Information":
     set_Portfolio()
 if option=="On-Chain Data":
     main()
+if option=="Beta":
+    wss()
+
 
     
 
