@@ -299,6 +299,10 @@ def set_Portfolio():
             "s": "SSE:000300",
             "d": "CSI300"
           }
+          {
+            "s": "FOREXCOM:UKXGBP",
+            "d": "UK 100"
+          }
         ],
         "originalTitle": "Indices"
       }
