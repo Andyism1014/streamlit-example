@@ -179,7 +179,7 @@ def set_one(x):
       <script type="text/javascript">
       new TradingView.widget(
       {
-      "width":  200,
+      "width": "container",
       "height": 565,
       "symbol": "%sUSDT",
       "interval": "60",
