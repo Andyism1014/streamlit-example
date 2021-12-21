@@ -146,8 +146,7 @@ def PaintVP(x):
       width=800,
       height=350
   ).interactive(bind_y=False)
-  return [res1&res2,res2]
-
+  return res1&res2
 
 @st.experimental_memo
 def findcmcID(x):
@@ -202,8 +201,8 @@ def set_one(x):
     height=550)
   with col2:
     st.header(x+" Consolidated Volume")
-    st.write(PaintVP(getinfor(x,"d"))[0])
-    st.write(PaintVP(getinfor(x,"d"))[1])
+    st.write(PaintVP(getinfor(x,"d")))
+
 
 def Marketinformation():
   st.header("Market Information")
