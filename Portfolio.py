@@ -228,7 +228,7 @@ def Marketinformation():
           ]
         ],
         "chartOnly": false,
-        "width": 1000,
+        "width": "100%",
         "height": 400,
         "locale": "en",
         "colorTheme": "light",
