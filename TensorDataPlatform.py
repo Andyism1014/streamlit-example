@@ -1,10 +1,11 @@
-from os import strerror, write
 import pandas as pd
 import streamlit as st
 from PIL import Image
 from Portfolio import *
 from On_Chain import *
+from Blog import *
 import streamlit.components.v1 as components
+import sqlite3
 import time
 
 
@@ -37,6 +38,95 @@ if page=="Portfolio Information":
     
 if page=="On-Chain Data":
     main()
+if page=="Beta":
+    """A Simple CRUD  Blog"""
+    conn = sqlite3.connect('data.db')
+    c = conn.cursor()
+    st.markdown(html_temp.format('royalblue','white'),unsafe_allow_html=True)
+
+    menu = ["Home","View Posts","Add Posts","Search","Manage Blog","Market Data"]
+    choice = st.selectbox("Menu",menu)
+
+    if choice == "Home":
+        st.subheader("Home")
+        result = view_all_notes()
+        
+        for i in result:
+            b_author = i[0]
+            b_title = i[1]
+            b_article = str(i[2])[0:30]
+            b_post_date = i[3]
+            st.markdown(title_temp.format(b_title,b_author,b_article,b_post_date),unsafe_allow_html=True)
+
+    elif choice == "View Posts":
+        st.subheader("View Articles")
+        all_titles = [i[0] for i in view_all_titles()]
+        postlist = st.selectbox("View Posts",all_titles)
+        post_result = get_blog_by_title(postlist)
+        for i in post_result:
+            b_author = i[0]
+            b_title = i[1]
+            b_article = i[2]
+            b_post_date = i[3]
+            st.markdown(head_message_temp.format(b_title,b_author,b_post_date),unsafe_allow_html=True)
+            st.markdown(full_message_temp.format(b_article),unsafe_allow_html=True)
+
+
+
+    elif choice == "Add Posts":
+        st.subheader("Add Articles")
+        create_table()
+        blog_author = st.text_input("Enter Author Name",max_chars=50)
+        blog_title = st.text_input("Enter Post Title")
+        blog_article = st.text_area("Post Article Here",height=200)
+        blog_post_date = st.date_input("Date")
+        if st.button("Add"):
+            add_data(blog_author,blog_title,blog_article,blog_post_date)
+            st.success("Post:{} saved".format(blog_title))	
+
+
+
+
+    elif choice == "Search":
+        st.subheader("Search Articles")
+        search_term = st.text_input('Enter Search Term')
+        search_choice = st.radio("Field to Search By",("title","author"))
+        
+        if st.button("Search"):
+
+            if search_choice == "title":
+                article_result = get_blog_by_title(search_term)
+            elif search_choice == "author":
+                article_result = get_blog_by_author(search_term)
+
+
+            for i in article_result:
+                b_author = i[0]
+                b_title = i[1]
+                b_article = i[2]
+                b_post_date = i[3]
+                st.markdown(head_message_temp.format(b_title,b_author,b_post_date),unsafe_allow_html=True)
+                st.markdown(full_message_temp.format(b_article),unsafe_allow_html=True)
+
+
+
+
+    elif choice == "Manage Blog":
+        st.subheader("Manage Articles")
+
+        result = view_all_notes()
+        clean_db = pd.DataFrame(result,columns=["Author","Title","Articles","Post Date"])
+        st.dataframe(clean_db)
+
+        unique_titles = [i[0] for i in view_all_titles()]
+        delete_blog_by_title = st.selectbox("Unique Title",unique_titles)
+        new_df = clean_db
+        if st.button("Delete"):
+            delete_data(delete_blog_by_title)
+            st.warning("Deleted: '{}'".format(delete_blog_by_title))
+
+
+
 
 
 
