@@ -200,7 +200,7 @@ def set_one(x):
     </div>
     <!-- TradingView Widget END -->
     """%(x),
-    height=550,width=700)
+    height=550)
   with col2:
     st.header(x+" Consolidated Volume")
     st.write(PaintVP(getinfor(x,"d"))[0])
