@@ -202,7 +202,8 @@ def set_one(x):
     height=550)
   with col2:
     st.header(x+" Consolidated Volume")
-    st.write(PaintVP(getinfor(x,"d")))
+    st.altair_chart(PaintVP(getinfor(x,"d")), use_container_width=True)
+
 
 
 def Marketinformation():
