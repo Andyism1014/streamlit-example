@@ -48,6 +48,7 @@ if page=="Beta":
   new TradingView.widget(
   {
   "autosize": true,
+  "height::610
   "symbol": "NASDAQ:AAPL",
   "interval": "D",
   "timezone": "Etc/UTC",
