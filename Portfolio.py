@@ -180,7 +180,7 @@ def set_one(x):
       new TradingView.widget(
       {
 
-      "height": 565,
+      "height": "100%",
       "symbol": "%sUSDT",
       "interval": "60",
       "timezone": "Etc/UTC",
