@@ -5,6 +5,7 @@ from PIL import Image
 from Portfolio import *
 from On_Chain import *
 import streamlit.components.v1 as components
+from Blog import *
 import time
 
 
@@ -37,6 +38,8 @@ if page=="Portfolio Information":
     
 if page=="On-Chain Data":
     main()
+if page=="Beta":
+    main2()
 
 
     
