@@ -48,7 +48,7 @@ if page=="Beta":
   new TradingView.widget(
   {
   "width": "100%",
-  "height": 800,
+  "height": 565,
   "symbol": "NASDAQ:AAPL",
   "interval": "D",
   "timezone": "Etc/UTC",
@@ -64,4 +64,4 @@ if page=="Beta":
   </script>
 </div>
 <!-- TradingView Widget END -->
-    """,height=900)
+    """,height=550)
