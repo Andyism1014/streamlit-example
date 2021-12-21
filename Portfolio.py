@@ -132,7 +132,7 @@ def PaintVP(x):
   res1=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
       width=800,
-      height=300
+      height=325
   ).interactive(bind_y=False)
   for i in x[0]:
     i["Volume"]=i["Volume"].rolling(14).mean()
@@ -144,7 +144,7 @@ def PaintVP(x):
   res2=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
       width=800,
-      height=300
+      height=325
   ).interactive(bind_y=False)
   return res1&res2
 
