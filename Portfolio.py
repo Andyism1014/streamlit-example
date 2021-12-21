@@ -205,114 +205,116 @@ def set_one(x):
     st.write(PaintVP(getinfor(x,"d"))[0])
     st.write(PaintVP(getinfor(x,"d"))[1])
 
-
-
-
-def set_Portfolio():
+def Marketinformation():
   st.header("Market Information")
   k1, k2,k3= st.columns([2,1,1])
   with k1:
     components.html("""
-  <!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-    <div id="tradingview_ac961"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=PHEMEX" rel="noopener" target="_blank"><span class="blue-text">BTC</span></a> by TradingView</div>
-    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-    <script type="text/javascript">
-    new TradingView.MediumWidget(
-    {
-    "symbols": [
-      [
-        "BTC",
-        "PHEMEX:BTCUSDT|1M"
-      ],
-      [
-        "ETH",
-        "BINANCE:ETHUSDT|1M"
-      ]
-    ],
-    "chartOnly": false,
-    "width": 1000,
-    "height": 400,
-    "locale": "en",
-    "colorTheme": "light",
-    "gridLineColor": "rgba(42 ,46, 57, 0)",
-    "fontColor": "#787B86",
-    "isTransparent": false,
-    "autosize": false,
-    "showFloatingTooltip": true,
-    "showVolume": false,
-    "scalePosition": "no",
-    "scaleMode": "Normal",
-    "fontFamily": "Trebuchet MS, sans-serif",
-    "noTimeScale": false,
-    "chartType": "area",
-    "lineColor": "#2962FF",
-    "bottomColor": "rgba(41, 98, 255, 0)",
-    "topColor": "rgba(41, 98, 255, 0.3)",
-    "container_id": "tradingview_ac961"
-  }
-    );
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
-    """,
-      height=380)
+      <!-- TradingView Widget BEGIN -->
+      <div class="tradingview-widget-container">
+        <div id="tradingview_ac961"></div>
+        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=PHEMEX" rel="noopener" target="_blank"><span class="blue-text">BTC</span></a> by TradingView</div>
+        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+        <script type="text/javascript">
+        new TradingView.MediumWidget(
+        {
+        "symbols": [
+          [
+            "BTC",
+            "PHEMEX:BTCUSDT|1M"
+          ],
+          [
+            "ETH",
+            "BINANCE:ETHUSDT|1M"
+          ]
+        ],
+        "chartOnly": false,
+        "width": 1000,
+        "height": 400,
+        "locale": "en",
+        "colorTheme": "light",
+        "gridLineColor": "rgba(42 ,46, 57, 0)",
+        "fontColor": "#787B86",
+        "isTransparent": false,
+        "autosize": false,
+        "showFloatingTooltip": true,
+        "showVolume": false,
+        "scalePosition": "no",
+        "scaleMode": "Normal",
+        "fontFamily": "Trebuchet MS, sans-serif",
+        "noTimeScale": false,
+        "chartType": "area",
+        "lineColor": "#2962FF",
+        "bottomColor": "rgba(41, 98, 255, 0)",
+        "topColor": "rgba(41, 98, 255, 0.3)",
+        "container_id": "tradingview_ac961"
+      }
+        );
+        </script>
+      </div>
+      <!-- TradingView Widget END -->
+        """,
+          height=380)
   with k2:
     components.html("""
-<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/indices/" rel="noopener" target="_blank"><span class="blue-text">Indices</span></a> by TradingView</div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-  {
-  "colorTheme": "light",
-  "dateRange": "12M",
-  "showChart": false,
-  "locale": "en",
-  "largeChartUrl": "",
-  "isTransparent": false,
-  "showSymbolLogo": false,
-  "showFloatingTooltip": false,
-  "width": "400",
-  "height": "465",
-  "tabs": [
-    {
-      "title": "Indices",
-      "symbols": [
+    <!-- TradingView Widget BEGIN -->
+    <div class="tradingview-widget-container">
+      <div class="tradingview-widget-container__widget"></div>
+      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/indices/" rel="noopener" target="_blank"><span class="blue-text">Indices</span></a> by TradingView</div>
+      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+      {
+      "colorTheme": "light",
+      "dateRange": "12M",
+      "showChart": false,
+      "locale": "en",
+      "largeChartUrl": "",
+      "isTransparent": false,
+      "showSymbolLogo": false,
+      "showFloatingTooltip": false,
+      "width": "400",
+      "height": "465",
+      "tabs": [
         {
-          "s": "FOREXCOM:SPXUSD",
-          "d": "S&P 500"
-        },
-        {
-          "s": "FOREXCOM:NSXUSD",
-          "d": "US 100"
-        },
-        {
-          "s": "FOREXCOM:UKXGBP",
-          "d": "UK 100"
-        },
-        {
-          "s": "BINANCE:BTCUSDT",
-          "d": "BTC"
-        },
-        {
-          "s": "BINANCE:ETHUSDT",
-          "d": "ETH"
-        },
-        {
-          "s": "SSE:000300",
-          "d": "CSI"
+          "title": "Indices",
+          "symbols": [
+            {
+              "s": "FOREXCOM:SPXUSD",
+              "d": "S&P 500"
+            },
+            {
+              "s": "FOREXCOM:NSXUSD",
+              "d": "US 100"
+            },
+            {
+              "s": "FOREXCOM:UKXGBP",
+              "d": "UK 100"
+            },
+            {
+              "s": "BINANCE:BTCUSDT",
+              "d": "BTC"
+            },
+            {
+              "s": "BINANCE:ETHUSDT",
+              "d": "ETH"
+            },
+            {
+              "s": "SSE:000300",
+              "d": "CSI"
+            }
+          ],
+          "originalTitle": "Indices"
         }
-      ],
-      "originalTitle": "Indices"
+      ]
     }
-  ]
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
+      </script>
+    </div>
+    <!-- TradingView Widget END -->
   """,height=380)
+
+
+
+def set_Portfolio():
+  Marketinformation()
   st.header("Portfolio Information")
   options = ['LAT', 'CKB', 'KLAY']
   for i in options:
