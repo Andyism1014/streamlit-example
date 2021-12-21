@@ -131,7 +131,7 @@ def PaintVP(x):
       color="symbol:N")
   res1=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
-      width=700,
+      width=800,
       height=350
   ).interactive(bind_y=False)
   for i in x[0]:
@@ -143,7 +143,7 @@ def PaintVP(x):
       color="symbol:N")
   res2=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
-      width=700,
+      width=800,
       height=350
   ).interactive(bind_y=False)
   return [res1,res2]
