@@ -260,54 +260,58 @@ def set_Portfolio():
       height=380)
   with k2:
     components.html("""
-    <!-- TradingView Widget BEGIN -->
-  <div class="tradingview-widget-container">
-    <div class="tradingview-widget-container__widget"></div>
-    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/indices/" rel="noopener" target="_blank"><span class="blue-text">Indices</span></a> by TradingView</div>
-    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/indices/" rel="noopener" target="_blank"><span class="blue-text">Indices</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+  {
+  "colorTheme": "light",
+  "dateRange": "12M",
+  "showChart": false,
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showSymbolLogo": false,
+  "showFloatingTooltip": false,
+  "width": "400",
+  "height": "465",
+  "tabs": [
     {
-    "colorTheme": "light",
-    "dateRange": "1D",
-    "showChart": false,
-    "locale": "en",
-    "largeChartUrl": "",
-    "isTransparent": false,
-    "showSymbolLogo": false,
-    "showFloatingTooltip": false,
-    "width": "400",
-    "height": "465",
-    "tabs": [
-      {
-        "title": "Indices",
-        "symbols": [
-          {
-            "s": "BINANCE:BTCUSDT",
-            "d": "BTC"
-          },
-          {
-            "s": "BINANCE:ETHUSDT",
-            "d": "ETH"
-          },
-          {
-            "s": "OANDA:NAS100USD",
-            "d": "NAS100"
-          },
-          {
-            "s": "CURRENCYCOM:US500",
-            "d": "S&P500"
-          },
-          {
-            "s": "SSE:000300",
-            "d": "CSI300"
-          }
-        ],
-        "originalTitle": "Indices"
-      }
-    ]
-  }
-    </script>
-  </div>
-  <!-- TradingView Widget END -->
+      "title": "Indices",
+      "symbols": [
+        {
+          "s": "FOREXCOM:SPXUSD",
+          "d": "S&P 500"
+        },
+        {
+          "s": "FOREXCOM:NSXUSD",
+          "d": "US 100"
+        },
+        {
+          "s": "FOREXCOM:UKXGBP",
+          "d": "UK 100"
+        },
+        {
+          "s": "BINANCE:BTCUSDT",
+          "d": "BTC"
+        },
+        {
+          "s": "BINANCE:ETHUSDT",
+          "d": "ETH"
+        },
+        {
+          "s": "SSE:000300",
+          "d": "CSI"
+        }
+      ],
+      "originalTitle": "Indices"
+    }
+  ]
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
   """,height=380)
   st.header("Portfolio Information")
   options = ['LAT', 'CKB', 'KLAY']
