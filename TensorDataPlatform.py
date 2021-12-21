@@ -49,7 +49,7 @@ if page=="Beta":
   {
   "width": "100%",
   "height": 565,
-  "symbol": "NASDAQ:AAPL",
+  "symbol": "LATUSDT",
   "interval": "D",
   "timezone": "Etc/UTC",
   "theme": "light",
