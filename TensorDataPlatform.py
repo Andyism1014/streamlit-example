@@ -39,6 +39,8 @@ if page=="Portfolio Information":
 if page=="On-Chain Data":
     main()
 if page=="Beta":
+    conn = sqlite3.connect('data.db')
+    c = conn.cursor()
     main2()
 
 
