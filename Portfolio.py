@@ -143,8 +143,8 @@ def PaintVP(x):
       color="symbol:N")
   res2=alt.layer(a,b).resolve_scale(
       y = 'independent').properties(
-      width=700,
-      height=350
+      width='container',
+      height='container'
   ).interactive(bind_y=False)
   return [res1,res2]
 
