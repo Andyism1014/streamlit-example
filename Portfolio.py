@@ -207,7 +207,7 @@ def set_one(x):
 
 def Marketinformation():
   st.header("Market Information")
-  k1, k2,k3= st.columns([2,1.1,1])
+  k1, k2,k3= st.columns([2,1,1])
   with k1:
     components.html("""
       <!-- TradingView Widget BEGIN -->
