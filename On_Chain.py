@@ -8,14 +8,13 @@ import streamlit as st
 
 
 @st.experimental_memo(ttl=60*60*24)
-def get_g(x,y,z,g):
+def get_g(symbol,addresses,intervel,numberOfData):
   API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
-  res = requests.get("https://api.glassnode.com"+y,
-      params={'a':x,"timestamp_format":"humanized",'api_key':API_KEY,"i":z})
+  res = requests.get("https://api.glassnode.com"+addresses,
+      params={'a':symbol,"timestamp_format":"humanized",'api_key':API_KEY,"i":intervel})
   # convert to pandas dataframe
   df=pd.json_normalize(res.json(),sep="_")
-  return df.tail(g)
-
+  return df.tail(numberOfData)
 
 @st.experimental_memo
 def show_cp(dfd,dfp):
