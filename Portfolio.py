@@ -146,7 +146,7 @@ def PaintVP(x):
       width=800,
       height=350
   ).interactive(bind_y=False)
-  return [res1,res2]
+  return [res1&res2,res2]
 
 
 @st.experimental_memo
