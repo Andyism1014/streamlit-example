@@ -38,3 +38,6 @@ if page=="On-Chain Data":
     main()
 if page=="Beta":
     st.title("Studio")
+    for i in range(10):
+        print(i)
+    
