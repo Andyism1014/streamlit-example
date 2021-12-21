@@ -64,7 +64,7 @@ if page=="Beta":
 </div>
 <!-- TradingView Widget END -->
     """,
-      height=380)
+      height=1080)
 
     
 
