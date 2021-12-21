@@ -270,7 +270,7 @@ def Marketinformation():
       "isTransparent": false,
       "showSymbolLogo": false,
       "showFloatingTooltip": false,
-      "width": "400",
+      "width": "100%",
       "height": "465",
       "tabs": [
         {
@@ -309,8 +309,6 @@ def Marketinformation():
     </div>
     <!-- TradingView Widget END -->
   """,height=380)
-
-
 
 def set_Portfolio():
   Marketinformation()
