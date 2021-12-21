@@ -39,5 +39,5 @@ if page=="On-Chain Data":
 if page=="Beta":
     st.title("Studio")
     for i in range(10):
-        print(i)
+        st.write(i)
     
