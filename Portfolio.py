@@ -309,7 +309,7 @@ def Marketinformation():
       </script>
     </div>
     <!-- TradingView Widget END -->
-  """,height=380)
+  """,width=400,height=380)
 
 
 
