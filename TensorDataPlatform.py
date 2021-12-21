@@ -36,3 +36,5 @@ if page=="Portfolio Information":
     set_Portfolio()
 if page=="On-Chain Data":
     main()
+if page=="Beta":
+    st.title("Studio")
