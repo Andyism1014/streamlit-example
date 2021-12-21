@@ -35,13 +35,10 @@ page = st.selectbox(
 
 if page=="Portfolio Information":
     set_Portfolio()
-    
 if page=="On-Chain Data":
     main()
 if page=="Beta":
     """A Simple CRUD  Blog"""
-    conn = sqlite3.connect('data.db')
-    c = conn.cursor()
     st.markdown(html_temp.format('royalblue','white'),unsafe_allow_html=True)
 
     menu = ["Home","View Posts","Add Posts","Search","Manage Blog","Market Data"]
