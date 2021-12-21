@@ -170,8 +170,7 @@ def set_one(x):
     </script><div class="coinmarketcap-currency-widget" data-currencyid=%s data-base="USD" data-secondary="" 
     data-ticker="true" data-rank="false" data-marketcap="true" data-volume="true" data-statsticker="true" data-stats="USD">
     </div>
-    """%(a),
-    width=700)
+    """%(a))
     components.html("""
     <!-- TradingView Widget BEGIN -->
     <div class="tradingview-widget-container">
