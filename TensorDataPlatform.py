@@ -43,7 +43,7 @@ if page=="Beta":
         'b': [28, 55, 43, 91, 81, 53, 19, 87, 52]
     })
 
-    alt.Chart(source).mark_bar().encode(
+    st.alt.Chart(source).mark_bar().encode(
         x='a',
         y='b'
     )
