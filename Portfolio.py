@@ -1,4 +1,3 @@
-from requests.models import DEFAULT_REDIRECT_LIMIT
 import altair as alt
 import math
 import pandas as pd
