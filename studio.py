@@ -1,14 +1,11 @@
 import plotly.graph_objects as go
-import plotly.express as px
-import datetime
-import math
 import pandas as pd
 import requests
 import streamlit as st
 import streamlit.components.v1 as components
 import os
 
-st.set_page_config(page_title='Tensor Data Platform',  layout='wide')  # this needs to be the first Streamlit command
+
 
 def get_g(symbol,addresses,intervel,currency,numberOfData):
   API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
@@ -6478,8 +6475,6 @@ Gdetail={'/v1/metrics/addresses/accumulation_balance': {'assets': ['BTC'],
   'currencies': ['NATIVE', 'USD'],
   'resolutions': ['1h', '24h', '10m']}}
 
-menue=st.sidebar.radio("",("created","dashbord"))
-
 
 def addtreace(l,fig,axis):
   two,symbol,addresses,intervel,currency,numberOfData,MovingAverag=l[0],l[1],l[2],l[3],l[4],l[5],l[6]
@@ -6506,7 +6501,7 @@ def addtreace(l,fig,axis):
         yaxis="y"+str(axis)
       ))
 
-def layoutupdate():
+def layoutupdate(fig):
   fig.update_layout(
     yaxis=dict(
         titlefont=dict(
@@ -6550,7 +6545,10 @@ def layoutupdate():
     )
   )
 
-if menue=="created":
+
+menue=st.radio("",("created","dashbord"))
+
+def DataSeltct():
   col1, col2,col3= st.columns(3)
   with col1:
     st.title("Data Selecet")
@@ -6582,7 +6580,7 @@ if menue=="created":
   if len(df2)>0:
     for i in range(len(df2)):
       addtreace(list(df2.iloc[i]),fig,i+1)
-    layoutupdate()
+    layoutupdate(fig)
   st.plotly_chart(fig, use_container_width=True)
   dashname=st.text_input("Name of dash",value="here")
   if st.button("to dash"):
@@ -6591,7 +6589,9 @@ if menue=="created":
   deletthings=st.selectbox("",listofpic)
   if st.button("delet"):
     os.remove("dashbord\%s"%(deletthings))
-if menue=="dashbord":
+
+
+def dashbord():
   st.title("Dashbord")
   t1,t2=st.columns(2)
   st.write()
@@ -6601,7 +6601,7 @@ if menue=="dashbord":
     fig = go.Figure()
     for j in range(len(df3)):
       addtreace(list(df3.iloc[j]),fig,j+1)
-    layoutupdate()
+    layoutupdate(fig)
     fig.update_layout(
     title_text=i[:-4]
     )
@@ -6609,6 +6609,13 @@ if menue=="dashbord":
       t1.plotly_chart(fig, use_container_width=True)
     else:
       t2.plotly_chart(fig, use_container_width=True)
+
+
+if menue=="created":
+  DataSeltct()
+
+if menue=="dashbord":
+  dashbord()
 
 
 

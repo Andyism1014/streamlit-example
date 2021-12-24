@@ -3,8 +3,7 @@ import streamlit as st
 from PIL import Image
 from Portfolio import *
 import streamlit.components.v1 as components
-import sqlite3
-import time
+from studio import *
 
 
 
@@ -37,6 +36,8 @@ if page=="On-Chain Data":
     st.write("g")
 if page=="Studio":
     st.title("Studio")
+    DataSeltct()
+
     
 
     
