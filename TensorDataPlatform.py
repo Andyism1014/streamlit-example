@@ -42,7 +42,7 @@ if page=="On-Chain Data":
     st.write()
     listofpic=os.listdir("dashbord")
     st.write(listofpic)
-    nameg=pd.read_csv("dashbord\Lightning Network Channel Size (Median).csv")
+    nameg=pd.read_csv("dashbord/Accumualtion Address.csv")
     
 
 
