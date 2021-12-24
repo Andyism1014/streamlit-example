@@ -6596,6 +6596,7 @@ def dashbord():
   t1,t2=st.columns(2)
   st.write()
   listofpic=os.listdir("dashbord")
+  st.write(listofpic)
   for i in listofpic:
     df3=pd.read_csv(i,index_col=0)
     fig = go.Figure()
