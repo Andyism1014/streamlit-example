@@ -43,7 +43,19 @@ if page=="On-Chain Data":
     listofpic=os.listdir("dashbord")
     st.write(listofpic)
     for i in listofpic:
-      st.write(pd.read_csv("dashbord/%s"%(i)))
+        df3=pd.read_csv("dashbord/%s"%(i),index_col=0)
+        fig = go.Figure()
+        for j in range(len(df3)):
+            addtreace(list(df3.iloc[j]),fig,j+1)
+        layoutupdate(fig)
+        fig.update_layout(
+        title_text=i[:-4]
+        )
+        if listofpic.index(i)%2!=0:
+            t1.plotly_chart(fig, use_container_width=True)
+        else:
+            t2.plotly_chart(fig, use_container_width=True)
+
 
     
 
