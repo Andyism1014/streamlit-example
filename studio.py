@@ -6542,7 +6542,14 @@ def layoutupdate(fig):
         overlaying="y",
         side="right",
         position=0.95
-    )
+    ),
+      legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1
+        )
   )
 
 
@@ -6601,14 +6608,7 @@ def dashbord():
           addtreace(list(df3.iloc[j]),fig,j+1)
       layoutupdate(fig)
       fig.update_layout(
-      title_text=i[:-4],
-      legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="right",
-            x=1
-        )
+      title_text=i[:-4]
       )
       if listofpic.index(i)%2!=0:
           t1.plotly_chart(fig, use_container_width=True)
