@@ -23,7 +23,7 @@ Tensor Data Platform
 
 
 
-radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta',"Studio"]
+radio_list = ['Portfolio Information', 'On-Chain Data', "Studio",'Beta']
 
 page = st.selectbox(
     "",
