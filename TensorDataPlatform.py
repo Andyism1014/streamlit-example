@@ -42,7 +42,8 @@ if page=="On-Chain Data":
     st.write()
     listofpic=os.listdir("dashbord")
     st.write(listofpic)
-    nameg=pd.read_csv("dashbord/Accumualtion Address.csv")
+    st.write(pd.read_csv("dashbord/Accumualtion Address.csv"))
+
     
 
 
