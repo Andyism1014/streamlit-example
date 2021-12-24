@@ -43,7 +43,7 @@ if page=="On-Chain Data":
   listofpic=os.listdir("dashbord")
   st.write(listofpic)
   for i in listofpic:
-    df3=pd.read_csv("dashbord\%s"%(i),index_col=0)
+    df3=pd.read_csv("Lightning Network Channel Size (Median).csv",index_col=0)
     fig = go.Figure()
     for j in range(len(df3)):
       addtreace(list(df3.iloc[j]),fig,j+1)
