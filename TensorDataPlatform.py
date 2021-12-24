@@ -37,12 +37,12 @@ if page=="Studio":
     st.title("Studio")
     DataSeltct()
 if page=="On-Chain Data":
-  st.title("Dashbord")
-  t1,t2=st.columns(2)
-  st.write()
-  listofpic=os.listdir("dashbord")
-  st.write(listofpic)
-  df3=pd.read_csv("dashbord\Lightning Network Channel Size (Median).csv",index_col=0)
+    st.title("Dashbord")
+    t1,t2=st.columns(2)
+    st.write()
+    listofpic=os.listdir("dashbord")
+    st.write(listofpic)
+    df3=pd.read_csv("dashbord\Lightning Network Channel Size (Median).csv",index_col=0)
 
 
 
