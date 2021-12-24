@@ -41,7 +41,6 @@ if page=="On-Chain Data":
     t1,t2=st.columns(2)
     st.write()
     listofpic=os.listdir("dashbord")
-    st.write(listofpic)
     for i in listofpic:
         df3=pd.read_csv("dashbord/%s"%(i),index_col=0)
         fig = go.Figure()
