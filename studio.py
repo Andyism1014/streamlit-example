@@ -6574,8 +6574,8 @@ def DataSeltct():
     df. to_csv('temp.csv',index=False,header=False)
   df2=pd.read_csv("temp.csv")
   st.write(df2)
-  fig = go.Figure()
   if len(df2)>0:
+    fig = go.Figure()
     for i in range(len(df2)):
       addtreace(list(df2.iloc[i]),fig,i+1)
     layoutupdate(fig)
