@@ -6597,7 +6597,6 @@ def DataSeltct():
 
 
 def dashbord():
-  st.title("Dashbord")
   t1,t2=st.columns(2)
   st.write()
   listofpic=os.listdir("dashbord")
