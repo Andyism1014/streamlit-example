@@ -6503,13 +6503,6 @@ def addtreace(l,fig,axis):
 
 def layoutupdate(fig):
   fig.update_layout(
-    legend=dict(
-    orientation="h",
-    yanchor="bottom",
-    y=1.02,
-    xanchor="left",
-    x=1
-),
     yaxis=dict(
         titlefont=dict(
             color="#1f77b4"
