@@ -42,18 +42,17 @@ if page=="On-Chain Data":
   st.write()
   listofpic=os.listdir("dashbord")
   st.write(listofpic)
-  for i in listofpic:
-    df3=pd.read_csv("dashbord\Lightning Network Channel Size (Median).csv",index_col=0)
-    fig = go.Figure()
-    for j in range(len(df3)):
+  df3=pd.read_csv("dashbord\Lightning Network Channel Size (Median).csv",index_col=0)
+  fig = go.Figure()
+  for j in range(len(df3)):
       addtreace(list(df3.iloc[j]),fig,j+1)
-    layoutupdate(fig)
-    fig.update_layout(
-    title_text=i[:-4]
-    )
-    if listofpic.index(i)%2!=0:
+  layoutupdate(fig)
+  fig.update_layout(
+  title_text=i[:-4]
+  )
+  if listofpic.index(i)%2!=0:
       t1.plotly_chart(fig, use_container_width=True)
-    else:
+  else:
       t2.plotly_chart(fig, use_container_width=True)
 
 
