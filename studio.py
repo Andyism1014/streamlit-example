@@ -6546,7 +6546,7 @@ def layoutupdate(fig):
   )
 
 
-menue=st.radio("",("created","dashbord"))
+
 
 def DataSeltct():
   col1, col2,col3= st.columns(3)
@@ -6610,12 +6610,6 @@ def dashbord():
     else:
       t2.plotly_chart(fig, use_container_width=True)
 
-
-if menue=="created":
-  DataSeltct()
-
-if menue=="dashbord":
-  dashbord()
 
 
 
