@@ -6606,7 +6606,7 @@ def dashbord():
             orientation="h",
             yanchor="bottom",
             y=1.02,
-            xanchor="left",
+            xanchor="right",
             x=1
         )
       )
