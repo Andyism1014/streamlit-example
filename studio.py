@@ -6607,7 +6607,7 @@ def dashbord():
             yanchor="bottom",
             y=1.02,
             xanchor="right",
-            x=1
+            x=0.1
         )
       )
       if listofpic.index(i)%2!=0:
