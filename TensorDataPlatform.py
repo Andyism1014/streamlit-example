@@ -37,6 +37,8 @@ if page=="On-Chain Data":
     st.write("g")
 if page=="Studio":
     st.title("Studio")
+    DataSeltct()
+
 
 
     
