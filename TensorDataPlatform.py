@@ -2,7 +2,6 @@ import pandas as pd
 import streamlit as st
 from PIL import Image
 from Portfolio import *
-from On_Chain import *
 import streamlit.components.v1 as components
 import sqlite3
 import time
@@ -35,9 +34,9 @@ page = st.selectbox(
 if page=="Portfolio Information":
     set_Portfolio()
 if page=="On-Chain Data":
-    main()
+
 if page=="Beta":
     st.title("Studio")
-    for i in range(10):
-        st.write(i)
+    
+
     
