@@ -23,7 +23,7 @@ Tensor Data Platform
 
 
 
-radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta']
+radio_list = ['Portfolio Information', 'On-Chain Data', 'Beta',"Studio"]
 
 page = st.selectbox(
     "",
@@ -34,8 +34,8 @@ page = st.selectbox(
 if page=="Portfolio Information":
     set_Portfolio()
 if page=="On-Chain Data":
-
-if page=="Beta":
+    st.write("g")
+if page=="Studio":
     st.title("Studio")
     
 
