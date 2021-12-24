@@ -42,7 +42,8 @@ if page=="On-Chain Data":
     st.write()
     listofpic=os.listdir("dashbord")
     st.write(listofpic)
-    st.write(pd.read_csv("dashbord/Accumualtion Address.csv"))
+    for i in listofpic:
+      st.write(pd.read_csv("dashbord/%s"%(i)))
 
     
 
