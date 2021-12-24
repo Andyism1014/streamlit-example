@@ -3,6 +3,7 @@ import streamlit as st
 from PIL import Image
 from Portfolio import *
 import streamlit.components.v1 as components
+from studio import *
 
 
 
