@@ -6556,8 +6556,8 @@ def DataSeltct():
     symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
     currency=st.radio("",Gdetail[addresses]["currencies"])
     intervel=st.radio("",Gdetail[addresses]["resolutions"])
-    numberOfData=st.number_input("NumberOfData", min_value=300,max_value=1000,step=1)
-    MovingAverag=st.number_input("MovingAverag", min_value=0,max_value=30,step=1)
+    numberOfData=st.number_input("Number Of Data", min_value=300,max_value=1000,step=1)
+    MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
     pre = go.Figure()
     if st.button('Preview'):
       l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
