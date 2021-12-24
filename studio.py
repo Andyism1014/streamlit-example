@@ -6546,8 +6546,6 @@ def layoutupdate(fig):
   )
 
 
-
-
 def DataSeltct():
   col1, col2,col3= st.columns(3)
   with col1:
@@ -6561,17 +6559,17 @@ def DataSeltct():
     numberOfData=st.number_input("NumberOfData", min_value=300,max_value=1000,step=1)
     MovingAverag=st.number_input("MovingAverag", min_value=0,max_value=30,step=1)
     pre = go.Figure()
-    if st.button('dataframe'):
+    if st.button('Preview'):
       l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
       addtreace(l,pre,1)
       pre.update_layout(
       title_text=two)
-    if st.button("save"):
+    if st.button("Save"):
       b=pd.DataFrame({"name":two,"symbol":symbol,"addresses":addresses,"intervel":intervel,"currency":currency,"numberOfData":numberOfData,"MovingAverag":MovingAverag},index=[0])
       b.to_csv("temp.csv",index=False,header=False,mode='a')
   with col2:
     st.plotly_chart(pre, use_container_width=True)
-  if st.button("clear"):
+  if st.button("Clear"):
     df = pd. DataFrame({1:"name",2:"symbol",3:"addresses",4:"intervel",5:"currency",6:"numberOfData",7:"MovingAverag"},index=[0])
     df. to_csv('temp.csv',index=False,header=False)
   df2=pd.read_csv("temp.csv")
@@ -6583,11 +6581,11 @@ def DataSeltct():
     layoutupdate(fig)
   st.plotly_chart(fig, use_container_width=True)
   dashname=st.text_input("Name of dash",value="here")
-  if st.button("to dash"):
+  if st.button("to On-Chain Data"):
     df2.to_csv("dashbord\%s.csv"%(dashname))
   listofpic=os.listdir("dashbord")
   deletthings=st.selectbox("",listofpic)
-  if st.button("delet"):
+  if st.button("Del"):
     os.remove("dashbord\%s"%(deletthings))
 
 
