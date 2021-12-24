@@ -6548,7 +6548,7 @@ def layoutupdate(fig):
             yanchor="bottom",
             y=1.02,
             xanchor="left",
-            x=0.01
+            x=0
         )
   )
 
