@@ -33,11 +33,11 @@ page = st.selectbox(
 
 if page=="Portfolio Information":
     set_Portfolio()
-if page=="On-Chain Data":
-    dashbord()
 if page=="Studio":
     st.title("Studio")
     DataSeltct()
+if page=="On-Chain Data":
+    dashbord()
 
 
 
