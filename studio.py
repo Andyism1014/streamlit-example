@@ -6606,11 +6606,10 @@ def dashbord():
             orientation="h",
             yanchor="bottom",
             y=1.02,
-            xanchor="right",
+            xanchor="left",
             x=1
         )
       )
-
       if listofpic.index(i)%2!=0:
           t1.plotly_chart(fig, use_container_width=True)
       else:
