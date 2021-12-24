@@ -6580,7 +6580,7 @@ def DataSeltct():
       addtreace(list(df2.iloc[i]),fig,i+1)
     layoutupdate(fig)
   st.plotly_chart(fig, use_container_width=True)
-  dashname=st.text_input("Name of dash",value="here")
+  dashname=st.text_input("Name of Pic",value="type here")
   if st.button("to On-Chain Data"):
     df2.to_csv("dashbord\%s.csv"%(dashname))
   listofpic=os.listdir("dashbord")
