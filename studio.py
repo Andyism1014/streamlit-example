@@ -6597,7 +6597,7 @@ def dashbord():
   st.write()
   listofpic=os.listdir("dashbord")
   for i in listofpic:
-    df3=pd.read_csv("dashbord\%s"%(i),index_col=0)
+    df3=pd.read_csv(i,index_col=0)
     fig = go.Figure()
     for j in range(len(df3)):
       addtreace(list(df3.iloc[j]),fig,j+1)
