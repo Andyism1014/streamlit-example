@@ -6573,12 +6573,10 @@ def DataSeltct():
     title_text=two)
   if st.button("Save"):
     listofchoice.append(l)
-  with col2:
-    st.plotly_chart(pre, use_container_width=True)
+  st.plotly_chart(pre, use_container_width=True)
   gb = GridOptionsBuilder.from_dataframe(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]))
   gb.configure_selection("multiple", use_checkbox=True, groupSelectsChildren=False, groupSelectsFiltered=False)
-  with col1:
-    grid_response=AgGrid(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]),height=100,  width="100%", gridOptions=gb.build(),update_mode="model_changed",allow_unsafe_jscode=False)
+  grid_response=AgGrid(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]),height=100,  width="100%", gridOptions=gb.build(),update_mode="model_changed",allow_unsafe_jscode=False)
   selected = grid_response['selected_rows']
   if st.button("remove"):
     for i in selected:
