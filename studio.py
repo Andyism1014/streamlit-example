@@ -6554,27 +6554,25 @@ def layoutupdate(fig):
 
 listofchoice=[]
 
-
 def DataSeltct():
   col1, col2,col3= st.columns(3)
-  with col1:
-    st.title("Data Selecet")
-    one=st.selectbox("",list(Glassnode.keys()))
-    two=st.selectbox("",list(Glassnode[one].keys()))
-    addresses=Glassnode[one][two]
-    symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
-    currency=st.radio("",Gdetail[addresses]["currencies"])
-    intervel=st.radio("",Gdetail[addresses]["resolutions"])
-    numberOfData=st.number_input("Number Of Data", min_value=300,max_value=1000,step=1)
-    MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
-    pre = go.Figure()
-    l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
-    if st.button('Preview'):
-      addtreace(l,pre,1)
-      pre.update_layout(
-      title_text=two)
-    if st.button("Save"):
-      listofchoice.append(l)
+  st.title("Data Selecet")
+  one=st.selectbox("",list(Glassnode.keys()))
+  two=st.selectbox("",list(Glassnode[one].keys()))
+  addresses=Glassnode[one][two]
+  symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
+  currency=st.radio("",Gdetail[addresses]["currencies"])
+  intervel=st.radio("",Gdetail[addresses]["resolutions"])
+  numberOfData=st.number_input("Number Of Data", min_value=300,max_value=1000,step=1)
+  MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
+  pre = go.Figure()
+  l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
+  if st.button('Preview'):
+    addtreace(l,pre,1)
+    pre.update_layout(
+    title_text=two)
+  if st.button("Save"):
+    listofchoice.append(l)
   with col2:
     st.plotly_chart(pre, use_container_width=True)
   gb = GridOptionsBuilder.from_dataframe(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]))
