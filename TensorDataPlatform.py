@@ -36,8 +36,9 @@ if page=="Portfolio Information":
 if page=="Studio":
     st.title("Studio")
     DataSeltct()
-if page=="On-Chain Data":
     dashbord()
+if page=="On-Chain Data":
+    st.write("coming soon")
 
 
 
