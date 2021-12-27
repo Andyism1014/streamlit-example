@@ -4,7 +4,7 @@ import requests
 import streamlit as st
 import streamlit.components.v1 as components
 import os
-
+from st_aggrid import AgGrid,GridOptionsBuilder,GridUpdateMode, DataReturnMode, JsCode
 
 
 def get_g(symbol,addresses,intervel,currency,numberOfData):
@@ -6552,6 +6552,8 @@ def layoutupdate(fig):
         )
   )
 
+listofchoice=[]
+
 
 def DataSeltct():
   col1, col2,col3= st.columns(3)
@@ -6566,21 +6568,24 @@ def DataSeltct():
     numberOfData=st.number_input("Number Of Data", min_value=300,max_value=1000,step=1)
     MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
     pre = go.Figure()
+    l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
     if st.button('Preview'):
-      l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
       addtreace(l,pre,1)
       pre.update_layout(
       title_text=two)
     if st.button("Save"):
-      b=pd.DataFrame({"name":two,"symbol":symbol,"addresses":addresses,"intervel":intervel,"currency":currency,"numberOfData":numberOfData,"MovingAverag":MovingAverag},index=[0])
-      b.to_csv("temp.csv",index=False,header=False,mode='a')
+      listofchoice.append(l)
   with col2:
     st.plotly_chart(pre, use_container_width=True)
-  if st.button("Clear"):
-    df = pd. DataFrame({1:"name",2:"symbol",3:"addresses",4:"intervel",5:"currency",6:"numberOfData",7:"MovingAverag"},index=[0])
-    df. to_csv('temp.csv',index=False,header=False)
-  df2=pd.read_csv("temp.csv")
-  st.write(df2)
+  gb = GridOptionsBuilder.from_dataframe(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]))
+  gb.configure_selection("multiple", use_checkbox=True, groupSelectsChildren=False, groupSelectsFiltered=False)
+  with col1:
+    grid_response=AgGrid(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]),height=100,  width="100%", gridOptions=gb.build(),update_mode="model_changed",allow_unsafe_jscode=False)
+  selected = grid_response['selected_rows']
+  if st.button("remove"):
+    for i in selected:
+      listofchoice.remove(list(i.values()))
+  df2=pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"])
   fig = go.Figure()
   if len(df2)>0:
     for i in range(len(df2)):
