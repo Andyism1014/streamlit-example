@@ -11,10 +11,10 @@ im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
 
 menu_data = [
-    {'icon': "far fa-chart-bar", 'label':"Portfolio Information"},
-    {'icon': "far fa-chart-bar", 'label':"On-Chain Data"},
-    {'icon': "far fa-chart-bar", 'label':"Studio"},
-    {'icon': "far fa-chart-bar", 'label':"Beta"},
+    {'icon': "", 'label':"Portfolio Information"},
+    {'icon': "", 'label':"On-Chain Data"},
+    {'icon': "", 'label':"Studio"},
+    {'icon': "", 'label':"Beta"},
     
 ]
 
@@ -38,7 +38,7 @@ if f"{menu_id}"=="Studio":
     DataSeltct()
     dashbord()
 if f"{menu_id}"=="On-Chain Data":
-    st.write("coming soon")
+    dashbord()
 if f"{menu_id}"=="Beta":
     tabletry()
 
