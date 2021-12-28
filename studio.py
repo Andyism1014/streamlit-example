@@ -6788,14 +6788,7 @@ def picture(l):
         anchor="x",
         overlaying="y",
         side="right"
-    ),
-      legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="left",
-            x=0
-        )
+    )
   )
   fig.update_layout(
       title_text=two
