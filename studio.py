@@ -6619,6 +6619,7 @@ def dashbord():
 
 
 def tabletry():
+  st.write("gg")
 
 
 
