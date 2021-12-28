@@ -6619,17 +6619,7 @@ def dashbord():
 
 
 def tabletry():
-  col1, col2,col3= st.columns(3)
-  st.title("Data Selecet")
-  one=st.selectbox("",list(Glassnode.keys()))
-  two=st.selectbox("",list(Glassnode[one].keys()))
-  addresses=Glassnode[one][two]
-  symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
-  currency=st.radio("",Gdetail[addresses]["currencies"])
-  intervel=st.radio("",Gdetail[addresses]["resolutions"])
-  numberOfData=st.number_input("Number Of Data", min_value=300,max_value=1000,step=1)
-  MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
-  l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
+
 
 
 

@@ -1,3 +1,0 @@
-,name,symbol,addresses,intervel,currency,numberOfData,MovingAverag
-0,Lightning Network Channel Size (Median),BTC,/v1/metrics/lightning/channel_size_median,24h,USD,300,0
-1,Price,BTC,/v1/metrics/market/price_usd_close,24h,NATIVE,300,0

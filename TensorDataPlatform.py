@@ -17,13 +17,13 @@ menu_data = [
     {'icon': "", 'label':"Other"},
 ]
 
-over_theme = {'txc_inactive': '#FFFFFF',"menu_background":"#4c4c4c"}
+over_theme = {'txc_inactive': '#FFFFFF',"menu_background":"#3d3d3d"}
 
 menu_id = hc.nav_bar(
     menu_definition=menu_data,
     override_theme=over_theme,
     home_name='Home',
-    hide_streamlit_markers=True, #will show the st hamburger as well as the navbar now!
+    hide_streamlit_markers=False, #will show the st hamburger as well as the navbar now!
     sticky_nav=True, #at the top or not
     sticky_mode='pinned', #jumpy or not-jumpy, but sticky or pinned
 )
