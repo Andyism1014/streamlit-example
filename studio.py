@@ -6743,7 +6743,8 @@ def picture(l):
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-  df=get_g(symbol, addresses, intervel, currency)
+  numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
+  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
   listy=df.columns[1:].tolist()
   if len(listy)==1:
@@ -6788,7 +6789,14 @@ def picture(l):
         anchor="x",
         overlaying="y",
         side="right"
-    )
+    ),
+      legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0
+        )
   )
   fig.update_layout(
       title_text=two
