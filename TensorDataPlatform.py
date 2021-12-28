@@ -34,7 +34,7 @@ if f"{menu_id}"=="Home":
     set_Portfolio()
 if f"{menu_id}"=="On-Chain Data":
     dashbord2()
-if f"{menu_id}"=="Beta":
+if f"{menu_id}"=="Studio":
     tabletry()
 if f"{menu_id}"=="Other":
     set_ETF()
