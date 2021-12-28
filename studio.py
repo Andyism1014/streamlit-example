@@ -6712,7 +6712,6 @@ listofgg=[
   ]
 ]
 
-
 def tabletry():
   col1, col2= st.columns(2)
   with col1:
@@ -6739,17 +6738,12 @@ def dashbord2():
         picture(i)
 
   
-
-
-
-
 def picture(l):
   df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-  numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
-  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+  df=get_g(symbol, addresses, intervel, currency)
   df3=df2.tail(len(df))
   listy=df.columns[1:].tolist()
   if len(listy)==1:
