@@ -3,7 +3,7 @@ from PIL import Image
 import hydralit_components as hc
 from Portfolio import *
 from studio import *
-
+from ETF import *
 
 
 
@@ -40,6 +40,8 @@ if f"{menu_id}"=="On-Chain Data":
     dashbord()
 if f"{menu_id}"=="Beta":
     tabletry()
+if f"{menu_id}"=="Other":
+    set_ETF()
 
 
     

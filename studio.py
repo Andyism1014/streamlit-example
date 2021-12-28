@@ -6619,10 +6619,33 @@ def dashbord():
 
 
 def tabletry():
-  st.write("gg")
-
-
-
+  col1, col2,col3= st.columns(3)
+  st.title("Data Selecet")
+  one=st.selectbox("",list(Glassnode.keys()))
+  two=st.selectbox("",list(Glassnode[one].keys()))
+  addresses=Glassnode[one][two]
+  symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
+  currency=st.radio("",Gdetail[addresses]["currencies"])
+  intervel=st.radio("",Gdetail[addresses]["resolutions"])
+  numberOfData=st.number_input("Number Of Data", min_value=3000,max_value=3000,step=1)
+  MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
+  if st.button("try"):
+    df=get_g(symbol, addresses, intervel, currency, numberOfData)
+    fig=go.Figure()
+    fig.add_trace(go.Scatter(
+        x=df["t"],
+        y=df["v"],
+        name=two,
+        yaxis="y1"
+      ))
+    fig.add_trace(go.Scatter(
+        x=df["t"],
+        y=df["v"].rolling(14).mean(),
+        name=two,
+        yaxis="y1"
+      ))
+    st.plotly_chart(fig, use_container_width=True)
+    
 
 
 
