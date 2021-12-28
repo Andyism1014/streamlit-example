@@ -6,7 +6,7 @@ import streamlit.components.v1 as components
 import os
 from st_aggrid import AgGrid,GridOptionsBuilder,GridUpdateMode, DataReturnMode, JsCode
 
-
+@st.experimental_memo(ttl=60*60*24)
 def get_g(symbol,addresses,intervel,currency,numberOfData):
   API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
   res = requests.get("https://api.glassnode.com"+addresses,
@@ -6576,7 +6576,7 @@ def DataSeltct():
   st.plotly_chart(pre, use_container_width=True)
   gb = GridOptionsBuilder.from_dataframe(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]))
   gb.configure_selection("multiple", use_checkbox=True, groupSelectsChildren=False, groupSelectsFiltered=False)
-  grid_response=AgGrid(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]),height=100,  width="100%", gridOptions=gb.build(),update_mode="model_changed",allow_unsafe_jscode=False)
+  grid_response=AgGrid(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]),height=100, gridOptions=gb.build(),update_mode="model_changed",allow_unsafe_jscode=False)
   selected = grid_response['selected_rows']
   if st.button("remove"):
     for i in selected:
@@ -6618,6 +6618,18 @@ def dashbord():
 
 
 
+def tabletry():
+  col1, col2,col3= st.columns(3)
+  st.title("Data Selecet")
+  one=st.selectbox("",list(Glassnode.keys()))
+  two=st.selectbox("",list(Glassnode[one].keys()))
+  addresses=Glassnode[one][two]
+  symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
+  currency=st.radio("",Gdetail[addresses]["currencies"])
+  intervel=st.radio("",Gdetail[addresses]["resolutions"])
+  numberOfData=st.number_input("Number Of Data", min_value=300,max_value=1000,step=1)
+  MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
+  l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
 
 
 
