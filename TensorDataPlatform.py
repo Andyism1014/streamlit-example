@@ -32,12 +32,8 @@ menu_id = hc.nav_bar(
 
 if f"{menu_id}"=="Home":
     set_Portfolio()
-if f"{menu_id}"=="Studio":
-    st.title("Studio")
-    DataSeltct()
-    dashbord()
 if f"{menu_id}"=="On-Chain Data":
-    dashbord()
+    dashbord2()
 if f"{menu_id}"=="Beta":
     tabletry()
 if f"{menu_id}"=="Other":

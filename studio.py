@@ -5,16 +5,16 @@ import streamlit as st
 import streamlit.components.v1 as components
 import os
 from st_aggrid import AgGrid,GridOptionsBuilder,GridUpdateMode, DataReturnMode, JsCode
+from streamlit.proto.Button_pb2 import Button
 
 @st.experimental_memo(ttl=60*60*24)
-def get_g(symbol,addresses,intervel,currency,numberOfData):
+def get_g(symbol,addresses,intervel,currency):
   API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
   res = requests.get("https://api.glassnode.com"+addresses,
       params={'a':symbol,'api_key':API_KEY,"i":intervel,"c":currency})
   # convert to pandas dataframe
   df=pd.json_normalize(res.json(),sep="_")
   df["t"]=pd.to_datetime(df["t"], unit="s").dt.date
-  df=df.tail(numberOfData)
   return df
 
 Glassnode={
@@ -6616,36 +6616,198 @@ def dashbord():
           t2.plotly_chart(fig, use_container_width=True)
 
 
+listofobject=[]
+
+listofgg=[
+  [
+    "Active Entities",
+    "BTC",
+    "/v1/metrics/entities/active_count",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Total Transfer Volume by Size (Entity-Adjusted)",
+    "BTC",
+    "/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum",
+    "24h",
+    "USD"
+  ],
+  [
+    "Relative Transfer Volume by Size (Entity-Adjusted)",
+    "BTC",
+    "/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_relative",
+    "24h",
+    "USD"
+  ],
+  [
+    "Realized Cap HODL Waves ",
+    "BTC",
+    "/v1/metrics/supply/rcap_hodl_waves",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Futures Open Interest Perpetual",
+    "BTC",
+    "/v1/metrics/derivatives/futures_open_interest_perpetual_sum",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Futures Open Interest",
+    "BTC",
+    "/v1/metrics/derivatives/futures_open_interest_sum",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Number of Whales",
+    "BTC",
+    "/v1/metrics/entities/min_1k_count",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Supply Held by Entities with Balance 1k - 10k",
+    "BTC",
+    "/v1/metrics/entities/supply_balance_1k_10k",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Supply Held by Entities with Balance 10k - 100k",
+    "BTC",
+    "/v1/metrics/entities/supply_balance_10k_100k",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Supply Held by Entities with Balance > 100k",
+    "BTC",
+    "/v1/metrics/entities/supply_balance_more_100k",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Futures Perpetual Funding Rate",
+    "BTC",
+    "/v1/metrics/derivatives/futures_funding_rate_perpetual",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Futures Estimated Leverage Ratio",
+    "BTC",
+    "/v1/metrics/derivatives/futures_estimated_leverage_ratio",
+    "24h",
+    "NATIVE"
+  ],
+  [
+    "Stablecoin Supply Ratio (SSR)",
+    "BTC",
+    "/v1/metrics/indicators/ssr",
+    "24h",
+    "NATIVE"
+  ]
+]
 
 
 def tabletry():
-  col1, col2,col3= st.columns(3)
-  st.title("Data Selecet")
-  one=st.selectbox("",list(Glassnode.keys()))
-  two=st.selectbox("",list(Glassnode[one].keys()))
-  addresses=Glassnode[one][two]
-  symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
-  currency=st.radio("",Gdetail[addresses]["currencies"])
-  intervel=st.radio("",Gdetail[addresses]["resolutions"])
-  numberOfData=st.number_input("Number Of Data", min_value=3000,max_value=3000,step=1)
-  MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
-  if st.button("try"):
-    df=get_g(symbol, addresses, intervel, currency, numberOfData)
-    fig=go.Figure()
+  col1, col2= st.columns(2)
+  with col1:
+    one=st.selectbox("",list(Glassnode.keys()))
+    two=st.selectbox("",list(Glassnode[one].keys()))
+    addresses=Glassnode[one][two]
+    symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
+    currency=st.radio("",Gdetail[addresses]["currencies"])
+    intervel=st.radio("",Gdetail[addresses]["resolutions"])
+  l=[two,symbol,addresses,intervel,currency]
+  if st.button("save"):
+    listofobject.append(l)
+  st.write(listofobject)
+  picture(l)
+
+def dashbord2():
+  col1, col2= st.columns(2)
+  for i in listofgg:
+    if listofgg.index(i)%2!=0:
+      with col1:
+        picture(i)
+    else:
+      with col2:
+        picture(i)
+
+  
+
+
+
+
+def picture(l):
+  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
+  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  fig=go.Figure()
+  slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
+  numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
+  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+  df3=df2.tail(len(df))
+  listy=df.columns[1:].tolist()
+  if len(listy)==1:
     fig.add_trace(go.Scatter(
+      x=df["t"],
+      y=df["v"].rolling(slider).mean(),
+      name=two,
+      yaxis="y1"
+    ))
+  else:
+    for i in listy:
+      fig.add_trace(go.Scatter(
         x=df["t"],
-        y=df["v"],
-        name=two,
+        y=df[i].rolling(slider).mean(),
+        line=dict(width=0.5),
+        name=i,
+        stackgroup='one',
         yaxis="y1"
       ))
-    fig.add_trace(go.Scatter(
-        x=df["t"],
-        y=df["v"].rolling(14).mean(),
-        name=two,
-        yaxis="y1"
-      ))
-    st.plotly_chart(fig, use_container_width=True)
-    
+  fig.add_trace(go.Scatter(
+      x=df3["t"],
+      y=df3["v"],
+      name="Price",
+      yaxis="y2"
+    ))
+  fig.update_layout(
+    yaxis=dict(
+        titlefont=dict(
+            color="#1f77b4"
+        ),
+        tickfont=dict(
+            color="#1f77b4"
+        )
+    ),
+    yaxis2=dict(
+        titlefont=dict(
+            color="#d62728"
+        ),
+        tickfont=dict(
+            color="#d62728"
+        ),
+        anchor="x",
+        overlaying="y",
+        side="right"
+    ),
+      legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="left",
+            x=0
+        )
+  )
+  fig.update_layout(
+      title_text=two
+      )
+  st.plotly_chart(fig, use_container_width=True)
+
 
 
 
