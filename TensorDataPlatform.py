@@ -11,11 +11,10 @@ im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
 
 menu_data = [
-    {'icon': "", 'label':"Portfolio Information"},
     {'icon': "", 'label':"On-Chain Data"},
     {'icon': "", 'label':"Studio"},
     {'icon': "", 'label':"Beta"},
-    
+    {'icon': "", 'label':"Other"},
 ]
 
 over_theme = {'txc_inactive': '#FFFFFF',"menu_background":"#4c4c4c"}
@@ -31,7 +30,7 @@ menu_id = hc.nav_bar(
 
 
 
-if f"{menu_id}"=="Portfolio Information":
+if f"{menu_id}"=="Home":
     set_Portfolio()
 if f"{menu_id}"=="Studio":
     st.title("Studio")
