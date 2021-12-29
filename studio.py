@@ -6677,7 +6677,7 @@ def dashbord2():
         picture(i)
 
 
-config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawopenpath', 'eraseshape'],}
+config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawline','drawopenpath', 'drawrect','eraseshape'],}
 
 
 def picture(l):
