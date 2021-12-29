@@ -1,3 +1,0 @@
-,name,symbol,addresses,intervel,currency,numberOfData,MovingAverag
-0,Exchange Balance (Total),BTC,/v1/metrics/distribution/balance_exchanges,24h,USD,300,10
-1,Accumulation Addresses,BTC,/v1/metrics/addresses/accumulation_count,24h,NATIVE,300,10

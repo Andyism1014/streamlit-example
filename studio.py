@@ -6552,68 +6552,6 @@ def layoutupdate(fig):
         )
   )
 
-listofchoice=[]
-
-def DataSeltct():
-  col1, col2,col3= st.columns(3)
-  st.title("Data Selecet")
-  one=st.selectbox("",list(Glassnode.keys()))
-  two=st.selectbox("",list(Glassnode[one].keys()))
-  addresses=Glassnode[one][two]
-  symbol=st.selectbox("symbol",Gdetail[addresses]["assets"])
-  currency=st.radio("",Gdetail[addresses]["currencies"])
-  intervel=st.radio("",Gdetail[addresses]["resolutions"])
-  numberOfData=st.number_input("Number Of Data", min_value=300,max_value=1000,step=1)
-  MovingAverag=st.number_input("Moving Average", min_value=0,max_value=30,step=1)
-  pre = go.Figure()
-  l=[two,symbol,addresses,intervel,currency,numberOfData,MovingAverag]
-  if st.button('Preview'):
-    addtreace(l,pre,1)
-    pre.update_layout(
-    title_text=two)
-  if st.button("Save"):
-    listofchoice.append(l)
-  st.plotly_chart(pre, use_container_width=True)
-  gb = GridOptionsBuilder.from_dataframe(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]))
-  gb.configure_selection("multiple", use_checkbox=True, groupSelectsChildren=False, groupSelectsFiltered=False)
-  grid_response=AgGrid(pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"]),height=100, gridOptions=gb.build(),update_mode="model_changed",allow_unsafe_jscode=False)
-  selected = grid_response['selected_rows']
-  if st.button("remove"):
-    for i in selected:
-      listofchoice.remove(list(i.values()))
-  df2=pd.DataFrame(listofchoice,columns=["name","symbol","addresses","intervel","currency","numberOfData","MovingAverag"])
-  fig = go.Figure()
-  if len(df2)>0:
-    for i in range(len(df2)):
-      addtreace(list(df2.iloc[i]),fig,i+1)
-    layoutupdate(fig)
-  st.plotly_chart(fig, use_container_width=True)
-  dashname=st.text_input("Name of Pic",value="type here")
-  if st.button("to On-Chain Data"):
-    df2.to_csv("dashbord/%s.csv"%(dashname))
-  listofpic=os.listdir("dashbord")
-  deletthings=st.selectbox("",listofpic)
-  if st.button("Del"):
-    os.remove("dashbord/%s"%(deletthings))
-
-
-def dashbord():
-  t1,t2=st.columns(2)
-  st.write()
-  listofpic=os.listdir("dashbord")
-  for i in listofpic:
-      df3=pd.read_csv("dashbord/%s"%(i),index_col=0)
-      fig = go.Figure()
-      for j in range(len(df3)):
-          addtreace(list(df3.iloc[j]),fig,j+1)
-      layoutupdate(fig)
-      fig.update_layout(
-      title_text=i[:-4]
-      )
-      if listofpic.index(i)%2!=0:
-          t1.plotly_chart(fig, use_container_width=True)
-      else:
-          t2.plotly_chart(fig, use_container_width=True)
 
 
 listofobject=[]
@@ -6712,6 +6650,7 @@ listofgg=[
   ]
 ]
 
+
 def tabletry():
   col1, col2= st.columns(2)
   with col1:
@@ -6737,7 +6676,10 @@ def dashbord2():
       with col2:
         picture(i)
 
-  
+
+config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawopenpath', 'eraseshape'],}
+
+
 def picture(l):
   df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
@@ -6795,7 +6737,7 @@ def picture(l):
   fig.update_layout(
       title_text=two
       )
-  st.plotly_chart(fig, use_container_width=True)
+  st.plotly_chart(fig, use_container_width=True,config=config)
 
 
 
