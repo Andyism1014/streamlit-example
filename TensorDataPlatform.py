@@ -36,6 +36,8 @@ if f"{menu_id}"=="Metrics":
     dashbord2()
 if f"{menu_id}"=="Studio":
     tabletry()
+if f"{menu_id}"=="Beta":
+    PerpOI()
 if f"{menu_id}"=="Other":
     set_ETF()
 

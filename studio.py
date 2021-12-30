@@ -7888,6 +7888,8 @@ def dashbord2():
   col1, col2= st.columns(2)
   with col1:
     messari()
+  with col2:
+    relattiveLong()
   for i in listofgg:
     if listofgg.index(i)%2!=0:
       with col1:
@@ -7930,7 +7932,7 @@ def picture(l):
       x=df3["t"],
       y=df3["v"],
       name="Price",
-      line=dict(color='rgba(120, 120, 120,0.3)'
+      line=dict(color='rgba(120, 120, 120,0.5)'
                               ),
       yaxis="y2"
     ))
@@ -7960,7 +7962,7 @@ def picture(l):
     y=-0.05,
     xanchor="left",
     x=0
-)
+  )
   )
   fig.update_layout(
       title_text=two
@@ -8007,4 +8009,132 @@ def messari():
   )
   st.plotly_chart(fig, use_container_width=True,config=config)
 
+
+def relattiveLong():
+  l=["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"]
+  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
+  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  fig=go.Figure()
+  with st.expander("Edit"):
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
+    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
+  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+  df3=df2.tail(len(df))
+  listy=["o_lth_profit","o_lth_loss","o_sth_loss","o_sth_profit"]
+  colorlist=['#004AFF',"#4F92F6","#F75F5F","#FF0000"]
+  for i in listy:
+    number=listy.index(i)
+    fig.add_trace(go.Scatter(
+      x=df["t"],
+      y=df[i].rolling(slider).mean(),
+      line=dict(width=0.5,color=colorlist[number]),
+      name=i,
+      stackgroup='one',
+      yaxis="y1"
+    ))
+  fig.add_trace(go.Scatter(
+      x=df3["t"],
+      y=df3["v"],
+      name="Price",
+      line=dict(color='rgba(120, 120, 120,0.5)'
+                              ),
+      yaxis="y2"
+    ))
+  fig.update_layout(
+    yaxis=dict(
+        titlefont=dict(
+            color="#1f77b4"
+        ),
+        tickfont=dict(
+            color="#1f77b4"
+        )
+    ),
+    yaxis2=dict(
+        titlefont=dict(
+            color="#d62728"
+        ),
+        tickfont=dict(
+            color="#d62728"
+        ),
+        anchor="x",
+        overlaying="y",
+        side="right"
+    ),
+    legend=dict(
+    orientation="h",
+    yanchor="top",
+    y=-0.05,
+    xanchor="left",
+    x=0
+  )
+  )
+  fig.update_layout(
+      title_text=two
+      )
+  st.plotly_chart(fig, use_container_width=True,config=config)
+
+
+
+def PerpOI():
+  l=["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"]
+  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
+  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  fig=go.Figure()
+  with st.expander("Edit"):
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
+    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
+  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+  df3=df2.tail(len(df))
+  listy=["o_lth_profit","o_lth_loss","o_sth_loss","o_sth_profit"]
+  colorlist=['#004AFF',"#4F92F6","#F75F5F","#FF0000"]
+  for i in listy:
+    number=listy.index(i)
+    fig.add_trace(go.Scatter(
+      x=df["t"],
+      y=df[i].rolling(slider).mean(),
+      line=dict(width=0.5,color=colorlist[number]),
+      name=i,
+      stackgroup='one',
+      yaxis="y1"
+    ))
+  fig.add_trace(go.Scatter(
+      x=df3["t"],
+      y=df3["v"],
+      name="Price",
+      line=dict(color='rgba(120, 120, 120,0.5)'
+                              ),
+      yaxis="y2"
+    ))
+  fig.update_layout(
+    yaxis=dict(
+        titlefont=dict(
+            color="#1f77b4"
+        ),
+        tickfont=dict(
+            color="#1f77b4"
+        )
+    ),
+    yaxis2=dict(
+        titlefont=dict(
+            color="#d62728"
+        ),
+        tickfont=dict(
+            color="#d62728"
+        ),
+        anchor="x",
+        overlaying="y",
+        side="right"
+    ),
+    legend=dict(
+    orientation="h",
+    yanchor="top",
+    y=-0.05,
+    xanchor="left",
+    x=0
+  )
+  )
+  fig.update_layout(
+      title_text=two
+      )
+  st.plotly_chart(fig, use_container_width=True,config=config)
 
