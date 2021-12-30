@@ -7886,6 +7886,8 @@ def tabletry():
 
 def dashbord2():
   col1, col2= st.columns(2)
+  with col1:
+    messari()
   for i in listofgg:
     if listofgg.index(i)%2!=0:
       with col1:
@@ -7974,7 +7976,7 @@ def messariP(x):
   df=pd.DataFrame(r.json()["data"]["values"])
   return df
 
-lay1=["SOL","BNB","ADA","MATIC","AVAX","LUNA"]
+lay1=["SOL","BNB","ADA","MATIC","AVAX","LUNA","DOT","ALGO","TRX","FTM"]
 def messari():
   ethP=messariP("ETH")
   fig=go.Figure()
@@ -7993,13 +7995,15 @@ def messari():
         name=i
       ))
   fig.update_layout(
+    yaxis=dict(tickformat=".2%"),
+    title_text="Layer 1 in ETH",
     legend=dict(
     orientation="h",
     yanchor="top",
     y=-0.05,
     xanchor="left",
     x=0
-)
+   )
   )
   st.plotly_chart(fig, use_container_width=True,config=config)
 
