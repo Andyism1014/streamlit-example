@@ -7,6 +7,7 @@ import os
 from st_aggrid import AgGrid,GridOptionsBuilder,GridUpdateMode, DataReturnMode, JsCode
 from streamlit.proto.Button_pb2 import Button
 from datetime import datetime
+import numpy as np
 
 @st.experimental_memo(ttl=60*60*24)
 def get_g(symbol,addresses,intervel,currency):
@@ -7888,6 +7889,7 @@ def dashbord2():
   col1, col2= st.columns(2)
   with col1:
     messari()
+    PerpOI()
   with col2:
     relattiveLong()
   for i in listofgg:
@@ -7908,8 +7910,11 @@ def picture(l):
   with st.expander("Edit"):
     slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
     numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
+    pricelog = st.checkbox('Price Log',key=two)
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
+  if pricelog:
+    df3["v"]=np.log(df3["v"])
   listy=df.columns[1:].tolist()
   if len(listy)==1:
     fig.add_trace(go.Scatter(
@@ -8018,8 +8023,11 @@ def relattiveLong():
   with st.expander("Edit"):
     slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
     numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
+    pricelog = st.checkbox('Price Log')
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
+  if pricelog:
+    df3["v"]=np.log(df3["v"])
   listy=["o_lth_profit","o_lth_loss","o_sth_loss","o_sth_profit"]
   colorlist=['#004AFF',"#4F92F6","#F75F5F","#FF0000"]
   for i in listy:
@@ -8076,27 +8084,27 @@ def relattiveLong():
 
 
 def PerpOI():
-  l=["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"]
+  l=[ "Futures Open Interest Perpetual", "BTC", "/v1/metrics/derivatives/futures_open_interest_perpetual_sum", "24h", "USD"]
+  df4=get_g("BTC","/v1/metrics/market/marketcap_usd","24h","NATIVE")
   df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   with st.expander("Edit"):
-    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key="PerpOI")
+    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key="PerpOI")
+    pricelog = st.checkbox('Price Log',key="PerpOI")
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
-  listy=["o_lth_profit","o_lth_loss","o_sth_loss","o_sth_profit"]
-  colorlist=['#004AFF',"#4F92F6","#F75F5F","#FF0000"]
-  for i in listy:
-    number=listy.index(i)
-    fig.add_trace(go.Scatter(
-      x=df["t"],
-      y=df[i].rolling(slider).mean(),
-      line=dict(width=0.5,color=colorlist[number]),
-      name=i,
-      stackgroup='one',
-      yaxis="y1"
-    ))
+  df4=df4.tail(len(df)).reset_index()
+  df4["v"]=100*df["v"]/df4["v"]
+  if pricelog:
+    df3["v"]=np.log(df3["v"])
+  fig.add_trace(go.Scatter(
+    x=df["t"],
+    y=df["v"].rolling(slider).mean(),
+    name=two,
+    yaxis="y1"
+  ))
   fig.add_trace(go.Scatter(
       x=df3["t"],
       y=df3["v"],
@@ -8105,19 +8113,37 @@ def PerpOI():
                               ),
       yaxis="y2"
     ))
+  fig.add_trace(go.Scatter(
+    x=df4["t"],
+    y=df4["v"].rolling(slider).mean(),
+    name="Perp OI / Market Cap",
+    yaxis="y3"
+  ))
+  fig.add_shape(type='line',
+                x0=min(df4["t"]),
+                y0=1.3,
+                x1=max(df4["t"]),
+                y1=1.3,
+                line=dict(color='Black',),
+                xref='x',
+                yref='y3'
+ )
   fig.update_layout(
-    yaxis=dict(
-        titlefont=dict(
-            color="#1f77b4"
-        ),
+     yaxis=dict(
         tickfont=dict(
             color="#1f77b4"
         )
     ),
-    yaxis2=dict(
-        titlefont=dict(
-            color="#d62728"
+    yaxis3=dict(
+        tickfont=dict(
+            color='#29a329'
         ),
+        anchor="free",
+        overlaying="y",
+        side="left",
+        position=0.025
+    ),
+    yaxis2=dict(
         tickfont=dict(
             color="#d62728"
         ),
@@ -8134,7 +8160,6 @@ def PerpOI():
   )
   )
   fig.update_layout(
-      title_text=two
+      title_text="Perp OI / Market Cap"
       )
   st.plotly_chart(fig, use_container_width=True,config=config)
-
