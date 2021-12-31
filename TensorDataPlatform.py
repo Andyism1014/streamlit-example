@@ -32,7 +32,7 @@ menu_id = hc.nav_bar(
 
 if f"{menu_id}"=="Home":
     set_Portfolio()
-if f"{menu_id}"=="Metrics":
+if f"{menu_id}"=="Data Overview":
     dashbord2()
 if f"{menu_id}"=="Studio":
     tabletry()
