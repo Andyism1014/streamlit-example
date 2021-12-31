@@ -8083,6 +8083,7 @@ def RealizedCapHODL():
   if pricelog:
     df3["v"]=np.log(df3["v"])
   listy=["o_more_10y","o_7y_10y","o_5y_7y","o_3y_5y","o_2y_3y","o_1y_2y","o_6m_12m","o_3m_6m","o_1m_3m","o_1w_1m","o_1d_1w","o_24h"]
+  listy.reverse()
   for i in listy:
     number=listy.index(i)
     fig.add_trace(go.Scatter(
