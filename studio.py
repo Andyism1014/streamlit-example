@@ -7797,13 +7797,6 @@ listofgg=[
     "USD"
   ],
   [
-    "Realized Cap HODL Waves ",
-    "BTC",
-    "/v1/metrics/supply/rcap_hodl_waves",
-    "24h",
-    "NATIVE"
-  ],
-  [
     "Futures Open Interest Perpetual",
     "BTC",
     "/v1/metrics/derivatives/futures_open_interest_perpetual_sum",
@@ -7888,10 +7881,11 @@ def tabletry():
 def dashbord2():
   col1, col2= st.columns(2)
   with col1:
-    messari()
     PerpOI()
+    RealizedCapHODL()
   with col2:
     relattiveLong()
+    messari()
   for i in listofgg:
     if listofgg.index(i)%2!=0:
       with col1:
@@ -8075,6 +8069,67 @@ def relattiveLong():
       )
   st.plotly_chart(fig, use_container_width=True,config=config)
 
+def RealizedCapHODL():
+  l=  ["Realized Cap HODL Waves ","BTC","/v1/metrics/supply/rcap_hodl_waves","24h","NATIVE"]
+  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
+  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  fig=go.Figure()
+  with st.expander("Edit"):
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
+    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
+    pricelog = st.checkbox('Price Log',key=two)
+  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+  df3=df2.tail(len(df))
+  if pricelog:
+    df3["v"]=np.log(df3["v"])
+  listy=["o_more_10y","o_7y_10y","o_5y_7y","o_3y_5y","o_2y_3y","o_1y_2y","o_6m_12m","o_3m_6m","o_1m_3m","o_1w_1m","o_1d_1w","o_24h"]
+  for i in listy:
+    number=listy.index(i)
+    fig.add_trace(go.Scatter(
+      x=df["t"],
+      y=df[i].rolling(slider).mean(),
+      line=dict(width=0.5),
+      name=i,
+      stackgroup='one',
+      yaxis="y1"
+    ))
+  fig.add_trace(go.Scatter(
+      x=df3["t"],
+      y=df3["v"],
+      name="Price",
+      line=dict(color='rgba(120, 120, 120,0.5)'
+                              ),
+      yaxis="y2"
+    ))
+  fig.update_layout(
+    yaxis=dict(
+        titlefont=dict(
+            color="#1f77b4"
+        ),
+        tickfont=dict(
+            color="#1f77b4"
+        )
+    ),
+    yaxis2=dict(
+        tickfont=dict(
+            color='rgba(120, 120, 120,1)'
+        ),
+        anchor="x",
+        overlaying="y",
+        side="right"
+    ),
+    legend=dict(
+    orientation="h",
+    yanchor="top",
+    y=-0.05,
+    xanchor="left",
+    x=0
+  )
+  )
+  fig.update_layout(
+      title_text=two
+      )
+  st.plotly_chart(fig, use_container_width=True,config=config)
 
 
 def PerpOI():
