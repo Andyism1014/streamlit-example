@@ -7952,7 +7952,7 @@ def picture(l):
     ),
     yaxis2=dict(
         tickfont=dict(
-            color='rgba(120, 120, 120,0.5)'
+            color='rgba(120, 120, 120,1)'
         ),
         anchor="x",
         overlaying="y",
@@ -8056,7 +8056,7 @@ def relattiveLong():
     ),
     yaxis2=dict(
         tickfont=dict(
-            color='rgba(120, 120, 120,0.5)'
+            color='rgba(120, 120, 120,1)'
         ),
         anchor="x",
         overlaying="y",
@@ -8139,7 +8139,7 @@ def PerpOI():
     ),
     yaxis2=dict(
         tickfont=dict(
-            color='rgba(120, 120, 120,0.5)'
+            color='rgba(120, 120, 120,1)'
         ),
         anchor="x",
         overlaying="y",
