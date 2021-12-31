@@ -7903,8 +7903,8 @@ def picture(l):
   fig=go.Figure()
   with st.expander("Edit"):
     slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-    numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
-    pricelog = st.checkbox('Price Log',key=two)
+    numberofData=st.slider("numberofData",min_value=500,max_value=4000, value=3650,step=1,key=two)
+    pricelog = st.checkbox('Price Log',value=True,key=two)
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
   if pricelog:
@@ -8013,8 +8013,8 @@ def relattiveLong():
   fig=go.Figure()
   with st.expander("Edit"):
     slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
-    pricelog = st.checkbox('Price Log')
+    numberofData=st.slider("numberofData",min_value=1000,max_value=5000, value=3650,step=1,key=two)
+    pricelog = st.checkbox('Price Log',value=True,key=two)
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
   if pricelog:
@@ -8076,8 +8076,8 @@ def RealizedCapHODL():
   fig=go.Figure()
   with st.expander("Edit"):
     slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
-    pricelog = st.checkbox('Price Log',key=two)
+    numberofData=st.slider("numberofData",min_value=1000,max_value=5000, value=3650,step=1,key=two)
+    pricelog = st.checkbox('Price Log',value=True,key=two)
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
   if pricelog:
@@ -8141,8 +8141,8 @@ def PerpOI():
   fig=go.Figure()
   with st.expander("Edit"):
     slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key="PerpOI")
-    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key="PerpOI")
-    pricelog = st.checkbox('Price Log',key="PerpOI")
+    numberofData=st.slider("numberofData",min_value=1000,max_value=5000, value=3650,step=1,key="PerpOI")
+    pricelog = st.checkbox('Price Log',value=True,key="PerpOI")
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
   df4=df4.tail(len(df)).reset_index()
