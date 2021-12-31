@@ -8082,14 +8082,14 @@ def RealizedCapHODL():
   df3=df2.tail(len(df))
   if pricelog:
     df3["v"]=np.log(df3["v"])
-  listy=["o_more_10y","o_7y_10y","o_5y_7y","o_3y_5y","o_2y_3y","o_1y_2y","o_6m_12m","o_3m_6m","o_1m_3m","o_1w_1m","o_1d_1w","o_24h"]
-  listy.reverse()
+  listy=["o_24h","o_1d_1w","o_1w_1m","o_1m_3m","o_3m_6m","o_6m_12m","o_1y_2y","o_2y_3y","o_3y_5y","o_5y_7y","o_7y_10y","o_more_10y"]
+  colorlist=["rgba(158,1,66,255)","rgba(210,90,117,255)","rgba(239,100,69,255)","rgba(251,157,86,255)","rgba(254,206,121,255)","rgba(254,237,154,255)","rgba(245,250,173,255)","rgba(206,237,156,255)","rgba(152,214,164,255)","rgba(152,214,175,255)","rgba(71,186,174,255)","rgba(49,132,188,255)","rgba(94,79,166,255)"]
   for i in listy:
     number=listy.index(i)
     fig.add_trace(go.Scatter(
       x=df["t"],
       y=df[i].rolling(slider).mean(),
-      line=dict(width=0.5),
+      line=dict(width=0.5,color=colorlist[number]),
       name=i,
       stackgroup='one',
       yaxis="y1"
