@@ -7902,7 +7902,7 @@ def picture(l):
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   with st.expander("Edit"):
-    slider=st.number_input("Moving average",min_value=1,max_value=100,step=1,key=two)
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
     numberofData=st.slider("numberofData",min_value=500,max_value=4000, value=3650,step=1,key=two)
     pricelog = st.checkbox('Price Log',value=True,key=two)
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
@@ -8012,7 +8012,7 @@ def relattiveLong():
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   with st.expander("Edit"):
-    slider=st.number_input("Moving average",min_value=1,max_value=100,step=1,key=two)
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
     numberofData=st.slider("numberofData",min_value=1000,max_value=5000, value=3650,step=1,key=two)
     pricelog = st.checkbox('Price Log',value=True,key=two)
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
@@ -8075,7 +8075,7 @@ def RealizedCapHODL():
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   with st.expander("Edit"):
-    slider=st.number_input("Moving average",min_value=1,max_value=100,step=1,key=two)
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
     numberofData=st.slider("numberofData",min_value=1000,max_value=5000, value=3650,step=1,key=two)
     pricelog = st.checkbox('Price Log',value=True,key=two)
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
@@ -8140,7 +8140,7 @@ def PerpOI():
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   with st.expander("Edit"):
-    slider=st.number_input("Moving average",min_value=1,max_value=100,step=1,key="PerpOI")
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key="PerpOI")
     numberofData=st.slider("numberofData",min_value=1000,max_value=5000, value=3650,step=1,key="PerpOI")
     pricelog = st.checkbox('Price Log',value=True,key="PerpOI")
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
