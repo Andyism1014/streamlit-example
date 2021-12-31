@@ -11,7 +11,7 @@ im = Image.open("logo.png")
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide', page_icon=im)  # this needs to be the first Streamlit command
 
 menu_data = [
-    {'icon': "", 'label':"Metrics"},
+    {'icon': "", 'label':"Data Overview"},
     {'icon': "", 'label':"Studio"},
     {'icon': "", 'label':"Beta"},
     {'icon': "", 'label':"Other"},
