@@ -51,8 +51,6 @@ if st.session_state['authentication_status']:
         dashbord2()
 if f"{menu_id}"=="Studio":
     tabletry()
-if f"{menu_id}"=="Beta":
-    picofdata()
 if f"{menu_id}"=="Other":
     set_ETF()
 
