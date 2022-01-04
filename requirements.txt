@@ -4,3 +4,4 @@ pandas
 altair
 streamlit-aggrid
 hydralit_components
+streamlit_authenticator
