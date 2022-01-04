@@ -40,11 +40,10 @@ if f"{menu_id}"=="Home":
     name, authentication_status = authenticator.login('Login','main')
     if st.session_state['authentication_status']:
         st.header('Welcome *%s*' % (name))
-if f"{menu_id}"=="Portfolio":
-    if st.session_state['authentication_status']:
+if st.session_state['authentication_status']:
+    if f"{menu_id}"=="Portfolio":
         set_Portfolio()
-if f"{menu_id}"=="Data Overview":
-    if st.session_state['authentication_status']:
+    if f"{menu_id}"=="Data Overview":
         dashbord2()
 if f"{menu_id}"=="Studio":
     tabletry()
