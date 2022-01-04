@@ -40,6 +40,10 @@ if f"{menu_id}"=="Home":
     name, authentication_status = authenticator.login('Login','main')
     if st.session_state['authentication_status']:
         st.header('Welcome *%s*' % (name))
+    elif st.session_state['authentication_status'] == False:
+        st.error('Username/password is incorrect')
+    elif st.session_state['authentication_status'] == None:
+        st.warning('Please enter your username and password')
 if st.session_state['authentication_status']:
     if f"{menu_id}"=="Portfolio":
         set_Portfolio()
@@ -50,8 +54,7 @@ if f"{menu_id}"=="Studio":
 if f"{menu_id}"=="Beta":
     PerpOI()
 if f"{menu_id}"=="Other":
-    if st.session_state['authentication_status']:
-        set_ETF()
+    set_ETF()
 
 
 
