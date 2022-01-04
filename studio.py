@@ -7721,101 +7721,59 @@ def addtreace(l,fig,axis):
         yaxis="y"+str(axis)
       ))
 
-def layoutupdate(fig):
+@st.experimental_memo
+def layoutupdate(fig,title):
   fig.update_layout(
-    yaxis=dict(
-        titlefont=dict(
-            color="#1f77b4"
-        ),
+     yaxis=dict(
         tickfont=dict(
             color="#1f77b4"
         )
     ),
     yaxis3=dict(
         tickfont=dict(
-            color="#ff7f0e"
+            color='#29a329'
         ),
         anchor="free",
         overlaying="y",
         side="left",
-        position=0.05
+        position=0.025
     ),
     yaxis2=dict(
-        titlefont=dict(
-            color="#d62728"
-        ),
         tickfont=dict(
-            color="#d62728"
+            color='rgba(120, 120, 120,1)'
         ),
         anchor="x",
         overlaying="y",
         side="right"
     ),
-    yaxis4=dict(
-        titlefont=dict(
-            color="#9467bd"
-        ),
-        tickfont=dict(
-            color="#9467bd"
-        ),
-        anchor="free",
-        overlaying="y",
-        side="right",
-        position=0.95
-    ),
-      legend=dict(
-            orientation="h",
-            yanchor="bottom",
-            y=1.02,
-            xanchor="left",
-            x=0
-        )
+    legend=dict(
+    orientation="h",
+    yanchor="top",
+    y=-0.05,
+    xanchor="left",
+    x=0
   )
+  )
+  fig.update_layout(
+      title_text=title
+      )
 
 listofobject=[]
 
 listofgg=[
-  [
-    "Active Entities",
-    "BTC",
-    "/v1/metrics/entities/active_count",
-    "24h",
-    "NATIVE"
+  ["Realized Cap HODL Waves ","BTC","/v1/metrics/supply/rcap_hodl_waves","24h","NATIVE"],
+  ["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"],
+  ["Active Entities","BTC","/v1/metrics/entities/active_count","24h","NATIVE"
   ],
-  [
-    "Total Transfer Volume by Size (Entity-Adjusted)",
-    "BTC",
-    "/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum",
-    "24h",
-    "USD"
+  ["Total Transfer Volume by Size (Entity-Adjusted)","BTC","/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum","24h","USD"
   ],
-  [
-    "Relative Transfer Volume by Size (Entity-Adjusted)",
-    "BTC",
-    "/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_relative",
-    "24h",
-    "USD"
+  ["Relative Transfer Volume by Size (Entity-Adjusted)","BTC","/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_relative","24h","USD"
   ],
-  [
-    "Futures Open Interest Perpetual",
-    "BTC",
-    "/v1/metrics/derivatives/futures_open_interest_perpetual_sum",
-    "24h",
-    "NATIVE"
+  ["Futures Open Interest Perpetual","BTC","/v1/metrics/derivatives/futures_open_interest_perpetual_sum","24h","NATIVE"
   ],
-  [
-    "Futures Open Interest",
-    "BTC",
-    "/v1/metrics/derivatives/futures_open_interest_sum",
-    "24h",
-    "NATIVE"
+  ["Futures Open Interest","BTC","/v1/metrics/derivatives/futures_open_interest_sum","24h","NATIVE"
   ],
-  [
-    "Number of Whales",
-    "BTC",
-    "/v1/metrics/entities/min_1k_count",
-    "24h",
-    "NATIVE"
+  ["Number of Whales","BTC","/v1/metrics/entities/min_1k_count","24h","NATIVE"
   ],
   [
     "Supply Held by Entities with Balance 1k - 10k",
@@ -7882,9 +7840,7 @@ def dashbord2():
   col1, col2= st.columns(2)
   with col1:
     PerpOI()
-    RealizedCapHODL()
   with col2:
-    relattiveLong()
     messari()
   for i in listofgg:
     if listofgg.index(i)%2!=0:
@@ -7897,72 +7853,96 @@ def dashbord2():
 
 config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawline','drawopenpath', 'drawrect','eraseshape'],}
 
-def picture(l):
+
+@st.experimental_memo(ttl=60*60*24)
+def addpriceline(fig,df,pricelog):
   df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
-  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
-  fig=go.Figure()
-  with st.expander("Edit"):
-    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-    numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
-    pricelog = st.checkbox('Price Log',value=True,key=two)
-  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df3=df2.tail(len(df))
+  name="Price"
   if pricelog:
     df3["v"]=np.log(df3["v"])
-  listy=df.columns[1:].tolist()
+    name="Log Price"
+  fig.add_trace(go.Scatter(
+      x=df3["t"],
+      y=df3["v"],
+      name=name,
+      line=dict(color='rgba(120, 120, 120,0.5)'
+                              ),
+      yaxis="y2"
+    ))
+
+glistdic={
+  "Stablecoin Supply Ratio (SSR)":["o_v"],
+  "Relative Transfer Volume by Size (Entity-Adjusted)":['o_vol_10m_plus','o_vol_1m_to_10m','o_vol_100k_to_1m','o_vol_10k_to_100k','o_vol_1k_to_10k','o_vol_0_to_1k'],
+  "Total Transfer Volume by Size (Entity-Adjusted)":['o_vol_10m_plus','o_vol_1m_to_10m','o_vol_100k_to_1m','o_vol_10k_to_100k','o_vol_1k_to_10k','o_vol_0_to_1k'],
+  "Relative Long/Short-Term Holder Supply":["o_lth_profit","o_lth_loss","o_sth_loss","o_sth_profit"],
+  "Realized Cap HODL Waves ":["o_24h","o_1d_1w","o_1w_1m","o_1m_3m","o_3m_6m","o_6m_12m","o_1y_2y","o_2y_3y","o_3y_5y","o_5y_7y","o_7y_10y","o_more_10y"]
+  }
+
+colorlist={
+  "o_vol_0_to_1k":"#ff4b5f",
+  "o_vol_1k_to_10k":"#ff9127",
+  "o_vol_10k_to_100k":"#ffd300",
+  "o_vol_100k_to_1m":"#a2ff38",
+  "o_vol_1m_to_10m":"#00e376",
+  "o_vol_10m_plus":"#00cfba",
+  'o_1d_1w': 'rgba(210,90,117,255)',
+  'o_1m_3m': 'rgba(251,157,86,255)',
+  'o_1w_1m': 'rgba(239,100,69,255)',
+  'o_1y_2y': 'rgba(245,250,173,255)',
+  'o_24h': 'rgba(158,1,66,255)',
+  'o_2y_3y': 'rgba(206,237,156,255)',
+  'o_3m_6m': 'rgba(254,206,121,255)',
+  'o_3y_5y': 'rgba(152,214,164,255)',
+  'o_5y_7y': 'rgba(152,214,175,255)',
+  'o_6m_12m': 'rgba(254,237,154,255)',
+  'o_7y_10y': 'rgba(71,186,174,255)',
+  'o_more_10y': 'rgba(49,132,188,255)',
+  'o_lth_loss': '#4F92F6',
+  'o_lth_profit': '#004AFF',
+  'o_sth_loss': '#F75F5F',
+  'o_sth_profit': '#FF0000'
+ }
+
+def elementcheck(df,two):
+  l=df.columns[1:].tolist()
+  if len(l)==1:
+    return l
+  else:
+    l=glistdic[two]
+    return l
+
+def addtrace(df,listy,fig,slider,name,axis):
   if len(listy)==1:
     fig.add_trace(go.Scatter(
       x=df["t"],
-      y=df["v"].rolling(slider).mean(),
-      name=two,
-      yaxis="y1"
+      y=df[listy[0]].rolling(slider).mean(),
+      name=name,
+      yaxis="y"+str(axis)
     ))
   else:
     for i in listy:
       fig.add_trace(go.Scatter(
         x=df["t"],
         y=df[i].rolling(slider).mean(),
-        line=dict(width=0.5),
+        line=dict(width=0.5,color=colorlist[i]),
         name=i,
         stackgroup='one',
         yaxis="y1"
       ))
-  fig.add_trace(go.Scatter(
-      x=df3["t"],
-      y=df3["v"],
-      name="Price",
-      line=dict(color='rgba(120, 120, 120,0.5)'
-                              ),
-      yaxis="y2"
-    ))
-  fig.update_layout(
-    yaxis=dict(
-        titlefont=dict(
-            color="#1f77b4"
-        ),
-        tickfont=dict(
-            color="#1f77b4"
-        )
-    ),
-    yaxis2=dict(
-        tickfont=dict(
-            color='rgba(120, 120, 120,1)'
-        ),
-        anchor="x",
-        overlaying="y",
-        side="right"
-    ),
-    legend=dict(
-    orientation="h",
-    yanchor="top",
-    y=-0.05,
-    xanchor="left",
-    x=0
-  )
-  )
-  fig.update_layout(
-      title_text=two
-      )
+
+def picture(l):
+  fig=go.Figure()
+  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  with st.expander("Edit"):
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two,value=14)
+    numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
+    pricelog = st.checkbox('Price Log',value=True,key=two)
+  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+  listy=elementcheck(df,two)
+  addtrace(df,listy,fig,slider,two,1)
+  addpriceline(fig,df,pricelog)
+  layoutupdate(fig,two)
   st.plotly_chart(fig, use_container_width=True,config=config)
 
 @st.experimental_memo(ttl=60*60*24)
@@ -8006,163 +7986,25 @@ def messari():
   st.plotly_chart(fig, use_container_width=True,config=config)
 
 
-def relattiveLong():
-  l=["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"]
-  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
-  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
-  fig=go.Figure()
-  with st.expander("Edit"):
-    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
-    pricelog = st.checkbox('Price Log',value=True,key=two)
-  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
-  df3=df2.tail(len(df))
-  if pricelog:
-    df3["v"]=np.log(df3["v"])
-  listy=["o_lth_profit","o_lth_loss","o_sth_loss","o_sth_profit"]
-  colorlist=['#004AFF',"#4F92F6","#F75F5F","#FF0000"]
-  for i in listy:
-    number=listy.index(i)
-    fig.add_trace(go.Scatter(
-      x=df["t"],
-      y=df[i].rolling(slider).mean(),
-      line=dict(width=0.5,color=colorlist[number]),
-      name=i,
-      stackgroup='one',
-      yaxis="y1"
-    ))
-  fig.add_trace(go.Scatter(
-      x=df3["t"],
-      y=df3["v"],
-      name="Price",
-      line=dict(color='rgba(120, 120, 120,0.5)'
-                              ),
-      yaxis="y2"
-    ))
-  fig.update_layout(
-    yaxis=dict(
-        titlefont=dict(
-            color="#1f77b4"
-        ),
-        tickfont=dict(
-            color="#1f77b4"
-        )
-    ),
-    yaxis2=dict(
-        tickfont=dict(
-            color='rgba(120, 120, 120,1)'
-        ),
-        anchor="x",
-        overlaying="y",
-        side="right"
-    ),
-    legend=dict(
-    orientation="h",
-    yanchor="top",
-    y=-0.05,
-    xanchor="left",
-    x=0
-  )
-  )
-  fig.update_layout(
-      title_text=two
-      )
-  st.plotly_chart(fig, use_container_width=True,config=config)
-
-def RealizedCapHODL():
-  l=  ["Realized Cap HODL Waves ","BTC","/v1/metrics/supply/rcap_hodl_waves","24h","NATIVE"]
-  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
-  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
-  fig=go.Figure()
-  with st.expander("Edit"):
-    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two)
-    numberofData=st.slider("numberofData",min_value=1000,max_value=5000,step=1,key=two)
-    pricelog = st.checkbox('Price Log',value=True,key=two)
-  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
-  df3=df2.tail(len(df))
-  if pricelog:
-    df3["v"]=np.log(df3["v"])
-  listy=["o_24h","o_1d_1w","o_1w_1m","o_1m_3m","o_3m_6m","o_6m_12m","o_1y_2y","o_2y_3y","o_3y_5y","o_5y_7y","o_7y_10y","o_more_10y"]
-  colorlist=["rgba(158,1,66,255)","rgba(210,90,117,255)","rgba(239,100,69,255)","rgba(251,157,86,255)","rgba(254,206,121,255)","rgba(254,237,154,255)","rgba(245,250,173,255)","rgba(206,237,156,255)","rgba(152,214,164,255)","rgba(152,214,175,255)","rgba(71,186,174,255)","rgba(49,132,188,255)","rgba(94,79,166,255)"]
-  for i in listy:
-    number=listy.index(i)
-    fig.add_trace(go.Scatter(
-      x=df["t"],
-      y=df[i].rolling(slider).mean(),
-      line=dict(width=0.5,color=colorlist[number]),
-      name=i,
-      stackgroup='one',
-      yaxis="y1"
-    ))
-  fig.add_trace(go.Scatter(
-      x=df3["t"],
-      y=df3["v"],
-      name="Price",
-      line=dict(color='rgba(120, 120, 120,0.5)'
-                              ),
-      yaxis="y2"
-    ))
-  fig.update_layout(
-    yaxis=dict(
-        titlefont=dict(
-            color="#1f77b4"
-        ),
-        tickfont=dict(
-            color="#1f77b4"
-        )
-    ),
-    yaxis2=dict(
-        tickfont=dict(
-            color='rgba(120, 120, 120,1)'
-        ),
-        anchor="x",
-        overlaying="y",
-        side="right"
-    ),
-    legend=dict(
-    orientation="h",
-    yanchor="top",
-    y=-0.05,
-    xanchor="left",
-    x=0
-  )
-  )
-  fig.update_layout(
-      title_text=two
-      )
-  st.plotly_chart(fig, use_container_width=True,config=config)
-
 
 def PerpOI():
   l=[ "Futures Open Interest Perpetual", "BTC", "/v1/metrics/derivatives/futures_open_interest_perpetual_sum", "24h", "USD"]
   df4=get_g("BTC","/v1/metrics/market/marketcap_usd","24h","NATIVE")
-  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   with st.expander("Edit"):
     slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key="PerpOI")
-    numberofData=st.slider("numberofData",min_value=1000,max_value=5000, step=1,key="PerpOI")
+    numberofData=st.slider("numberofData",min_value=500,max_value=5000, step=1,key="PerpOI")
     pricelog = st.checkbox('Price Log',value=True,key="PerpOI")
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
-  df3=df2.tail(len(df))
   df4=df4.tail(len(df)).reset_index()
   df4["v"]=100*df["v"]/df4["v"]
-  if pricelog:
-    df3["v"]=np.log(df3["v"])
   fig.add_trace(go.Scatter(
     x=df["t"],
     y=df["v"].rolling(slider).mean(),
     name=two,
     yaxis="y1"
   ))
-  fig.add_trace(go.Scatter(
-      x=df3["t"],
-      y=df3["v"],
-      name="Price",
-      line=dict(color='rgba(120, 120, 120,0.5)'
-                              ),
-      yaxis="y2"
-    ))
   fig.add_trace(go.Scatter(
     x=df4["t"],
     y=df4["v"].rolling(slider).mean(),
@@ -8178,38 +8020,8 @@ def PerpOI():
                 xref='x',
                 yref='y3'
  )
-  fig.update_layout(
-     yaxis=dict(
-        tickfont=dict(
-            color="#1f77b4"
-        )
-    ),
-    yaxis3=dict(
-        tickfont=dict(
-            color='#29a329'
-        ),
-        anchor="free",
-        overlaying="y",
-        side="left",
-        position=0.025
-    ),
-    yaxis2=dict(
-        tickfont=dict(
-            color='rgba(120, 120, 120,1)'
-        ),
-        anchor="x",
-        overlaying="y",
-        side="right"
-    ),
-    legend=dict(
-    orientation="h",
-    yanchor="top",
-    y=-0.05,
-    xanchor="left",
-    x=0
-  )
-  )
-  fig.update_layout(
-      title_text="Perp OI / Market Cap"
-      )
+  addpriceline(fig,df,pricelog)
+  layoutupdate(fig,"Perp OI / Market Cap")
   st.plotly_chart(fig, use_container_width=True,config=config)
+
+

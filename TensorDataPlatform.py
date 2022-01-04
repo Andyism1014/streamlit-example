@@ -52,7 +52,7 @@ if st.session_state['authentication_status']:
 if f"{menu_id}"=="Studio":
     tabletry()
 if f"{menu_id}"=="Beta":
-    PerpOI()
+    picofdata()
 if f"{menu_id}"=="Other":
     set_ETF()
 
