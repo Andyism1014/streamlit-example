@@ -7696,31 +7696,6 @@ Messarimetric={'1 Day Active Supply': {'description': 'The sum of unique native 
   'name': 'Withdrawals from Exchanges - Inclusive (Native Units)',
   'values_schema': {'flow_out': 'The amount of the asset withdrawn from exchanges that interval, including exchange to exchange activity.'}}}
 
-def addtreace(l,fig,axis):
-  two,symbol,addresses,intervel,currency,numberOfData,MovingAverag=l[0],l[1],l[2],l[3],l[4],l[5],l[6]
-  df=get_g(symbol,addresses,intervel,currency,numberOfData)
-  listy=df.columns[1:].tolist()
-  if MovingAverag>0:
-    for i in listy:
-      df[i]=df[i].rolling(MovingAverag).mean()
-  if len(listy)==1:
-    fig.add_trace(go.Scatter(
-      x=df["t"],
-      y=df["v"],
-      name=two,
-      yaxis="y"+str(axis)
-    ))
-  else:
-    for i in listy:
-      fig.add_trace(go.Scatter(
-        x=df["t"],
-        y=df[i],
-        line=dict(width=0.5),
-        name=i,
-        stackgroup='one',
-        yaxis="y"+str(axis)
-      ))
-
 @st.experimental_memo
 def layoutupdate(fig,title):
   fig.update_layout(
@@ -7904,6 +7879,7 @@ colorlist={
   'o_sth_profit': '#FF0000'
  }
 
+@st.experimental_memo
 def elementcheck(df,two):
   l=df.columns[1:].tolist()
   if len(l)==1:
@@ -7911,6 +7887,7 @@ def elementcheck(df,two):
   else:
     l=glistdic[two]
     return l
+
 
 def addtrace(df,listy,fig,slider,name,axis):
   if len(listy)==1:
@@ -7930,6 +7907,7 @@ def addtrace(df,listy,fig,slider,name,axis):
         stackgroup='one',
         yaxis="y1"
       ))
+
 
 def picture(l):
   fig=go.Figure()
@@ -7984,8 +7962,6 @@ def messari():
    )
   )
   st.plotly_chart(fig, use_container_width=True,config=config)
-
-
 
 def PerpOI():
   l=[ "Futures Open Interest Perpetual", "BTC", "/v1/metrics/derivatives/futures_open_interest_perpetual_sum", "24h", "USD"]
