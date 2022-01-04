@@ -33,11 +33,12 @@ menu_id = hc.nav_bar(
     sticky_mode='pinned', #jumpy or not-jumpy, but sticky or pinned
 )
 
+authenticator = stauth.authenticate(names,usernames,hashed_passwords,
+    'some_cookie_name','some_signature_key',cookie_expiry_days=30)
+name, authentication_status = authenticator.login('Login','main')
+
 
 if f"{menu_id}"=="Home":
-    authenticator = stauth.authenticate(names,usernames,hashed_passwords,
-        'some_cookie_name','some_signature_key',cookie_expiry_days=30)
-    name, authentication_status = authenticator.login('Login','main')
     if st.session_state['authentication_status']:
         st.header('Welcome *%s*' % (name))
 if f"{menu_id}"=="Portfolio":
