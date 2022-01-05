@@ -7696,6 +7696,28 @@ Messarimetric={'1 Day Active Supply': {'description': 'The sum of unique native 
   'name': 'Withdrawals from Exchanges - Inclusive (Native Units)',
   'values_schema': {'flow_out': 'The amount of the asset withdrawn from exchanges that interval, including exchange to exchange activity.'}}}
 
+updatemenus = [
+    dict(
+        type="dropdown",
+        direction="down",
+        yanchor="bottom",
+        y=1.05,
+        xanchor="right",
+        x=0.985,
+        buttons=list([
+            dict(
+                args=[{'yaxis2.type': 'linear'}],
+                label="Linear Scale",
+                method="relayout"
+            ),
+            dict(
+                args=[{'yaxis2.type': 'log'}],
+                label="Log Scale",
+                method="relayout"
+            )
+        ])
+    ),]
+  
 @st.experimental_memo
 def layoutupdate(fig,title,symbol):
   fig.update_layout(
@@ -7732,6 +7754,31 @@ def layoutupdate(fig,title,symbol):
   fig.update_layout(
       title_text=symbol+" "+title
       )
+  fig.update_layout(
+        updatemenus=updatemenus
+    )
+  fig.update_layout(
+    xaxis=dict(
+        rangeselector=dict(
+            buttons=list([
+                dict(count=6,
+                     label="6m",
+                     step="month",
+                     stepmode="backward"),
+                dict(count=1,
+                     label="1y",
+                     step="year",
+                     stepmode="backward"),
+                dict(count=3,
+                     label="3y",
+                     step="year",
+                     stepmode="backward"),
+                dict(step="all")
+            ])
+        ),
+        type="date"
+    ))
+  
 
 listofobject=[]
 
@@ -7942,13 +7989,10 @@ config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", 
 
 
 @st.experimental_memo(ttl=60*60*24)
-def addpriceline(symbol,fig,df,pricelog):
+def addpriceline(symbol,fig,df):
   df2=get_g(symbol,"/v1/metrics/market/price_usd_close","24h","NATIVE")
   df3=df2.tail(len(df))
   name="Price"
-  if pricelog:
-    df3["v"]=np.log(df3["v"])
-    name="Log Price"
   fig.add_trace(go.Scatter(
       x=df3["t"],
       y=df3["v"],
@@ -8032,14 +8076,11 @@ def picture(l):
     PerpOI(symbol)
   else:
     fig=go.Figure()
-    with st.expander("Edit"):
-      slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=symbol+two,value=14)
-      numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=symbol+two)
-      pricelog = st.checkbox('Price Log',value=True,key=symbol+two)
-    df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+    slider=14
+    df=get_g(symbol, addresses, intervel, currency)
     listy=elementcheck(df,two)
     addtrace(df,listy,fig,slider,two,1,symbol)
-    addpriceline(symbol,fig,df,pricelog)
+    addpriceline(symbol,fig,df)
     layoutupdate(fig,two,symbol)
     st.plotly_chart(fig, use_container_width=True,config=config)
 
@@ -8116,7 +8157,7 @@ def PerpOI(sym):
                 xref='x',
                 yref='y3'
  )
-  addpriceline(symbol,fig,df,pricelog)
+  addpriceline(symbol,fig,df)
   layoutupdate(fig,"Perp OI / Market Cap",symbol)
   st.plotly_chart(fig, use_container_width=True,config=config)
 
