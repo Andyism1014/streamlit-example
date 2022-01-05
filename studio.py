@@ -7952,7 +7952,7 @@ def fenlei(listofgg):
         picture(i)
 
 def dashbord2():
-  st.write('<style>div.Widget.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+  st.write("div.row-widget.stRadio > div{flex-direction:row;}", unsafe_allow_html=True)
   zhoubao=st.radio("",["市场交易结构分析","资金流与趋势分析"])
   if zhoubao=="市场交易结构分析":
     subpage1=st.radio("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者"])
