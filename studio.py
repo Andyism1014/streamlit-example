@@ -6478,7 +6478,6 @@ Gdetail={'/v1/metrics/addresses/accumulation_balance': {'assets': ['BTC'],
   'resolutions': ['1h', '24h', '10m']}}
 
 
-
 Messarimetric={'1 Day Active Supply': {'description': 'The sum of unique native units that transacted at least once in the trailing 1 days up to the end of that interval. Native units that transacted more than once are only counted once.',
   'metric_id': 'sply.act.1d',
   'minimum_interval': '1d',
@@ -7718,13 +7717,12 @@ updatemenus = [
         ])
     ),]
   
-@st.experimental_memo
+@st.experimental_memo(ttl=60*60*12)
 def layoutupdate(fig,title,symbol):
-  today=datetime.today().strftime('%Y-%m-%d')
-  range=["2020-07-01",today]
   fig.update_layout(
-     xaxis_range=range,
-     yaxis=dict(
+     yaxis=dict( 
+        autorange =  True,
+        fixedrange = False,
         tickfont=dict(
             color="#1f77b4"
         )
@@ -7739,6 +7737,8 @@ def layoutupdate(fig,title,symbol):
         position=0.025
     ),
     yaxis2=dict(
+        autorange = True,
+        fixedrange = False,
         tickfont=dict(
             color='rgba(120, 120, 120,1)'
         ),
@@ -7760,27 +7760,6 @@ def layoutupdate(fig,title,symbol):
   fig.update_layout(
         updatemenus=updatemenus
     )
-  fig.update_layout(
-    xaxis=dict(
-        rangeselector=dict(
-            buttons=list([
-                dict(count=6,
-                     label="6m",
-                     step="month",
-                     stepmode="backward"),
-                dict(count=1,
-                     label="1y",
-                     step="year",
-                     stepmode="backward"),
-                dict(count=3,
-                     label="3y",
-                     step="year",
-                     stepmode="backward"),
-                dict(step="all")
-            ])
-        ),
-        type="date"
-    ))
   
 
 listofobject=[]
@@ -7865,7 +7844,6 @@ aboutmarket=[
  
 
 
-
 aboutderiva=[
   [
     "Futures Open Interest Perpetual",
@@ -7946,7 +7924,7 @@ aboutderiva=[
  ]
 ]
 
-
+st.write('<style>div.Widget.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 
 def tabletry():
   col1, col2= st.columns(2)
@@ -7974,18 +7952,29 @@ def fenlei(listofgg):
         picture(i)
 
 def dashbord2():
-  st.header("市场交易结构分析")
-  st.subheader("市场交易活跃度与交易量")
-  fenlei(aboutmarket[0:3])
-  st.subheader("交易所余额")
-  fenlei(aboutmarket[3:11])
-  st.subheader("BTC 长期持有者")
-  fenlei(aboutmarket[-2:])
-  st.header("资金流与趋势分析")
-  st.subheader("衍生品期货合约")
-  fenlei(aboutderiva[0:8])
-  st.subheader("稳定币")
-  fenlei(aboutderiva[-3:])
+  zhoubao=st.radio("",["市场交易结构分析","资金流与趋势分析"])
+  if zhoubao=="市场交易结构分析":
+    subpage1=st.radio("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者"])
+    if subpage1=="市场交易活跃度与交易量":
+        st.subheader("市场交易活跃度与交易量")
+        fenlei(aboutmarket[0:3])
+    elif subpage1=="交易所余额":
+        st.subheader("交易所余额")
+        fenlei(aboutmarket[3:11])
+    elif subpage1=="BTC 长期持有者":
+        st.subheader("BTC 长期持有者")
+        fenlei(aboutmarket[-2:])
+  if zhoubao=="资金流与趋势分析":
+    subpage2=st.radio("",["衍生品期货合约","稳定币"])
+    if subpage2=="衍生品期货合约":
+        st.subheader("衍生品期货合约")
+        fenlei(aboutderiva[0:8])
+    elif subpage2=="稳定币":
+        st.subheader("稳定币")
+        fenlei(aboutderiva[-3:])
+
+    
+
 
 
 config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawline','drawopenpath', 'drawrect','eraseshape'],}
@@ -8072,6 +8061,8 @@ def addtrace(df,listy,fig,slider,name,axis,symbol):
         yaxis="y1"
       ))
 
+timeperiod=["6m","1y","3y","all"]
+timeconvertor={"6m":180,"1y":365,"3y":900,"all":4380}
 
 def picture(l):
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
@@ -8079,10 +8070,12 @@ def picture(l):
     PerpOI(symbol)
   else:
     fig=go.Figure()
-    slider=14
-    df=get_g(symbol, addresses, intervel, currency)
+    with st.expander("Setting"):
+      slider=st.number_input("MovingAverage",min_value=1,max_value=100,step=1,value=14,key=symbol+two)
+      numberofdata=st.selectbox("Timeperiod",timeperiod,key=symbol+two)
+    df=get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata])
     listy=elementcheck(df,two)
-    addtrace(df,listy,fig,slider,two,1,symbol)
+    addtrace(df,listy,fig,int(slider),two,1,symbol)
     addpriceline(symbol,fig,df)
     layoutupdate(fig,two,symbol)
     st.plotly_chart(fig, use_container_width=True,config=config)
