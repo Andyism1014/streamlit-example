@@ -7720,7 +7720,10 @@ updatemenus = [
   
 @st.experimental_memo
 def layoutupdate(fig,title,symbol):
+  today=datetime.today().strftime('%Y-%m-%d')
+  range=["2020-07-01",today]
   fig.update_layout(
+     xaxis_range=range,
      yaxis=dict(
         tickfont=dict(
             color="#1f77b4"
