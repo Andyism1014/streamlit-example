@@ -7924,7 +7924,7 @@ aboutderiva=[
  ]
 ]
 
-st.write('<style>div.Widget.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
+
 
 def tabletry():
   col1, col2= st.columns(2)
@@ -7953,6 +7953,7 @@ def fenlei(listofgg):
 
 def dashbord2():
   zhoubao=st.radio("",["市场交易结构分析","资金流与趋势分析"])
+  st.write('<style>div.Widget.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
   if zhoubao=="市场交易结构分析":
     subpage1=st.radio("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者"])
     if subpage1=="市场交易活跃度与交易量":
