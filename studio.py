@@ -8048,7 +8048,7 @@ def elementcheck(df,two):
     l=glistdic[two]
     return l
 
-@st.experimental_memo(ttl=60*60*12)
+
 def addtrace(df,listy,fig,slider,name,axis,symbol):
   if len(listy)==1:
     fig.add_trace(go.Scatter(
