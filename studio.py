@@ -7952,11 +7952,9 @@ def fenlei(listofgg):
         picture(i)
 
 def dashbord2():
-  st.write('<style>div.row-widget.stRadio > div{flex-direction:row;} </style>', unsafe_allow_html=True)
-  st.write('<style>div.st-bf{flex-direction:column;} div.st-ag{font-weight:bold;padding-left:2px;}</style>', unsafe_allow_html=True)
-  zhoubao=st.radio("",["市场交易结构分析","资金流与趋势分析"])
+  zhoubao=st.selectbox("",["市场交易结构分析","资金流与趋势分析"])
   if zhoubao=="市场交易结构分析":
-    subpage1=st.radio("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者"])
+    subpage1=st.selectbox("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者"])
     if subpage1=="市场交易活跃度与交易量":
         st.subheader("市场交易活跃度与交易量")
         fenlei(aboutmarket[0:3])
@@ -7967,7 +7965,7 @@ def dashbord2():
         st.subheader("BTC 长期持有者")
         fenlei(aboutmarket[-2:])
   if zhoubao=="资金流与趋势分析":
-    subpage2=st.radio("",["衍生品期货合约","稳定币"])
+    subpage2=st.selectbox("",["衍生品期货合约","稳定币"])
     if subpage2=="衍生品期货合约":
         st.subheader("衍生品期货合约")
         fenlei(aboutderiva[0:8])
