@@ -9,7 +9,7 @@ from streamlit.proto.Button_pb2 import Button
 from datetime import datetime
 import numpy as np
 
-@st.experimental_memo(ttl=60*60*24)
+@st.experimental_memo(ttl=60*60*12)
 def get_g(symbol,addresses,intervel,currency):
   API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
   res = requests.get("https://api.glassnode.com"+addresses,
@@ -7988,7 +7988,7 @@ def dashbord2():
 config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawline','drawopenpath', 'drawrect','eraseshape'],}
 
 
-@st.experimental_memo(ttl=60*60*24)
+@st.experimental_memo(ttl=60*60*12)
 def addpriceline(symbol,fig,df):
   df2=get_g(symbol,"/v1/metrics/market/price_usd_close","24h","NATIVE")
   df3=df2.tail(len(df))
@@ -8048,7 +8048,7 @@ def elementcheck(df,two):
     l=glistdic[two]
     return l
 
-
+@st.experimental_memo(ttl=60*60*12)
 def addtrace(df,listy,fig,slider,name,axis,symbol):
   if len(listy)==1:
     fig.add_trace(go.Scatter(
@@ -8129,11 +8129,8 @@ def PerpOI(sym):
   df4=get_g(sym,"/v1/metrics/market/marketcap_usd","24h","NATIVE")
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
-  with st.expander("Edit"):
-    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=symbol+"PerpOI")
-    numberofData=st.slider("numberofData",min_value=500,max_value=5000, step=1,key=symbol+"PerpOI")
-    pricelog = st.checkbox('Price Log',value=True,key=symbol+"PerpOI")
-  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+  slider=14
+  df=get_g(symbol, addresses, intervel, currency)
   df4=df4.tail(len(df)).reset_index()
   df4["v"]=100*df["v"]/df4["v"]
   fig.add_trace(go.Scatter(
