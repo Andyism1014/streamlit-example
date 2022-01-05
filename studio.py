@@ -7697,7 +7697,7 @@ Messarimetric={'1 Day Active Supply': {'description': 'The sum of unique native 
   'values_schema': {'flow_out': 'The amount of the asset withdrawn from exchanges that interval, including exchange to exchange activity.'}}}
 
 @st.experimental_memo
-def layoutupdate(fig,title):
+def layoutupdate(fig,title,symbol):
   fig.update_layout(
      yaxis=dict(
         tickfont=dict(
@@ -7730,23 +7730,40 @@ def layoutupdate(fig,title):
   )
   )
   fig.update_layout(
-      title_text=title
+      title_text=symbol+" "+title
       )
 
 listofobject=[]
 
-listofgg=[
-  ["Realized Cap HODL Waves ","BTC","/v1/metrics/supply/rcap_hodl_waves","24h","NATIVE"],
-  ["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"],
-  ["Active Entities","BTC","/v1/metrics/entities/active_count","24h","NATIVE"
+
+aboutmarket=[
+  [
+    "Active Addresses",
+    "BTC",
+    "/v1/metrics/addresses/active_count",
+    "24h",
+    "NATIVE"
   ],
-  ["Total Transfer Volume by Size (Entity-Adjusted)","BTC","/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum","24h","USD"
+  [
+    "Gas Price (Median)",
+    "ETH",
+    "/v1/metrics/fees/gas_price_median",
+    "24h",
+    "NATIVE"
   ],
-  ["Relative Transfer Volume by Size (Entity-Adjusted)","BTC","/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_relative","24h","USD"
+  [
+    "Total Transfer Volume by Size (Entity-Adjusted)",
+    "BTC",
+    "/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum",
+    "24h",
+    "USD"
   ],
-  ["Futures Open Interest Perpetual","BTC","/v1/metrics/derivatives/futures_open_interest_perpetual_sum","24h","NATIVE"
-  ],
-  ["Futures Open Interest","BTC","/v1/metrics/derivatives/futures_open_interest_sum","24h","NATIVE"
+  [
+    "Exchange Balance (Total)",
+    "BTC",
+    "/v1/metrics/distribution/balance_exchanges",
+    "24h",
+    "NATIVE"
   ],
   ["Number of Whales","BTC","/v1/metrics/entities/min_1k_count","24h","NATIVE"
   ],
@@ -7765,11 +7782,68 @@ listofgg=[
     "NATIVE"
   ],
   [
-    "Supply Held by Entities with Balance > 100k",
+  "Exchange Balance (Total)",
+  "ETH",
+  "/v1/metrics/distribution/balance_exchanges",
+  "24h",
+  "NATIVE"
+  ],
+  [
+  "Supply Held by Addresses with Balance > 100k",
+  "ETH",
+  "/v1/metrics/addresses/supply_balance_more_100k",
+  "24h",
+  "NATIVE"
+  ],
+  [
+   "Supply Held by Addresses with Balance 1k - 10k",
+   "ETH",
+   "/v1/metrics/addresses/supply_balance_1k_10k",
+   "24h",
+   "NATIVE"
+ ],
+ [
+  "Supply Held by Addresses with Balance 10k - 100k",
+  "ETH",
+  "/v1/metrics/addresses/supply_balance_10k_100k",
+  "24h",
+  "NATIVE"
+ ],
+ ["Realized Cap HODL Waves ","BTC","/v1/metrics/supply/rcap_hodl_waves","24h","NATIVE"],
+ ["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"],
+ ]
+ 
+
+
+
+aboutderiva=[
+  [
+    "Futures Open Interest Perpetual",
     "BTC",
-    "/v1/metrics/entities/supply_balance_more_100k",
+    "/v1/metrics/derivatives/futures_open_interest_perpetual_sum",
     "24h",
-    "NATIVE"
+    "USD"
+  ],
+  [
+    "Futures Volume Perpetual",
+    "BTC",
+    "/v1/metrics/derivatives/futures_volume_daily_perpetual_sum",
+    "24h",
+    "USD"
+  ],
+  [
+    "Futures Open Interest Perpetual",
+    "ETH",
+    "/v1/metrics/derivatives/futures_open_interest_perpetual_sum",
+    "24h",
+    "USD"
+  ],
+  [
+    "Futures Volume Perpetual",
+    "ETH",
+    "/v1/metrics/derivatives/futures_volume_daily_perpetual_sum",
+    "24h",
+    "USD"
   ],
   [
     "Futures Perpetual Funding Rate",
@@ -7785,14 +7859,44 @@ listofgg=[
     "24h",
     "NATIVE"
   ],
-  [
+    [
+    "Perp OI / Market Cap",
+    "BTC",
+    "",
+    "",
+    ""
+  ],
+      [
+    "Perp OI / Market Cap",
+    "ETH",
+    "",
+    "",
+    ""
+  ],
+   [
     "Stablecoin Supply Ratio (SSR)",
     "BTC",
     "/v1/metrics/indicators/ssr",
     "24h",
     "NATIVE"
-  ]
+  ],
+  [
+  "Circulating Supply",
+  "USDC",
+  "/v1/metrics/supply/current",
+  "24h",
+  "USD"
+ ],
+ [
+   "Circulating Supply",
+   "USDT",
+   "/v1/metrics/supply/current",
+   "24h",
+   "USD"
+ ]
 ]
+
+
 
 def tabletry():
   col1, col2= st.columns(2)
@@ -7809,29 +7913,37 @@ def tabletry():
   st.write(listofobject)
   picture(l)
 
-
-
-def dashbord2():
+def fenlei(listofgg):
   col1, col2= st.columns(2)
-  with col1:
-    PerpOI()
-  with col2:
-    messari()
   for i in listofgg:
     if listofgg.index(i)%2!=0:
-      with col1:
-        picture(i)
-    else:
       with col2:
         picture(i)
+    else:
+      with col1:
+        picture(i)
+
+def dashbord2():
+  st.header("市场交易结构分析")
+  st.subheader("市场交易活跃度与交易量")
+  fenlei(aboutmarket[0:3])
+  st.subheader("交易所余额")
+  fenlei(aboutmarket[3:11])
+  st.subheader("BTC 长期持有者")
+  fenlei(aboutmarket[-2:])
+  st.header("资金流与趋势分析")
+  st.subheader("衍生品期货合约")
+  fenlei(aboutderiva[0:8])
+  st.subheader("稳定币")
+  fenlei(aboutderiva[-3:])
 
 
 config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawline','drawopenpath', 'drawrect','eraseshape'],}
 
 
 @st.experimental_memo(ttl=60*60*24)
-def addpriceline(fig,df,pricelog):
-  df2=get_g("BTC","/v1/metrics/market/price_usd_close","24h","NATIVE")
+def addpriceline(symbol,fig,df,pricelog):
+  df2=get_g(symbol,"/v1/metrics/market/price_usd_close","24h","NATIVE")
   df3=df2.tail(len(df))
   name="Price"
   if pricelog:
@@ -7876,7 +7988,11 @@ colorlist={
   'o_lth_loss': '#4F92F6',
   'o_lth_profit': '#004AFF',
   'o_sth_loss': '#F75F5F',
-  'o_sth_profit': '#FF0000'
+  'o_sth_profit': '#FF0000',
+  "BTC":"#f7931a",
+  "ETH":"#647cec",
+  "USDC":"#0362fc",
+  "USDT":"#03fc41"
  }
 
 @st.experimental_memo
@@ -7889,12 +8005,13 @@ def elementcheck(df,two):
     return l
 
 
-def addtrace(df,listy,fig,slider,name,axis):
+def addtrace(df,listy,fig,slider,name,axis,symbol):
   if len(listy)==1:
     fig.add_trace(go.Scatter(
       x=df["t"],
       y=df[listy[0]].rolling(slider).mean(),
       name=name,
+      line=dict(color=colorlist[symbol]),
       yaxis="y"+str(axis)
     ))
   else:
@@ -7910,18 +8027,21 @@ def addtrace(df,listy,fig,slider,name,axis):
 
 
 def picture(l):
-  fig=go.Figure()
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
-  with st.expander("Edit"):
-    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=two,value=14)
-    numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=two)
-    pricelog = st.checkbox('Price Log',value=True,key=two)
-  df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
-  listy=elementcheck(df,two)
-  addtrace(df,listy,fig,slider,two,1)
-  addpriceline(fig,df,pricelog)
-  layoutupdate(fig,two)
-  st.plotly_chart(fig, use_container_width=True,config=config)
+  if two=="Perp OI / Market Cap":
+    PerpOI(symbol)
+  else:
+    fig=go.Figure()
+    with st.expander("Edit"):
+      slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=symbol+two,value=14)
+      numberofData=st.slider("numberofData",min_value=500,max_value=4000,step=1,key=symbol+two)
+      pricelog = st.checkbox('Price Log',value=True,key=symbol+two)
+    df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
+    listy=elementcheck(df,two)
+    addtrace(df,listy,fig,slider,two,1,symbol)
+    addpriceline(symbol,fig,df,pricelog)
+    layoutupdate(fig,two,symbol)
+    st.plotly_chart(fig, use_container_width=True,config=config)
 
 @st.experimental_memo(ttl=60*60*24)
 def messariP(x):
@@ -7963,15 +8083,15 @@ def messari():
   )
   st.plotly_chart(fig, use_container_width=True,config=config)
 
-def PerpOI():
-  l=[ "Futures Open Interest Perpetual", "BTC", "/v1/metrics/derivatives/futures_open_interest_perpetual_sum", "24h", "USD"]
-  df4=get_g("BTC","/v1/metrics/market/marketcap_usd","24h","NATIVE")
+def PerpOI(sym):
+  l=[ "Futures Open Interest Perpetual", sym, "/v1/metrics/derivatives/futures_open_interest_perpetual_sum", "24h", "USD"]
+  df4=get_g(sym,"/v1/metrics/market/marketcap_usd","24h","NATIVE")
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
   with st.expander("Edit"):
-    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key="PerpOI")
-    numberofData=st.slider("numberofData",min_value=500,max_value=5000, step=1,key="PerpOI")
-    pricelog = st.checkbox('Price Log',value=True,key="PerpOI")
+    slider=st.slider("Moving average",min_value=1,max_value=100,step=1,key=symbol+"PerpOI")
+    numberofData=st.slider("numberofData",min_value=500,max_value=5000, step=1,key=symbol+"PerpOI")
+    pricelog = st.checkbox('Price Log',value=True,key=symbol+"PerpOI")
   df=get_g(symbol, addresses, intervel, currency).tail(numberofData)
   df4=df4.tail(len(df)).reset_index()
   df4["v"]=100*df["v"]/df4["v"]
@@ -7996,8 +8116,8 @@ def PerpOI():
                 xref='x',
                 yref='y3'
  )
-  addpriceline(fig,df,pricelog)
-  layoutupdate(fig,"Perp OI / Market Cap")
+  addpriceline(symbol,fig,df,pricelog)
+  layoutupdate(fig,"Perp OI / Market Cap",symbol)
   st.plotly_chart(fig, use_container_width=True,config=config)
 
 
