@@ -3,7 +3,6 @@ import pandas as pd
 import requests
 import streamlit as st
 import streamlit.components.v1 as components
-import os
 from st_aggrid import AgGrid,GridOptionsBuilder,GridUpdateMode, DataReturnMode, JsCode
 from streamlit.proto.Button_pb2 import Button
 from datetime import datetime
@@ -7760,7 +7759,7 @@ def layoutupdate(fig,title,symbol):
   fig.update_layout(
         updatemenus=updatemenus
     )
-  
+
 
 listofobject=[]
 
@@ -7973,7 +7972,9 @@ def dashbord2():
         st.subheader("稳定币")
         fenlei(aboutderiva[-3:])
 
-    
+
+
+        
 
 
 
@@ -8120,24 +8121,26 @@ def messari():
   )
   st.plotly_chart(fig, use_container_width=True,config=config)
 
+
 def PerpOI(sym):
   l=[ "Futures Open Interest Perpetual", sym, "/v1/metrics/derivatives/futures_open_interest_perpetual_sum", "24h", "USD"]
   df4=get_g(sym,"/v1/metrics/market/marketcap_usd","24h","NATIVE")
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   fig=go.Figure()
-  slider=14
-  df=get_g(symbol, addresses, intervel, currency)
+  with st.expander("Setting"):
+    numberofdata=st.selectbox("Timeperiod",timeperiod,key=symbol+"Perp OI / Market Cap")
+  df=get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata]).reset_index()
   df4=df4.tail(len(df)).reset_index()
   df4["v"]=100*df["v"]/df4["v"]
   fig.add_trace(go.Scatter(
     x=df["t"],
-    y=df["v"].rolling(slider).mean(),
+    y=df["v"],
     name=two,
     yaxis="y1"
   ))
   fig.add_trace(go.Scatter(
     x=df4["t"],
-    y=df4["v"].rolling(slider).mean(),
+    y=df4["v"],
     name="Perp OI / Market Cap",
     yaxis="y3"
   ))

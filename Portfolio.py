@@ -318,4 +318,156 @@ def set_Portfolio():
   for i in options:
     set_one(i)
 
-
+somedfsdf="""
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+  <div class="tradingview-widget-container__widget"></div>
+  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text">Financial Markets</span></a> by TradingView</div>
+  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
+  {
+  "colorTheme": "light",
+  "dateRange": "1M",
+  "showChart": true,
+  "locale": "en",
+  "largeChartUrl": "",
+  "isTransparent": false,
+  "showSymbolLogo": false,
+  "showFloatingTooltip": true,
+  "width": "400",
+  "height": "660",
+  "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+  "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+  "gridLineColor": "rgba(42, 46, 57, 0)",
+  "scaleFontColor": "rgba(120, 123, 134, 1)",
+  "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+  "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+  "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+  "tabs": [
+    {
+      "title": "股市",
+      "symbols": [
+        {
+          "s": "OANDA:SPX500USD",
+          "d": "S&P500"
+        },
+        {
+          "s": "EASYMARKETS:NDQUSD",
+          "d": "Nasdaq "
+        },
+        {
+          "s": "OANDA:US2000USD",
+          "d": "RUSELL 2000"
+        },
+        {
+          "s": "EASYMARKETS:DAXEUR",
+          "d": "DAX 40"
+        },
+        {
+          "s": "CURRENCYCOM:UK100",
+          "d": "FTSE100"
+        },
+        {
+          "s": "KRX:KOSPI",
+          "d": "韩国综合股指"
+        },
+        {
+          "s": "SSE:513050",
+          "d": "中概股指数"
+        },
+        {
+          "s": "AMEX:ARKK",
+          "d": "ARKK"
+        },
+        {
+          "s": "AMEX:ARKW",
+          "d": "ARKW"
+        },
+        {
+          "s": "HSI:HSTECH",
+          "d": "恒生科技"
+        }
+      ],
+      "originalTitle": "Indices"
+    },
+    {
+      "title": "大宗商品",
+      "symbols": [
+        {
+          "s": "TVC:GOLD",
+          "d": "Gold"
+        },
+        {
+          "s": "TVC:SILVER",
+          "d": "Silver"
+        },
+        {
+          "s": "TVC:USOIL",
+          "d": "OIL"
+        },
+        {
+          "s": "CURRENCYCOM:COPPER",
+          "d": "COPPER"
+        },
+        {
+          "s": "CURRENCYCOM:NATURALGAS",
+          "d": "Natural Gas"
+        },
+        {
+          "s": "AMEX:GDX",
+          "d": "GDX ETF"
+        },
+        {
+          "s": "AMEX:COPX",
+          "d": "COPX ETF"
+        }
+      ],
+      "originalTitle": "Futures"
+    },
+    {
+      "title": "汇率",
+      "symbols": [
+        {
+          "s": "FX_IDC:USDCNY",
+          "d": "USDCNY"
+        },
+        {
+          "s": "INDEX:DXY",
+          "d": "Dollar index"
+        }
+      ],
+      "originalTitle": "Bonds"
+    },
+    {
+      "title": "利率",
+      "symbols": [
+        {
+          "s": "ECONOMICS:US10Y",
+          "d": "10 Y US Yield"
+        },
+        {
+          "s": "FRED:T10Y2Y",
+          "d": "10Y2Y 利差"
+        },
+        {
+          "s": "FRED:T10YIE",
+          "d": "TIPS 10Y breakeven inflation rate"
+        },
+        {
+          "s": "FRED:T5YIE",
+          "d": "TIPS 5Y breakeven inflation rate"
+        },
+        {
+          "s": "AMEX:TIP",
+          "d": "TIP ETF"
+        }
+      ],
+      "originalTitle": "Forex"
+    }
+  ]
+}
+  </script>
+</div>
+<!-- TradingView Widget END -->
+"""

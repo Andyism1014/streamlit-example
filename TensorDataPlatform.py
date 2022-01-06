@@ -7,7 +7,6 @@ import streamlit_authenticator as stauth
 
 
 st.set_page_config(page_title='Tensor Data Platform',  layout='wide')  # this needs to be the first Streamlit command
-st.write('<style>div.Widget.row-widget.stRadio > div{flex-direction:row;}</style>', unsafe_allow_html=True)
 names = ['Tensorcorp']
 usernames = ['tech@tensorcorp.com']
 passwords = ['12345678']
