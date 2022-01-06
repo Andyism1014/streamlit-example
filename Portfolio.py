@@ -1,5 +1,6 @@
 import altair as alt
 import math
+from altair.vegalite.v4.schema.core import BoxPlotConfig
 import pandas as pd
 import requests
 import streamlit as st
@@ -207,109 +208,12 @@ def set_one(x):
 
 def Marketinformation():
   st.header("Market Information")
-  k1, k2,k3= st.columns([2,1.1,1])
+  k1, k2= st.columns([2,1])
   with k1:
-    components.html("""
-      <!-- TradingView Widget BEGIN -->
-      <div class="tradingview-widget-container">
-        <div id="tradingview_ac961"></div>
-        <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=PHEMEX" rel="noopener" target="_blank"><span class="blue-text">BTC</span></a> by TradingView</div>
-        <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
-        <script type="text/javascript">
-        new TradingView.MediumWidget(
-        {
-        "symbols": [
-          [
-            "BTC",
-            "PHEMEX:BTCUSDT|1M"
-          ],
-          [
-            "ETH",
-            "BINANCE:ETHUSDT|1M"
-          ]
-        ],
-        "chartOnly": false,
-        "width": "100%",
-        "height": 400,
-        "locale": "en",
-        "colorTheme": "light",
-        "gridLineColor": "rgba(42 ,46, 57, 0)",
-        "fontColor": "#787B86",
-        "isTransparent": false,
-        "autosize": false,
-        "showFloatingTooltip": true,
-        "showVolume": false,
-        "scalePosition": "no",
-        "scaleMode": "Normal",
-        "fontFamily": "Trebuchet MS, sans-serif",
-        "noTimeScale": false,
-        "chartType": "area",
-        "lineColor": "#2962FF",
-        "bottomColor": "rgba(41, 98, 255, 0)",
-        "topColor": "rgba(41, 98, 255, 0.3)",
-        "container_id": "tradingview_ac961"
-      }
-        );
-        </script>
-      </div>
-      <!-- TradingView Widget END -->
-        """,
-          height=380)
+    components.html(priceinformation,height=600)
   with k2:
-    components.html("""
-    <!-- TradingView Widget BEGIN -->
-    <div class="tradingview-widget-container">
-      <div class="tradingview-widget-container__widget"></div>
-      <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/indices/" rel="noopener" target="_blank"><span class="blue-text">Indices</span></a> by TradingView</div>
-      <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-      {
-      "colorTheme": "light",
-      "dateRange": "12M",
-      "showChart": false,
-      "locale": "en",
-      "largeChartUrl": "",
-      "isTransparent": false,
-      "showSymbolLogo": false,
-      "showFloatingTooltip": false,
-      "width": "100%",
-      "height": "465",
-      "tabs": [
-        {
-          "title": "Indices",
-          "symbols": [
-            {
-              "s": "FOREXCOM:SPXUSD",
-              "d": "S&P 500"
-            },
-            {
-              "s": "FOREXCOM:NSXUSD",
-              "d": "US 100"
-            },
-            {
-              "s": "FOREXCOM:UKXGBP",
-              "d": "UK 100"
-            },
-            {
-              "s": "BINANCE:BTCUSDT",
-              "d": "BTC"
-            },
-            {
-              "s": "BINANCE:ETHUSDT",
-              "d": "ETH"
-            },
-            {
-              "s": "SSE:000300",
-              "d": "CSI"
-            }
-          ],
-          "originalTitle": "Indices"
-        }
-      ]
-    }
-      </script>
-    </div>
-    <!-- TradingView Widget END -->
-  """,height=380)
+    components.html(TradingViewWidgetoverall,height=600)
+
 
 def set_Portfolio():
   Marketinformation()
@@ -318,156 +222,201 @@ def set_Portfolio():
   for i in options:
     set_one(i)
 
-somedfsdf="""
-<!-- TradingView Widget BEGIN -->
-<div class="tradingview-widget-container">
-  <div class="tradingview-widget-container__widget"></div>
-  <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text">Financial Markets</span></a> by TradingView</div>
-  <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
-  {
-  "colorTheme": "light",
-  "dateRange": "1M",
-  "showChart": true,
-  "locale": "en",
-  "largeChartUrl": "",
-  "isTransparent": false,
-  "showSymbolLogo": false,
-  "showFloatingTooltip": true,
-  "width": "400",
-  "height": "660",
-  "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
-  "plotLineColorFalling": "rgba(41, 98, 255, 1)",
-  "gridLineColor": "rgba(42, 46, 57, 0)",
-  "scaleFontColor": "rgba(120, 123, 134, 1)",
-  "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
-  "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
-  "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
-  "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
-  "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
-  "tabs": [
+TradingViewWidgetoverall="""
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <div class="tradingview-widget-container__widget"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/markets/" rel="noopener" target="_blank"><span class="blue-text">Financial Markets</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" async>
     {
-      "title": "股市",
-      "symbols": [
-        {
-          "s": "OANDA:SPX500USD",
-          "d": "S&P500"
-        },
-        {
-          "s": "EASYMARKETS:NDQUSD",
-          "d": "Nasdaq "
-        },
-        {
-          "s": "OANDA:US2000USD",
-          "d": "RUSELL 2000"
-        },
-        {
-          "s": "EASYMARKETS:DAXEUR",
-          "d": "DAX 40"
-        },
-        {
-          "s": "CURRENCYCOM:UK100",
-          "d": "FTSE100"
-        },
-        {
-          "s": "KRX:KOSPI",
-          "d": "韩国综合股指"
-        },
-        {
-          "s": "SSE:513050",
-          "d": "中概股指数"
-        },
-        {
-          "s": "AMEX:ARKK",
-          "d": "ARKK"
-        },
-        {
-          "s": "AMEX:ARKW",
-          "d": "ARKW"
-        },
-        {
-          "s": "HSI:HSTECH",
-          "d": "恒生科技"
-        }
-      ],
-      "originalTitle": "Indices"
-    },
+    "colorTheme": "light",
+    "dateRange": "1M",
+    "showChart": true,
+    "locale": "en",
+    "largeChartUrl": "",
+    "isTransparent": false,
+    "showSymbolLogo": false,
+    "showFloatingTooltip": true,
+    "width": "100%",
+    "height": "620",
+    "plotLineColorGrowing": "rgba(41, 98, 255, 1)",
+    "plotLineColorFalling": "rgba(41, 98, 255, 1)",
+    "gridLineColor": "rgba(42, 46, 57, 0)",
+    "scaleFontColor": "rgba(120, 123, 134, 1)",
+    "belowLineFillColorGrowing": "rgba(41, 98, 255, 0.12)",
+    "belowLineFillColorFalling": "rgba(41, 98, 255, 0.12)",
+    "belowLineFillColorGrowingBottom": "rgba(41, 98, 255, 0)",
+    "belowLineFillColorFallingBottom": "rgba(41, 98, 255, 0)",
+    "symbolActiveColor": "rgba(41, 98, 255, 0.12)",
+    "tabs": [
+      {
+        "title": "股市",
+        "symbols": [
+          {
+            "s": "OANDA:SPX500USD",
+            "d": "S&P500"
+          },
+          {
+            "s": "EASYMARKETS:NDQUSD",
+            "d": "Nasdaq "
+          },
+          {
+            "s": "OANDA:US2000USD",
+            "d": "RUSELL 2000"
+          },
+          {
+            "s": "EASYMARKETS:DAXEUR",
+            "d": "DAX 40"
+          },
+          {
+            "s": "CURRENCYCOM:UK100",
+            "d": "FTSE100"
+          },
+          {
+            "s": "KRX:KOSPI",
+            "d": "韩国综合股指"
+          },
+          {
+            "s": "SSE:513050",
+            "d": "中概股指数"
+          },
+          {
+            "s": "AMEX:ARKK",
+            "d": "ARKK"
+          },
+          {
+            "s": "AMEX:ARKW",
+            "d": "ARKW"
+          },
+          {
+            "s": "HSI:HSTECH",
+            "d": "恒生科技"
+          }
+        ],
+        "originalTitle": "Indices"
+      },
+      {
+        "title": "大宗商品",
+        "symbols": [
+          {
+            "s": "TVC:GOLD",
+            "d": "Gold"
+          },
+          {
+            "s": "TVC:SILVER",
+            "d": "Silver"
+          },
+          {
+            "s": "TVC:USOIL",
+            "d": "OIL"
+          },
+          {
+            "s": "CURRENCYCOM:COPPER",
+            "d": "COPPER"
+          },
+          {
+            "s": "CURRENCYCOM:NATURALGAS",
+            "d": "Natural Gas"
+          },
+          {
+            "s": "AMEX:GDX",
+            "d": "GDX ETF"
+          },
+          {
+            "s": "AMEX:COPX",
+            "d": "COPX ETF"
+          }
+        ],
+        "originalTitle": "Futures"
+      },
+      {
+        "title": "汇率",
+        "symbols": [
+          {
+            "s": "FX_IDC:USDCNY",
+            "d": "USDCNY"
+          },
+          {
+            "s": "INDEX:DXY",
+            "d": "Dollar index"
+          }
+        ],
+        "originalTitle": "Bonds"
+      },
+      {
+        "title": "利率",
+        "symbols": [
+          {
+            "s": "ECONOMICS:US10Y",
+            "d": "10 Y US Yield"
+          },
+          {
+            "s": "FRED:T10Y2Y",
+            "d": "10Y2Y 利差"
+          },
+          {
+            "s": "FRED:T10YIE",
+            "d": "TIPS 10Y breakeven inflation rate"
+          },
+          {
+            "s": "FRED:T5YIE",
+            "d": "TIPS 5Y breakeven inflation rate"
+          },
+          {
+            "s": "AMEX:TIP",
+            "d": "TIP ETF"
+          }
+        ],
+        "originalTitle": "Forex"
+      }
+    ]
+  }
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  """
+
+
+
+priceinformation="""
+  <!-- TradingView Widget BEGIN -->
+  <div class="tradingview-widget-container">
+    <div id="watchlist"></div>
+    <div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/NASDAQ-AAPL/" rel="noopener" target="_blank"><span class="blue-text">AAPL Chart</span></a> by TradingView</div>
+    <script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+    <script type="text/javascript">
+    new TradingView.widget(
     {
-      "title": "大宗商品",
-      "symbols": [
-        {
-          "s": "TVC:GOLD",
-          "d": "Gold"
-        },
-        {
-          "s": "TVC:SILVER",
-          "d": "Silver"
-        },
-        {
-          "s": "TVC:USOIL",
-          "d": "OIL"
-        },
-        {
-          "s": "CURRENCYCOM:COPPER",
-          "d": "COPPER"
-        },
-        {
-          "s": "CURRENCYCOM:NATURALGAS",
-          "d": "Natural Gas"
-        },
-        {
-          "s": "AMEX:GDX",
-          "d": "GDX ETF"
-        },
-        {
-          "s": "AMEX:COPX",
-          "d": "COPX ETF"
-        }
-      ],
-      "originalTitle": "Futures"
-    },
-    {
-      "title": "汇率",
-      "symbols": [
-        {
-          "s": "FX_IDC:USDCNY",
-          "d": "USDCNY"
-        },
-        {
-          "s": "INDEX:DXY",
-          "d": "Dollar index"
-        }
-      ],
-      "originalTitle": "Bonds"
-    },
-    {
-      "title": "利率",
-      "symbols": [
-        {
-          "s": "ECONOMICS:US10Y",
-          "d": "10 Y US Yield"
-        },
-        {
-          "s": "FRED:T10Y2Y",
-          "d": "10Y2Y 利差"
-        },
-        {
-          "s": "FRED:T10YIE",
-          "d": "TIPS 10Y breakeven inflation rate"
-        },
-        {
-          "s": "FRED:T5YIE",
-          "d": "TIPS 5Y breakeven inflation rate"
-        },
-        {
-          "s": "AMEX:TIP",
-          "d": "TIP ETF"
-        }
-      ],
-      "originalTitle": "Forex"
-    }
-  ]
-}
-  </script>
-</div>
-<!-- TradingView Widget END -->
-"""
+    "container_id": "watchlist",
+    "width": "100%",
+    "height": 620,
+    "symbol": "BTCUSDT",
+    "interval": "D",
+    "timezone": "exchange",
+    "theme": "light",
+    "style": "1",
+    "toolbar_bg": "#f1f3f6",
+    "withdateranges": true,
+    "allow_symbol_change": true,
+    "save_image": false,
+    "watchlist": [
+      "BTCUSDT",
+      "ETHUSDT",
+      "LATUSDT",
+      "KLAYUSDT",
+      "CKBUSDT"
+    ],
+    "locale": "en"
+  }
+    );
+    </script>
+  </div>
+  <!-- TradingView Widget END -->
+  """
+
+
+
+
+
+
+
