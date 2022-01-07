@@ -5,6 +5,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 from st_aggrid import AgGrid,GridOptionsBuilder,GridUpdateMode, DataReturnMode, JsCode
 from streamlit.proto.Button_pb2 import Button
+from plotly.subplots import make_subplots
 from datetime import datetime
 import numpy as np
 
@@ -7763,7 +7764,6 @@ def layoutupdate(fig,title,symbol):
 
 listofobject=[]
 
-
 aboutmarket=[
   [
     "Active Addresses",
@@ -7924,7 +7924,6 @@ aboutderiva=[
 ]
 
 
-
 def tabletry():
   col1, col2= st.columns(2)
   with col1:
@@ -7951,6 +7950,7 @@ def fenlei(listofgg):
         picture(i)
 
 def dashbord2():
+  longshortRatio()
   zhoubao=st.selectbox("",["市场交易结构分析","资金流与趋势分析"])
   if zhoubao=="市场交易结构分析":
     subpage1=st.selectbox("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者"])
@@ -7971,12 +7971,6 @@ def dashbord2():
     elif subpage2=="稳定币":
         st.subheader("稳定币")
         fenlei(aboutderiva[-3:])
-
-
-
-        
-
-
 
 config = {'displaylogo': False, 'modeBarButtonsToRemove': ["zoomIn", "zoomOut", "autoScale","resetScale"],'modeBarButtonsToAdd':['drawline','drawopenpath', 'drawrect','eraseshape'],}
 
@@ -8156,5 +8150,83 @@ def PerpOI(sym):
   addpriceline(symbol,fig,df)
   layoutupdate(fig,"Perp OI / Market Cap",symbol)
   st.plotly_chart(fig, use_container_width=True,config=config)
+
+@st.experimental_memo(ttl=60*60*24)
+def getbinancefutures(addrece,name):
+  addrece
+  r=requests.get(" https://fapi.binance.com"+addrece,params={"limit":30,"period":"1d","symbol":name})
+  df=pd.read_json(r.text)
+  return df
+
+listoffuturesdata=["/futures/data/openInterestHist","/futures/data/topLongShortAccountRatio","/futures/data/topLongShortPositionRatio","/futures/data/globalLongShortAccountRatio"]
+listoffuturesdatalegend={"/futures/data/openInterestHist":["持仓总数量","持仓总价值"],"/futures/data/topLongShortAccountRatio":["大户多仓账户数比例","大户多仓账户数比值","大户空仓账户数比例"],"/futures/data/topLongShortPositionRatio":["大户多仓持仓量比例","大户多空持仓量比值","大户空仓持仓量比例"],"/futures/data/globalLongShortAccountRatio":["多仓人数比例"," 多空人数比值","空仓人数比例"]}
+longshortcolor={"longAccount":"#2cbc84", "shortAccount":"#e22d4c","sumOpenInterest":"#83afdd"}
+
+def longshortRatio():
+  with st.expander("Setting"):
+    name=st.selectbox("symbol",["BTCUSDT","ETHUSDT"])
+  r=requests.get("https://api.binance.com/api/v3/klines",params={"limit":30,"interval":"1d","symbol":name})
+  df=pd.read_json(r.text)
+  df[0]=pd.to_datetime(df[0],unit="ms").dt.date
+  fig = make_subplots(
+    rows=5, cols=1,
+    shared_xaxes=True,
+    vertical_spacing=0.08,
+    subplot_titles=(name, "合约持仓量", "大户账户数多空比", "大户持仓量多空比", "多空持仓人数比"),
+    specs=[[{"secondary_y": True}],
+           [{"secondary_y": True}],
+           [{"secondary_y": True}],
+           [{"secondary_y": True}],
+           [{"secondary_y": True}]]
+  )
+  fig.add_trace(go.Candlestick(x=df[0],
+                open=df[1],
+                high=df[2],
+                low=df[3],
+                close=df[4],
+                name="Price"
+                ),
+                 row=1, col=1
+                )
+  for i in listoffuturesdata:
+    legendname=listoffuturesdatalegend[i]
+    rownumber=listoffuturesdata.index(i)+2
+    df=getbinancefutures(i,name)
+    keyelement=list(df.columns)[1:-1]
+    for j in keyelement:
+      numberofj=keyelement.index(j)
+      if numberofj==1:
+        fig.add_trace(go.Scatter(
+        x=df["timestamp"],
+        y=df[j],
+        mode='lines+markers',
+        line=dict(color='#4c525d'
+                              ),
+        name=legendname[numberofj]
+         ),
+        row=rownumber, col=1, secondary_y=True
+        )
+      else:
+        fig.add_trace(go.Bar(
+        x=df["timestamp"],
+        y=df[j],
+        marker_color=longshortcolor[j],
+        name=legendname[numberofj]
+      ),
+      row=rownumber, col=1,secondary_y=False
+      )
+  fig.update_layout(
+      title_text=name+" "+"币安衍生品数据"
+      )
+  fig.update_layout(hovermode="x unified",barmode='stack',showlegend=False,height=600)
+  fig.update_layout(xaxis_rangeslider_visible=False)
+  st.plotly_chart(fig, use_container_width=True,config=config)
+
+
+
+
+
+
+
 
 
