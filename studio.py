@@ -7950,10 +7950,9 @@ def fenlei(listofgg):
         picture(i)
 
 def dashbord2():
-  longshortRatio()
   zhoubao=st.selectbox("",["市场交易结构分析","资金流与趋势分析"])
   if zhoubao=="市场交易结构分析":
-    subpage1=st.selectbox("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者"])
+    subpage1=st.selectbox("",["市场交易活跃度与交易量","交易所余额","BTC 长期持有者","币安衍生品数据"])
     if subpage1=="市场交易活跃度与交易量":
         st.subheader("市场交易活跃度与交易量")
         fenlei(aboutmarket[0:3])
@@ -7963,6 +7962,8 @@ def dashbord2():
     elif subpage1=="BTC 长期持有者":
         st.subheader("BTC 长期持有者")
         fenlei(aboutmarket[-2:])
+    elif subpage1=="币安衍生品数据":
+        longshortRatio()
   if zhoubao=="资金流与趋势分析":
     subpage2=st.selectbox("",["衍生品期货合约","稳定币"])
     if subpage2=="衍生品期货合约":
