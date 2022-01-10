@@ -52,8 +52,7 @@ if f"{menu_id}"=="Studio":
     tabletry()
 if f"{menu_id}"=="Other":
     set_ETF()
-if f"{menu_id}"=="Beta":
-    URPD()
+
 
 
 
