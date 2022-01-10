@@ -8262,8 +8262,8 @@ def URPD():
 def HODLtable(df,two):
   df=df.set_index("t")
   with st.expander("Setting"):
-    timechoose=st.date_input("Start",list(df.index)[-11],key="timechoose")
-    timechoose2=st.date_input("End",list(df.index)[-1],key="timechoose2")
+    timechoose=st.date_input("Start",list(df.index)[-11],min_value=list(df.index)[0], max_value=list(df.index)[-1],key="timechoose")
+    timechoose2=st.date_input("End",list(df.index)[-1],min_value=list(df.index)[0], max_value=list(df.index)[-1],key="timechoose2")
   df=df[glistdic[two]]
   a=df.loc[timechoose].to_list()
   b=df.loc[timechoose2].to_list()
