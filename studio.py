@@ -8230,15 +8230,16 @@ def redataURPD(df):
   for i in range(len(df)):
     current_price=df.iloc[i]["current_price"]
     ath_price=df.iloc[i]["ath_price"]
+    total_supply=df.iloc[i]["total_supply"]
     temp=0
     for j in range(1,100):
       temp=temp+ath_price/100
       if current_price<(temp+ath_price/100) and current_price>temp:
-        a=[str(df.iloc[i]["t"]),"T",temp,df.iloc[i]["partitions"][j]]
+        a=[str(df.iloc[i]["t"]),"T",temp,df.iloc[i]["partitions"][j],df.iloc[i]["partitions"][j]/total_supply]
       else:
-        a=[str(df.iloc[i]["t"]),"F",temp,df.iloc[i]["partitions"][j]]
+        a=[str(df.iloc[i]["t"]),"F",temp,df.iloc[i]["partitions"][j],df.iloc[i]["partitions"][j]/total_supply]
       list.append(a)
-  df2 = pd.DataFrame(list, columns =['t',"color",'Price', 'Distribution']) 
+  df2 = pd.DataFrame(list, columns =['t',"color",'Price', 'Distribution',"Percentage"]) 
   return (df2)
 
 def URPD():
@@ -8249,7 +8250,7 @@ def URPD():
     numberofdata=st.selectbox("Timeperiod",timeperiod,key="UTXO Realized Price Distribution (URPD)")
   df=get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata])
   df2 = redataURPD(df)
-  fig = px.bar(df2, x="Price", y="Distribution", color="color",animation_frame="t")
+  fig = px.bar(df2, x="Price", y="Distribution", color="color",animation_frame="t", hover_name="t", hover_data={"color":False,"t":False,"Percentage":":.2%"})
   fig.update_layout(
       title_text="UTXO Realized Price Distribution (URPD)",showlegend=False
       )
