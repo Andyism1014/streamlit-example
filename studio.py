@@ -8076,6 +8076,8 @@ def picture(l):
     addpriceline(symbol,fig,df)
     layoutupdate(fig,two,symbol)
     st.plotly_chart(fig, use_container_width=True,config=config)
+    if two=="Realized Cap HODL Waves ":
+      HODLtable(df,two)
 
 @st.experimental_memo(ttl=60*60*24)
 def messariP(x):
@@ -8255,6 +8257,29 @@ def URPD():
       title_text="UTXO Realized Price Distribution (URPD)",showlegend=False
       )
   st.plotly_chart(fig, use_container_width=True,config=config)
+
+
+def HODLtable(df,two):
+  df=df.set_index("t")
+  with st.expander("Setting"):
+    timechoose=st.selectbox("Start",df.index,index=len(df.index)-11,key="timechoose")
+    timechoose2=st.selectbox("End",df.index,index=len(df.index)-1,key="timechoose2")
+  df=df[glistdic[two]]
+  a=df.loc[timechoose].to_list()
+  b=df.loc[timechoose2].to_list()
+  c=df.loc[timechoose]-df.loc[timechoose2]
+  d=c.to_list()
+  font_color=['rgb(40,40,40)', 'rgb(40,40,40)','rgb(40,40,40)',["rgba(158,1,66,255)" if v <0 else 'rgba(71,186,174,255)'for v in d]]
+  fig = go.Figure(data=[go.Table(header=dict(values=["<b>HODL Waves<b>", "<b>"+str(timechoose)+"<b>", "<b>"+str(timechoose2)+"<b>","<b>偏差<b>"],font = dict(color=['rgb(45,45,45)']*4, size=14)),
+                 cells=dict(values=[["24小时","1天至1周","1周至1月","1月至3月","3月至6月","6月至12月","1年至2年","2年至3年","3年至5年","5年至7年","7年至10年","超过10年"], a,b,d],
+                 font = dict(family="Arial", size=14, color=font_color),
+                 height = 30,
+                 format=["",".2%",".2%",".2%"]))
+                     ])
+  st.plotly_chart(fig, use_container_width=True,config=config)
+
+
+
 
 
 
