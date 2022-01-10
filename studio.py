@@ -1,13 +1,11 @@
 import plotly.graph_objects as go
+import plotly.express as px
 import pandas as pd
 import requests
 import streamlit as st
-import streamlit.components.v1 as components
-from st_aggrid import AgGrid,GridOptionsBuilder,GridUpdateMode, DataReturnMode, JsCode
-from streamlit.proto.Button_pb2 import Button
 from plotly.subplots import make_subplots
 from datetime import datetime
-import numpy as np
+
 
 @st.experimental_memo(ttl=60*60*12)
 def get_g(symbol,addresses,intervel,currency):
@@ -7839,6 +7837,7 @@ aboutmarket=[
  ],
  ["Realized Cap HODL Waves ","BTC","/v1/metrics/supply/rcap_hodl_waves","24h","NATIVE"],
  ["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"],
+ [ "URPD (ATH-Partitioned) ", "BTC", "/v1/metrics/indicators/utxo_realized_price_distribution_ath", "24h", "NATIVE"]
  ]
  
 
@@ -7961,7 +7960,7 @@ def dashbord2():
         fenlei(aboutmarket[3:11])
     elif subpage1=="BTC 长期持有者":
         st.subheader("BTC 长期持有者")
-        fenlei(aboutmarket[-2:])
+        fenlei(aboutmarket[-3:])
     elif subpage1=="币安衍生品数据":
         longshortRatio()
   if zhoubao=="资金流与趋势分析":
@@ -8064,6 +8063,8 @@ def picture(l):
   two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
   if two=="Perp OI / Market Cap":
     PerpOI(symbol)
+  elif two=="URPD (ATH-Partitioned) ":
+    URPD()
   else:
     fig=go.Figure()
     with st.expander("Setting"):
@@ -8224,6 +8225,31 @@ def longshortRatio():
   st.plotly_chart(fig, use_container_width=True,config=config)
 
 
+def URPD():
+  l=[ "URPD (ATH-Partitioned) ", "BTC", "/v1/metrics/indicators/utxo_realized_price_distribution_ath", "24h", "NATIVE"]
+  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  fig=go.Figure()
+  with st.expander("Setting"):
+    numberofdata=st.selectbox("Timeperiod",timeperiod,key="UTXO Realized Price Distribution (URPD)")
+  df=get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata])
+  list=[]
+  for i in range(len(df)):
+    current_price=df.iloc[i]["current_price"]
+    ath_price=df.iloc[i]["ath_price"]
+    temp=0
+    for j in range(1,100):
+      temp=temp+ath_price/100
+      if current_price<(temp+ath_price/100) and current_price>temp:
+        a=[str(df.iloc[i]["t"]),"T",temp,df.iloc[i]["partitions"][j]]
+      else:
+        a=[str(df.iloc[i]["t"]),"F",temp,df.iloc[i]["partitions"][j]]
+      list.append(a)
+  df2 = pd.DataFrame(list, columns =['t',"color",'Price', 'Distribution']) 
+  fig = px.bar(df2, x="Price", y="Distribution", color="color",animation_frame="t")
+  fig.update_layout(
+      title_text="UTXO Realized Price Distribution (URPD)",showlegend=False
+      )
+  st.plotly_chart(fig, use_container_width=True,config=config)
 
 
 
