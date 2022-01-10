@@ -2,7 +2,6 @@ import streamlit as st
 import hydralit_components as hc
 from Portfolio import *
 from studio import *
-from ETF import *
 import streamlit_authenticator as stauth
 
 
@@ -27,7 +26,7 @@ menu_id = hc.nav_bar(
     menu_definition=menu_data,
     override_theme=over_theme,
     home_name='Home',
-    hide_streamlit_markers=True, #will show the st hamburger as well as the navbar now!
+    hide_streamlit_markers=False, #will show the st hamburger as well as the navbar now!
     sticky_nav=True, #at the top or not
     sticky_mode='pinned', #jumpy or not-jumpy, but sticky or pinned
 )
@@ -50,8 +49,7 @@ if st.session_state['authentication_status']:
         dashbord2()
 if f"{menu_id}"=="Studio":
     tabletry()
-if f"{menu_id}"=="Other":
-    set_ETF()
+
 
 
 
