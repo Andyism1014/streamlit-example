@@ -8224,14 +8224,8 @@ def longshortRatio():
   fig.update_layout(xaxis_rangeslider_visible=False)
   st.plotly_chart(fig, use_container_width=True,config=config)
 
-
-def URPD():
-  l=[ "URPD (ATH-Partitioned) ", "BTC", "/v1/metrics/indicators/utxo_realized_price_distribution_ath", "24h", "NATIVE"]
-  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
-  fig=go.Figure()
-  with st.expander("Setting"):
-    numberofdata=st.selectbox("Timeperiod",timeperiod,key="UTXO Realized Price Distribution (URPD)")
-  df=get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata])
+@st.experimental_memo(ttl=60*60*24)
+def redataURPD(df):
   list=[]
   for i in range(len(df)):
     current_price=df.iloc[i]["current_price"]
@@ -8245,6 +8239,16 @@ def URPD():
         a=[str(df.iloc[i]["t"]),"F",temp,df.iloc[i]["partitions"][j]]
       list.append(a)
   df2 = pd.DataFrame(list, columns =['t',"color",'Price', 'Distribution']) 
+  return (df2)
+
+def URPD():
+  l=[ "URPD (ATH-Partitioned) ", "BTC", "/v1/metrics/indicators/utxo_realized_price_distribution_ath", "24h", "NATIVE"]
+  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  fig=go.Figure()
+  with st.expander("Setting"):
+    numberofdata=st.selectbox("Timeperiod",timeperiod,key="UTXO Realized Price Distribution (URPD)")
+  df=get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata])
+  df2 = redataURPD(df)
   fig = px.bar(df2, x="Price", y="Distribution", color="color",animation_frame="t")
   fig.update_layout(
       title_text="UTXO Realized Price Distribution (URPD)",showlegend=False
