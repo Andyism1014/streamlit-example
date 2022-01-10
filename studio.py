@@ -11,7 +11,7 @@ import numpy as np
 
 @st.experimental_memo(ttl=60*60*12)
 def get_g(symbol,addresses,intervel,currency):
-  API_KEY = '1zza0Y66PQqo0LoeJXRooWgj41F'
+  API_KEY = '23MchBnJN7t78kXEq0p9Hx1znTu'
   res = requests.get("https://api.glassnode.com"+addresses,
       params={'a':symbol,'api_key':API_KEY,"i":intervel,"c":currency})
   # convert to pandas dataframe
