@@ -8268,14 +8268,17 @@ def HODLtable(df,two):
   a=df.loc[timechoose].to_list()
   b=df.loc[timechoose2].to_list()
   c=df.loc[timechoose]-df.loc[timechoose2]
+  c=c.round(3)
   d=c.to_list()
+  d
   font_color=['rgb(40,40,40)', 'rgb(40,40,40)','rgb(40,40,40)',["rgba(158,1,66,255)" if v <0 else 'rgba(71,186,174,255)'for v in d]]
   fig = go.Figure(data=[go.Table(header=dict(values=["<b>HODL Waves<b>", "<b>"+str(timechoose)+"<b>", "<b>"+str(timechoose2)+"<b>","<b>偏差<b>"],font = dict(color=['rgb(45,45,45)']*4, size=14)),
                  cells=dict(values=[["24小时","1天至1周","1周至1月","1月至3月","3月至6月","6月至12月","1年至2年","2年至3年","3年至5年","5年至7年","7年至10年","超过10年"], a,b,d],
                  font = dict(family="Arial", size=14, color=font_color),
                  height = 30,
-                 format=["",".2%",".2%",".2%"]))
+                 format=["",".2%",".2%",".1%"]))
                      ])
+  fig.update_layout( autosize=False, height=575)
   st.plotly_chart(fig, use_container_width=True,config=config)
 
 
