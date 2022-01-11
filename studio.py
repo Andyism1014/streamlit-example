@@ -8202,7 +8202,7 @@ def longshortRatio():
   fig.update_layout(
       title_text=name+" "+"币安衍生品数据"
       )
-  fig.update_layout(hovermode="x unified",barmode='stack',showlegend=False,height=800)
+  fig.update_layout(hovermode="x unified",barmode='stack',showlegend=False,height=1200)
   fig.update_layout(xaxis_rangeslider_visible=False)
   st.plotly_chart(fig, use_container_width=True,config=config)
 
