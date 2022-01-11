@@ -8053,6 +8053,8 @@ def picture(l):
     addtrace(df,listy,fig,int(slider),two,1,symbol)
     addpriceline(symbol,fig,df)
     layoutupdate(fig,two,symbol)
+    if two=="Futures Perpetual Funding Rate":
+      fig.layout.yaxis.tickformat = '.3%'
     st.plotly_chart(fig, use_container_width=True,config=config)
     if two=="Realized Cap HODL Waves ":
       HODLtable(df,two)
