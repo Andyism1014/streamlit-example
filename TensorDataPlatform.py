@@ -11,9 +11,7 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide')  # this ne
 menu_data = [
     {'icon': "far fa-copy", 'label':"Portfolio"},
     {'icon': "far fa-chart-bar", 'label':"Data Overview", 'submenu':[{'id':'市场交易结构分析','icon': "fa fa-database", 'label':"市场交易结构分析"},{'id':'资金流与趋势分析','icon': "fa fa-database", 'label':"资金流与趋势分析"},{'id':'币安衍生品数据','icon': "fa fa-database", 'label':"币安衍生品数据"}]},
-    {'icon': "", 'label':"Studio"},
-    {'icon': "", 'label':"Beta"},
-    {'icon': "", 'label':"Other"},
+    {'icon': "", 'label':"Other"}
 ]
 
 over_theme = {'txc_inactive': '#FFFFFF',"menu_background":"#3d3d3d"}
