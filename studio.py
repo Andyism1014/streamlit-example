@@ -7764,9 +7764,9 @@ listofobject=[]
 
 aboutmarket=[
   [
-    "Active Addresses",
+    "Active Entities",
     "BTC",
-    "/v1/metrics/addresses/active_count",
+    "/v1/metrics/entities/active_count",
     "24h",
     "NATIVE"
   ],
