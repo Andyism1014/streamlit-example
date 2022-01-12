@@ -7762,165 +7762,13 @@ def layoutupdate(fig,title,symbol):
 
 listofobject=[]
 
-aboutmarket=[
-  [
-    "Active Entities",
-    "BTC",
-    "/v1/metrics/entities/active_count",
-    "24h",
-    "NATIVE"
-  ],
-  [
-    "Gas Price (Median)",
-    "ETH",
-    "/v1/metrics/fees/gas_price_median",
-    "24h",
-    "NATIVE"
-  ],
-  [
-    "Total Transfer Volume by Size (Entity-Adjusted)",
-    "BTC",
-    "/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum",
-    "24h",
-    "USD"
-  ],
-  [
-    "Exchange Balance (Total)",
-    "BTC",
-    "/v1/metrics/distribution/balance_exchanges",
-    "24h",
-    "NATIVE"
-  ],
-  ["Number of Whales","BTC","/v1/metrics/entities/min_1k_count","24h","NATIVE"
-  ],
-  [
-    "Supply Held by Entities with Balance 1k - 10k",
-    "BTC",
-    "/v1/metrics/entities/supply_balance_1k_10k",
-    "24h",
-    "NATIVE"
-  ],
-  [
-    "Supply Held by Entities with Balance 10k - 100k",
-    "BTC",
-    "/v1/metrics/entities/supply_balance_10k_100k",
-    "24h",
-    "NATIVE"
-  ],
-  [
-  "Exchange Balance (Total)",
-  "ETH",
-  "/v1/metrics/distribution/balance_exchanges",
-  "24h",
-  "NATIVE"
-  ],
-  [
-  "Supply Held by Addresses with Balance > 100k",
-  "ETH",
-  "/v1/metrics/addresses/supply_balance_more_100k",
-  "24h",
-  "NATIVE"
-  ],
-  [
-   "Supply Held by Addresses with Balance 1k - 10k",
-   "ETH",
-   "/v1/metrics/addresses/supply_balance_1k_10k",
-   "24h",
-   "NATIVE"
- ],
- [
-  "Supply Held by Addresses with Balance 10k - 100k",
-  "ETH",
-  "/v1/metrics/addresses/supply_balance_10k_100k",
-  "24h",
-  "NATIVE"
- ],
- ["Realized Cap HODL Waves ","BTC","/v1/metrics/supply/rcap_hodl_waves","24h","NATIVE"],
- ["Relative Long/Short-Term Holder Supply","BTC","/v1/metrics/supply/lth_sth_profit_loss_relative","24h","NATIVE"],
- [ "URPD (ATH-Partitioned) ", "BTC", "/v1/metrics/indicators/utxo_realized_price_distribution_ath", "24h", "NATIVE"]
- ]
- 
 
 
-aboutderiva=[
-  [
-    "Futures Open Interest Perpetual",
-    "BTC",
-    "/v1/metrics/derivatives/futures_open_interest_perpetual_sum",
-    "24h",
-    "USD"
-  ],
-  [
-    "Futures Volume Perpetual",
-    "BTC",
-    "/v1/metrics/derivatives/futures_volume_daily_perpetual_sum",
-    "24h",
-    "USD"
-  ],
-  [
-    "Futures Open Interest Perpetual",
-    "ETH",
-    "/v1/metrics/derivatives/futures_open_interest_perpetual_sum",
-    "24h",
-    "USD"
-  ],
-  [
-    "Futures Volume Perpetual",
-    "ETH",
-    "/v1/metrics/derivatives/futures_volume_daily_perpetual_sum",
-    "24h",
-    "USD"
-  ],
-  [
-    "Futures Perpetual Funding Rate",
-    "BTC",
-    "/v1/metrics/derivatives/futures_funding_rate_perpetual",
-    "24h",
-    "NATIVE"
-  ],
-  [
-    "Futures Estimated Leverage Ratio",
-    "BTC",
-    "/v1/metrics/derivatives/futures_estimated_leverage_ratio",
-    "24h",
-    "NATIVE"
-  ],
-    [
-    "Perp OI / Market Cap",
-    "BTC",
-    "",
-    "",
-    ""
-  ],
-      [
-    "Perp OI / Market Cap",
-    "ETH",
-    "",
-    "",
-    ""
-  ],
-   [
-    "Stablecoin Supply Ratio (SSR)",
-    "BTC",
-    "/v1/metrics/indicators/ssr",
-    "24h",
-    "NATIVE"
-  ],
-  [
-  "Circulating Supply",
-  "USDC",
-  "/v1/metrics/supply/current",
-  "24h",
-  "USD"
- ],
- [
-   "Circulating Supply",
-   "USDT",
-   "/v1/metrics/supply/current",
-   "24h",
-   "USD"
- ]
-]
+
+aboutmarket=[['Active Entities', 'BTC', '/v1/metrics/entities/active_count', '24h', 'NATIVE', 7], ['Gas Price (Median)', 'ETH', '/v1/metrics/fees/gas_price_median', '24h', 'NATIVE', 14], ['Total Transfer Volume by Size (Entity-Adjusted)', 'BTC', '/v1/metrics/transactions/transfers_volume_by_size_entity_adjusted_sum', '24h', 'USD', 7], ['Exchange Balance (Total)', 'BTC', '/v1/metrics/distribution/balance_exchanges', '24h', 'NATIVE', 7], ['Number of Whales', 'BTC', '/v1/metrics/entities/min_1k_count', '24h', 'NATIVE', 1], ['Supply Held by Entities with Balance 1k - 10k', 'BTC', '/v1/metrics/entities/supply_balance_1k_10k', '24h', 'NATIVE', 1], ['Supply Held by Entities with Balance 10k - 100k', 'BTC', '/v1/metrics/entities/supply_balance_10k_100k', '24h', 'NATIVE', 1], ['Exchange Balance (Total)', 'ETH', '/v1/metrics/distribution/balance_exchanges', '24h', 'NATIVE', 7], ['Supply Held by Addresses with Balance > 100k', 'ETH', '/v1/metrics/addresses/supply_balance_more_100k', '24h', 'NATIVE', 1], ['Supply Held by Addresses with Balance 1k - 10k', 'ETH', '/v1/metrics/addresses/supply_balance_1k_10k', '24h', 'NATIVE', 1], ['Supply Held by Addresses with Balance 10k - 100k', 'ETH', '/v1/metrics/addresses/supply_balance_10k_100k', '24h', 'NATIVE', 1], ['Realized Cap HODL Waves ', 'BTC', '/v1/metrics/supply/rcap_hodl_waves', '24h', 'NATIVE', 14], ['Relative Long/Short-Term Holder Supply', 'BTC', '/v1/metrics/supply/lth_sth_profit_loss_relative', '24h', 'NATIVE', 7], ['URPD (ATH-Partitioned) ', 'BTC', '/v1/metrics/indicators/utxo_realized_price_distribution_ath', '24h', 'NATIVE', 14]]
+
+aboutderiva=[['Futures Open Interest Perpetual', 'BTC', '/v1/metrics/derivatives/futures_open_interest_perpetual_sum', '24h', 'USD', 7], ['Futures Volume Perpetual', 'BTC', '/v1/metrics/derivatives/futures_volume_daily_perpetual_sum', '24h', 'USD', 7], ['Futures Open Interest Perpetual', 'ETH', '/v1/metrics/derivatives/futures_open_interest_perpetual_sum', '24h', 'USD', 7], ['Futures Volume Perpetual', 'ETH', '/v1/metrics/derivatives/futures_volume_daily_perpetual_sum', '24h', 'USD',7], ['Futures Perpetual Funding Rate', 'BTC', '/v1/metrics/derivatives/futures_funding_rate_perpetual', '24h', 'NATIVE', 1], ['Futures Estimated Leverage Ratio', 'BTC', '/v1/metrics/derivatives/futures_estimated_leverage_ratio', '24h', 'NATIVE', 1], ['Perp OI / Market Cap', 'BTC', '', '', '', 14], ['Perp OI / Market Cap', 'ETH', '', '', '', 14], ['Stablecoin Supply Ratio (SSR)', 'BTC', '/v1/metrics/indicators/ssr', '24h', 'NATIVE', 7], ['Circulating Supply', 'USDC', '/v1/metrics/supply/current', '24h', 'USD', 7], ['Circulating Supply', 'USDT', '/v1/metrics/supply/current', '24h', 'USD',7]]
+
 
 
 def tabletry():
@@ -7947,6 +7795,8 @@ def fenlei(listofgg):
     else:
       with col1:
         picture(i)
+
+
 
 
 
@@ -8038,7 +7888,7 @@ timeperiod=["6m","1y","3y","all"]
 timeconvertor={"6m":180,"1y":365,"3y":900,"all":4380}
 
 def picture(l):
-  two,symbol,addresses,intervel,currency=l[0],l[1],l[2],l[3],l[4]
+  two,symbol,addresses,intervel,currency,movingaverage=l[0],l[1],l[2],l[3],l[4],l[5]
   if two=="Perp OI / Market Cap":
     PerpOI(symbol)
   elif two=="URPD (ATH-Partitioned) ":
@@ -8046,7 +7896,8 @@ def picture(l):
   else:
     fig=go.Figure()
     with st.expander("Setting"):
-      slider=st.number_input("MovingAverage",min_value=1,max_value=100,step=1,value=14,key=symbol+two)
+      st.write(two)
+      slider=st.number_input("MovingAverage",min_value=1,max_value=100,step=1,value=movingaverage,key=symbol+two)
       numberofdata=st.selectbox("Timeperiod",timeperiod,key=symbol+two)
     df=get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata])
     listy=elementcheck(df,two)
