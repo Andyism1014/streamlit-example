@@ -8247,7 +8247,7 @@ def HODLtable(df,two):
   df=df[glistdic[two]]
   a=df.loc[timechoose].to_list()
   b=df.loc[timechoose2].to_list()
-  c=df.loc[timechoose]-df.loc[timechoose2]
+  c=df.loc[timechoose2]-df.loc[timechoose]
   c=c.round(3)
   d=c.to_list()
   d
