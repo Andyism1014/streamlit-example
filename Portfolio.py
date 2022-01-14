@@ -1,10 +1,7 @@
 import altair as alt
-import math
-from altair.vegalite.v4.schema.core import BoxPlotConfig
 import pandas as pd
 import requests
 import streamlit as st
-import time
 import streamlit.components.v1 as components
 
 @st.experimental_memo(ttl=60)
@@ -375,8 +372,6 @@ TradingViewWidgetoverall="""
   </div>
   <!-- TradingView Widget END -->
   """
-
-
 
 priceinformation="""
   <!-- TradingView Widget BEGIN -->

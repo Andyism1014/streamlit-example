@@ -10,7 +10,7 @@ st.set_page_config(page_title='Tensor Data Platform',  layout='wide')  # this ne
 
 menu_data = [
     {'icon': "far fa-copy", 'label':"Portfolio"},
-    {'icon': "far fa-chart-bar", 'label':"Data Overview", 'submenu':[{'id':'市场交易结构分析','icon': "fa fa-database", 'label':"市场交易结构分析"},{'id':'资金流与趋势分析','icon': "fa fa-database", 'label':"资金流与趋势分析"},{'id':'币安衍生品数据','icon': "fa fa-database", 'label':"币安衍生品数据"}]},
+    {'icon': "far fa-chart-bar", 'label':"Data Overview", 'submenu':[{'id':'市场交易结构分析','icon': "fa fa-database", 'label':"市场交易结构分析"},{'id':'资金流与趋势分析','icon': "fa fa-database", 'label':"资金流与趋势分析"},{'id':'币安衍生品数据','icon': "fa fa-database", 'label':"币安衍生品数据"},{'id':'UTXO Realized Price Distribution (URPD)','icon': "fa fa-database", 'label':"UTXO Realized Price Distribution (URPD)"}]},
     {'icon': "", 'label':"Other"}
 ]
 
@@ -41,6 +41,9 @@ if menu_id=="资金流与趋势分析":
     fenlei(aboutderiva[0:8])
     st.subheader("稳定币")
     fenlei(aboutderiva[-3:])
+if menu_id=="UTXO Realized Price Distribution (URPD)":
+    st.write("UTXO Realized Price Distribution (URPD)")
+    URPD()
 #if f"{menu_id}"=="Studio":
     #tabletry()
 
