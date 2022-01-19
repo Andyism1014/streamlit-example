@@ -45,7 +45,53 @@ if menu_id == "资金流与趋势分析":
 if menu_id == "UTXO Realized Price Distribution (URPD)":
     st.write("UTXO Realized Price Distribution (URPD)")
     URPD()
-# if f"{menu_id}"=="Studio":
-# tabletry()
+    URPD2()
 
+corelation_analysis = """
+<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+<div id="tradingview_b64c6"></div>
+<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com/symbols/BTCUSDT/?exchange=BINANCE" rel="noopener" target="_blank"><span class="blue-text">BTCUSDT Chart</span></a> by TradingView</div>
+<script type="text/javascript" src="https://s3.tradingview.com/tv.js"></script>
+<script type="text/javascript">
+new TradingView.widget(
+    {
+        "width": 980,
+        "height": 610,
+        "symbol": "BINANCE:BTCUSDT",
+        "interval": "D",
+        "timezone": "Etc/UTC",
+        "theme": "light",
+        "style": "2",
+        "locale": "en",
+        "toolbar_bg": "#f1f3f6",
+        "enable_publishing": false,
+        "hide_top_toolbar": false,
+        "allow_symbol_change": true,
+        "save_image": false,
+        "studies": [
+            {"id":"CorrelationCoefficient@tv-basicstudies",
+            "inputs":{
+            "symbol":"OANDA:SPX500USD",
+            "color":"#33FFDA"
+            },
+            "style":{
+            "color":"#33FFDA"
+            }
+            },
+            {"id":"Compare@tv-basicstudies",
+            "inputs":{
+            "symbol":"OANDA:SPX500USD"}
+             
+            }
+        ],
+        "container_id": "tradingview_b64c6"
+    }
+);
+</script>
+</div>
+<!-- TradingView Widget END -->
+"""
 
+if f"{menu_id}" == "Other":
+    components.html(corelation_analysis, height=600)
