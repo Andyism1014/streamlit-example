@@ -405,7 +405,7 @@ def redataURPD(df):
         ap = df.iloc[i]["partitions"][0] / total_supply
         for j in range(1, 100):
             ap = ap + df.iloc[i]["partitions"][j] / total_supply
-            temp = int(temp + ath_price / 100)+int(ath_price)*10**(-len(str(int(ath_price))))
+            temp = int(temp + ath_price / 100) + int(ath_price) * 10 ** (-len(str(int(ath_price))))
             if (temp + ath_price / 100) > current_price > temp:
                 a = [str(df.iloc[i]["t"]), "T", temp, df.iloc[i]["partitions"][j],
                      df.iloc[i]["partitions"][j] / total_supply, ap]
@@ -424,12 +424,17 @@ def redataURPD(df):
                          df.iloc[i]["partitions"][j] / total_supply, ap]
             list_value.append(a)
     df2 = pd.DataFrame(list_value, columns=['t', "color", 'Price', 'Distribution', "Percentage", "AP"])
+    return df2
+
+
+@st.experimental_memo(ttl=60 * 60 * 24, show_spinner=False)
+def URPDgraph(df2):
     fig = px.bar(df2, x="Price", y="Percentage", color="color", animation_frame="t", hover_name="t",
                  hover_data={"color": False, "t": False, "Percentage": ":.2%", "AP": ":.2%"})
     fig.update_layout(
         title_text="UTXO Realized Price Distribution (URPD)", showlegend=False
     )
-    return [df2, fig]
+    return fig
 
 
 def URPD():
@@ -439,8 +444,8 @@ def URPD():
     with st.expander("Setting"):
         numberofdata = st.selectbox("Timeperiod", timeperiod, key="UTXO Realized Price Distribution (URPD)")
     df = get_g(symbol, addresses, intervel, currency).tail(timeconvertor[numberofdata])
-    df2 = redataURPD(df)[0]
-    fig = redataURPD(df)[1]
+    df2 = redataURPD(df)
+    fig = URPDgraph(df2)
     fig.layout.yaxis.tickformat = '.1%'
     selectedpoints = plotly_events(fig, click_event=False, select_event=True)
     if len(selectedpoints) == 0:
@@ -455,9 +460,9 @@ def URPD():
         ]
     else:
         selected_points = selectedpoints
-    small_quant = int(str(selected_points[0]["x"]).split(".")[1])/200
-    df3 = df2.loc[(int(selected_points[-1]["x"]+small_quant) > df2["Price"])
-                  & (int(selected_points[0]["x"]-small_quant) < df2["Price"])]
+    small_quant = int(str(selected_points[0]["x"]).split(".")[1]) / 200
+    df3 = df2.loc[(int(selected_points[-1]["x"] + small_quant) > df2["Price"])
+                  & (int(selected_points[0]["x"] - small_quant) < df2["Price"])]
     time = df3["t"].unique()
     changeofpercentage = []
     for i in time:
@@ -467,8 +472,8 @@ def URPD():
     with st.expander("Setting"):
         slider = st.number_input("MovingAverage", min_value=1, max_value=100, step=1, value=movingaverage,
                                  key=symbol + two)
-    st.write("Range from " + str(int(selected_points[0]["x"]-small_quant)) + " to "
-             + str(int(selected_points[-1]["x"]+small_quant)))
+    st.write("Range from " + str(int(selected_points[0]["x"] - small_quant)) + " to "
+             + str(int(selected_points[-1]["x"] + small_quant)))
     listy = ["v"]
     addtrace(df4, listy, fig2, int(slider), "URPD", 1, symbol)
     addpriceline(symbol, fig2, df4)
