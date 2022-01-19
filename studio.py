@@ -153,45 +153,26 @@ def addpriceline(symbol, fig, df):
     ))
 
 
-glistdic = {
-    "Stablecoin Supply Ratio (SSR)": ["o_v"],
-    "Relative Transfer Volume by Size (Entity-Adjusted)": ['o_vol_10m_plus', 'o_vol_1m_to_10m', 'o_vol_100k_to_1m',
-                                                           'o_vol_10k_to_100k', 'o_vol_1k_to_10k', 'o_vol_0_to_1k'],
-    "Total Transfer Volume by Size (Entity-Adjusted)": ['o_vol_10m_plus', 'o_vol_1m_to_10m', 'o_vol_100k_to_1m',
-                                                        'o_vol_10k_to_100k', 'o_vol_1k_to_10k', 'o_vol_0_to_1k'],
-    "Relative Long/Short-Term Holder Supply": ["o_lth_profit", "o_lth_loss", "o_sth_loss", "o_sth_profit"],
-    "Realized Cap HODL Waves ": ["o_24h", "o_1d_1w", "o_1w_1m", "o_1m_3m", "o_3m_6m", "o_6m_12m", "o_1y_2y", "o_2y_3y",
-                                 "o_3y_5y", "o_5y_7y", "o_7y_10y", "o_more_10y"]
-}
+glistdic = {"Stablecoin Supply Ratio (SSR)": ["o_v"],
+            "Relative Transfer Volume by Size (Entity-Adjusted)": ['o_vol_10m_plus', 'o_vol_1m_to_10m',
+                                                                   'o_vol_100k_to_1m', 'o_vol_10k_to_100k',
+                                                                   'o_vol_1k_to_10k', 'o_vol_0_to_1k'],
+            "Total Transfer Volume by Size (Entity-Adjusted)": ['o_vol_10m_plus', 'o_vol_1m_to_10m', 'o_vol_100k_to_1m',
+                                                                'o_vol_10k_to_100k', 'o_vol_1k_to_10k',
+                                                                'o_vol_0_to_1k'],
+            "Relative Long/Short-Term Holder Supply": ["o_lth_profit", "o_lth_loss", "o_sth_loss", "o_sth_profit"],
+            "Realized Cap HODL Waves ": ["o_24h", "o_1d_1w", "o_1w_1m", "o_1m_3m", "o_3m_6m", "o_6m_12m", "o_1y_2y",
+                                         "o_2y_3y", "o_3y_5y", "o_5y_7y", "o_7y_10y", "o_more_10y"]}
 
-color_list = {
-    "o_vol_0_to_1k": "#ff4b5f",
-    "o_vol_1k_to_10k": "#ff9127",
-    "o_vol_10k_to_100k": "#ffd300",
-    "o_vol_100k_to_1m": "#a2ff38",
-    "o_vol_1m_to_10m": "#00e376",
-    "o_vol_10m_plus": "#00cfba",
-    'o_1d_1w': 'rgba(210,90,117,255)',
-    'o_1m_3m': 'rgba(251,157,86,255)',
-    'o_1w_1m': 'rgba(239,100,69,255)',
-    'o_1y_2y': 'rgba(245,250,173,255)',
-    'o_24h': 'rgba(158,1,66,255)',
-    'o_2y_3y': 'rgba(206,237,156,255)',
-    'o_3m_6m': 'rgba(254,206,121,255)',
-    'o_3y_5y': 'rgba(152,214,164,255)',
-    'o_5y_7y': 'rgba(152,214,175,255)',
-    'o_6m_12m': 'rgba(254,237,154,255)',
-    'o_7y_10y': 'rgba(71,186,174,255)',
-    'o_more_10y': 'rgba(49,132,188,255)',
-    'o_lth_loss': '#4F92F6',
-    'o_lth_profit': '#004AFF',
-    'o_sth_loss': '#F75F5F',
-    'o_sth_profit': '#FF0000',
-    "BTC": "#f7931a",
-    "ETH": "#647cec",
-    "USDC": "#0362fc",
-    "USDT": "#03fc41"
-}
+color_list = {"o_vol_0_to_1k": "#ff4b5f", "o_vol_1k_to_10k": "#ff9127", "o_vol_10k_to_100k": "#ffd300",
+              "o_vol_100k_to_1m": "#a2ff38", "o_vol_1m_to_10m": "#00e376", "o_vol_10m_plus": "#00cfba",
+              'o_1d_1w': 'rgba(210,90,117,255)', 'o_1m_3m': 'rgba(251,157,86,255)', 'o_1w_1m': 'rgba(239,100,69,255)',
+              'o_1y_2y': 'rgba(245,250,173,255)', 'o_24h': 'rgba(158,1,66,255)', 'o_2y_3y': 'rgba(206,237,156,255)',
+              'o_3m_6m': 'rgba(254,206,121,255)', 'o_3y_5y': 'rgba(152,214,164,255)',
+              'o_5y_7y': 'rgba(152,214,175,255)', 'o_6m_12m': 'rgba(254,237,154,255)',
+              'o_7y_10y': 'rgba(71,186,174,255)', 'o_more_10y': 'rgba(49,132,188,255)', 'o_lth_loss': '#4F92F6',
+              'o_lth_profit': '#004AFF', 'o_sth_loss': '#F75F5F', 'o_sth_profit': '#FF0000', "BTC": "#f7931a",
+              "ETH": "#647cec", "USDC": "#0362fc", "USDT": "#03fc41"}
 
 
 @st.experimental_memo
@@ -343,10 +324,12 @@ def getbinancefutures(addrece, name):
 
 listoffuturesdata = ["/futures/data/openInterestHist", "/futures/data/topLongShortAccountRatio",
                      "/futures/data/topLongShortPositionRatio", "/futures/data/globalLongShortAccountRatio"]
+
 listoffuturesdatalegend = {"/futures/data/openInterestHist": ["持仓总数量", "持仓总价值"],
                            "/futures/data/topLongShortAccountRatio": ["大户多仓账户数比例", "大户多仓账户数比值", "大户空仓账户数比例"],
                            "/futures/data/topLongShortPositionRatio": ["大户多仓持仓量比例", "大户多空持仓量比值", "大户空仓持仓量比例"],
                            "/futures/data/globalLongShortAccountRatio": ["多仓人数比例", " 多空人数比值", "空仓人数比例"]}
+
 longshortcolor = {"longAccount": "#2cbc84", "shortAccount": "#e22d4c", "sumOpenInterest": "#83afdd"}
 
 
@@ -422,7 +405,7 @@ def redataURPD(df):
         ap = df.iloc[i]["partitions"][0] / total_supply
         for j in range(1, 100):
             ap = ap + df.iloc[i]["partitions"][j] / total_supply
-            temp = temp + ath_price / 100
+            temp = int(temp + ath_price / 100)+int(ath_price)*10**(-len(str(int(ath_price))))
             if (temp + ath_price / 100) > current_price > temp:
                 a = [str(df.iloc[i]["t"]), "T", temp, df.iloc[i]["partitions"][j],
                      df.iloc[i]["partitions"][j] / total_supply, ap]
@@ -463,29 +446,18 @@ def URPD():
     if len(selectedpoints) == 0:
         selected_points = [
             {
-                "x": 54362.464091951675,
-                "y": 0.008553206039054517,
-                "curveNumber": 4,
-                "pointNumber": 31,
-                "pointIndex": 31
-            },
-            {
-                "x": 55009.63628352253,
-                "y": 0.006808659117621985,
-                "curveNumber": 4,
-                "pointNumber": 32,
-                "pointIndex": 32
-            },
-            {
-                "x": 55656.808475093385,
-                "y": 0.011991062829718227,
-                "curveNumber": 4,
-                "pointNumber": 33,
-                "pointIndex": 33
-            }]
+                "x": 37097.68642,
+                "y": 0.007648795825883361,
+                "curveNumber": 2,
+                "pointNumber": 37,
+                "pointIndex": 37
+            }
+        ]
     else:
         selected_points = selectedpoints
-    df3 = df2.loc[(int(selected_points[-1]["x"]) > df2["Price"]) & (int(selected_points[0]["x"]) < df2["Price"])]
+    small_quant = int(str(selected_points[0]["x"]).split(".")[1])/200
+    df3 = df2.loc[(int(selected_points[-1]["x"]+small_quant) > df2["Price"])
+                  & (int(selected_points[0]["x"]-small_quant) < df2["Price"])]
     time = df3["t"].unique()
     changeofpercentage = []
     for i in time:
@@ -495,14 +467,19 @@ def URPD():
     with st.expander("Setting"):
         slider = st.number_input("MovingAverage", min_value=1, max_value=100, step=1, value=movingaverage,
                                  key=symbol + two)
-    st.write("Range from " + str(int(selected_points[0]["x"])) + " to " + str(int(selected_points[-1]["x"])))
+    st.write("Range from " + str(int(selected_points[0]["x"]-small_quant)) + " to "
+             + str(int(selected_points[-1]["x"]+small_quant)))
     listy = ["v"]
-    addtrace(df4, listy, fig2, int(slider), two, 1, symbol)
+    addtrace(df4, listy, fig2, int(slider), "URPD", 1, symbol)
     addpriceline(symbol, fig2, df4)
     layout_update(fig2, two, symbol)
     fig2.update_layout(hovermode="x unified")
     fig2.layout.yaxis.tickformat = '.1%'
     st.plotly_chart(fig2, use_container_width=True, config=config)
+
+
+def URPD2():
+    st.write("")
 
 
 def HODLtable(df, two):
@@ -532,5 +509,3 @@ def HODLtable(df, two):
     ])
     fig.update_layout(autosize=False, height=575)
     st.plotly_chart(fig, use_container_width=True, config=config)
-
-
