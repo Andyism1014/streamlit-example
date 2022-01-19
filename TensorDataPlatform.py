@@ -57,9 +57,9 @@ corelation_analysis = """
 new TradingView.widget(
     {
         "width": 980,
-        "height": 610,
+        "height": 620,
         "symbol": "BINANCE:BTCUSDT",
-        "interval": "D",
+        "interval": "60",
         "timezone": "Etc/UTC",
         "theme": "light",
         "style": "2",
@@ -72,16 +72,22 @@ new TradingView.widget(
         "studies": [
             {"id":"CorrelationCoefficient@tv-basicstudies",
             "inputs":{
-            "symbol":"OANDA:SPX500USD",
-            "color":"#33FFDA"
+            "symbol":"OANDA:SPX500USD"
+            }
             },
-            "style":{
-            "color":"#33FFDA"
+            {"id":"CorrelationCoefficient@tv-basicstudies",
+            "inputs":{
+            "symbol":"NAS100USD"
             }
             },
             {"id":"Compare@tv-basicstudies",
             "inputs":{
             "symbol":"OANDA:SPX500USD"}
+             
+            },
+            {"id":"Compare@tv-basicstudies",
+            "inputs":{
+            "symbol":"NAS100USD"}
              
             }
         ],
