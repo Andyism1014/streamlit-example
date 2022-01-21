@@ -8,3 +8,4 @@ requests~=2.26.0
 numpy~=1.20.3
 sqlalchemy~=1.4.22
 streamlit_authenticator
+streamlit_autorefresh
