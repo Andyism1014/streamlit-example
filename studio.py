@@ -18,7 +18,7 @@ def expend_URPD(df):
 
 
 def update_g(symbol, addresses, intervel, currency):
-    api_key = '23xKyUhf3J2dYGXBD2tgsYkvjrv'
+    api_key = st.secrets["glassnote_api"]["api_key"]
     res = requests.get("https://api.glassnode.com" + addresses,
                        params={'a': symbol, 'api_key': api_key, "i": intervel, "c": currency})
     # convert to pandas dataframe
@@ -254,7 +254,7 @@ def picture(l):
 def messariP(x):
     today = datetime.today().strftime('%Y-%m-%d')
     url = "https://data.messari.io/api/v1/assets/%s/metrics/price/time-series" % x
-    header = {"x-messari-api-key": "77fd912b-7c49-449f-a808-d3755b9bb69a"}
+    header = {"x-messari-api-key": st.secrets["messary_api"]["x-messari-api-key"]}
     r = requests.get(url, headers=header,
                      params={"start": "2021-01-01", "end": today, "interval": "1d", "columns": "close"})
     df = pd.DataFrame(r.json()["data"]["values"])
