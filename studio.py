@@ -8,6 +8,7 @@ from datetime import datetime
 from streamlit_plotly_events import plotly_events
 from sqlalchemy import create_engine
 
+
 engine = create_engine('sqlite:///database.db')
 
 
@@ -411,7 +412,7 @@ def longshortRatio():
     st.plotly_chart(fig, use_container_width=True, config=config)
 
 
-@st.experimental_memo(ttl=60 * 60 * 24, show_spinner=False)
+@st.experimental_memo(ttl=60 * 60 * 24)
 def redataURPD(df):
     list_value = []
     for i in range(len(df)):
@@ -419,26 +420,26 @@ def redataURPD(df):
         ath_price = df.iloc[i]["ath_price"]
         total_supply = df.iloc[i]["total_supply"]
         temp = 0
-        ap = df.iloc[i]["partitions"][0] / total_supply
+        ap = df.iloc[i]["0"] / total_supply
         for j in range(1, 100):
-            ap = ap + df.iloc[i]["partitions"][j] / total_supply
+            ap = ap + df.iloc[i][str(j)] / total_supply
             temp = int(temp + ath_price / 100) + int(ath_price) * 10 ** (-len(str(int(ath_price))))
             if (temp + ath_price / 100) > current_price > temp:
-                a = [str(df.iloc[i]["t"]), "T", temp, df.iloc[i]["partitions"][j],
-                     df.iloc[i]["partitions"][j] / total_supply, ap]
+                a = [str(df.iloc[i]["t"]), "T", temp, df.iloc[i][str(j)],
+                     df.iloc[i][str(j)] / total_supply, ap]
             else:
                 if ap <= 0.25:
-                    a = [str(df.iloc[i]["t"]), "F1", temp, df.iloc[i]["partitions"][j],
-                         df.iloc[i]["partitions"][j] / total_supply, ap]
+                    a = [str(df.iloc[i]["t"]), "F1", temp, df.iloc[i][str(j)],
+                         df.iloc[i][str(j)] / total_supply, ap]
                 elif 0.25 < ap <= 0.5:
-                    a = [str(df.iloc[i]["t"]), "F2", temp, df.iloc[i]["partitions"][j],
-                         df.iloc[i]["partitions"][j] / total_supply, ap]
+                    a = [str(df.iloc[i]["t"]), "F2", temp, df.iloc[i][str(j)],
+                         df.iloc[i][str(j)] / total_supply, ap]
                 elif 0.5 < ap <= 0.75:
-                    a = [str(df.iloc[i]["t"]), "F3", temp, df.iloc[i]["partitions"][j],
-                         df.iloc[i]["partitions"][j] / total_supply, ap]
+                    a = [str(df.iloc[i]["t"]), "F3", temp, df.iloc[i][str(j)],
+                         df.iloc[i][str(j)] / total_supply, ap]
                 else:
-                    a = [str(df.iloc[i]["t"]), "F4", temp, df.iloc[i]["partitions"][j],
-                         df.iloc[i]["partitions"][j] / total_supply, ap]
+                    a = [str(df.iloc[i]["t"]), "F4", temp, df.iloc[i][str(j)],
+                         df.iloc[i][str(j)] / total_supply, ap]
             list_value.append(a)
     df2 = pd.DataFrame(list_value, columns=['t', "color", 'Price', 'Distribution', "Percentage", "AP"])
     return df2
