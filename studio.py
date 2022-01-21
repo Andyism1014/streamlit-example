@@ -6,16 +6,33 @@ import streamlit as st
 from plotly.subplots import make_subplots
 from datetime import datetime
 from streamlit_plotly_events import plotly_events
+from sqlalchemy import create_engine
+
+engine = create_engine('sqlite:///database.db')
 
 
-@st.experimental_memo(ttl=60 * 60 * 12)
-def get_g(symbol, addresses, intervel, currency):
-    api_key = '23MchBnJN7t78kXEq0p9Hx1znTu'
+def expend_URPD(df):
+    df3 = pd.DataFrame(df['partitions'].to_list(), columns=range(100))
+    df4 = pd.concat([df[["t", "ath_price", "current_price", "total_supply"]], df3], axis=1)
+    return df4
+
+
+def update_g(symbol, addresses, intervel, currency):
+    api_key = '23xKyUhf3J2dYGXBD2tgsYkvjrv'
     res = requests.get("https://api.glassnode.com" + addresses,
                        params={'a': symbol, 'api_key': api_key, "i": intervel, "c": currency})
     # convert to pandas dataframe
     df = pd.json_normalize(res.json(), sep="_")
-    df["t"] = pd.to_datetime(df["t"], unit="s").dt.date
+    if addresses == "/v1/metrics/indicators/utxo_realized_price_distribution_ath":
+        df = expend_URPD(df)
+    df["t"] = pd.to_datetime(df["t"], unit="s")
+    df.to_sql(symbol + addresses + intervel + currency, engine, if_exists="replace")
+
+
+@st.experimental_memo(ttl=60 * 60 * 12)
+def get_g(symbol, addresses, intervel, currency):
+    df = pd.read_sql(symbol + addresses + intervel + currency, engine, index_col="index")
+    df["t"] = df["t"].dt.date
     return df
 
 

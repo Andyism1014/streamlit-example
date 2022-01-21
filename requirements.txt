@@ -6,3 +6,4 @@ hydralit_components
 streamlit_plotly_events
 requests~=2.26.0
 numpy~=1.20.3
+sqlalchemy~=1.4.22
