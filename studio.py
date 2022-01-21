@@ -30,7 +30,7 @@ def update_g(symbol, addresses, intervel, currency):
               if_exists="replace")
 
 
-
+@st.experimental_memo(ttl=60 * 60)
 def get_g(symbol, addresses, intervel, currency):
     df = pd.read_sql("Glassnode" + " " + symbol + " " + addresses + " " + intervel + " " + currency, engine,
                      index_col="index")
