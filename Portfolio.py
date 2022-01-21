@@ -5,7 +5,6 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 
-
 @st.experimental_memo(ttl=60)
 def getbithumb(x, y):
     if y == "d":
