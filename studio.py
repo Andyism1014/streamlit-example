@@ -8,7 +8,6 @@ from datetime import datetime
 from streamlit_plotly_events import plotly_events
 from sqlalchemy import create_engine
 
-
 engine = create_engine('sqlite:///database.db')
 
 
@@ -27,12 +26,14 @@ def update_g(symbol, addresses, intervel, currency):
     if addresses == "/v1/metrics/indicators/utxo_realized_price_distribution_ath":
         df = expend_URPD(df)
     df["t"] = pd.to_datetime(df["t"], unit="s")
-    df.to_sql(symbol + addresses + intervel + currency, engine, if_exists="replace")
+    df.to_sql("Glassnode" + " " + symbol + " " + addresses + " " + intervel + " " + currency, engine,
+              if_exists="replace")
 
 
-@st.experimental_memo(ttl=60 * 60 * 12)
+
 def get_g(symbol, addresses, intervel, currency):
-    df = pd.read_sql(symbol + addresses + intervel + currency, engine, index_col="index")
+    df = pd.read_sql("Glassnode" + " " + symbol + " " + addresses + " " + intervel + " " + currency, engine,
+                     index_col="index")
     df["t"] = df["t"].dt.date
     return df
 
