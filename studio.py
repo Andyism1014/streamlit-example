@@ -1,3 +1,4 @@
+# %%
 import plotly.graph_objects as go
 import plotly.express as px
 import pandas as pd
@@ -8,7 +9,14 @@ from datetime import datetime
 from streamlit_plotly_events import plotly_events
 from sqlalchemy import create_engine
 
+# %%
 engine = create_engine('sqlite:///database.db')
+
+
+# %%
+
+
+# %%
 
 
 def expend_URPD(df):
@@ -123,7 +131,10 @@ about_market = [['Active Entities', 'BTC', '/v1/metrics/entities/active_count', 
                                        '/v1/metrics/addresses/supply_balance_10k_100k', '24h', 'NATIVE', 1],
                 ['Realized Cap HODL Waves ', 'BTC', '/v1/metrics/supply/rcap_hodl_waves', '24h', 'NATIVE', 14],
                 ['Relative Long/Short-Term Holder Supply', 'BTC', '/v1/metrics/supply/lth_sth_profit_loss_relative',
-                 '24h', 'NATIVE', 7]]
+                 '24h', 'NATIVE', 7],
+                ['Net Realized Profit/Loss', "BTC", "/v1/metrics/indicators/net_realized_profit_loss", "24h", "NATIVE",
+                 1]
+                ]
 
 aboutderiva = [
     ['Futures Open Interest Perpetual', 'BTC', '/v1/metrics/derivatives/futures_open_interest_perpetual_sum', '24h',
