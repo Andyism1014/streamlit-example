@@ -54,7 +54,7 @@ if st.session_state['authentication_status']:
         st.subheader("交易所余额")
         fenlei(about_market[3:11])
         st.subheader("BTC 长期持有者")
-        fenlei(about_market[-2:])
+        fenlei(about_market[-3:])
     if menu_id == "币安衍生品数据":
         longshortRatio()
     if menu_id == "资金流与趋势分析":
